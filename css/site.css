@@ -89,7 +89,7 @@ a{color:inherit}
 }
 .hero__bg{
   position:absolute;inset:0;
-  background-image:url("../img/hero-studio.jpg");
+  background-image:url("../img/hero-silo.jpg");
   background-size:cover;background-position:center 30%;
   opacity:.85;
 }
@@ -99,10 +99,10 @@ a{color:inherit}
 }
 .hero__name{
   position:relative;z-index:2;
-  text-align:center;
-  padding-top:11vh;
+  text-align:right;
+  padding:9vh 6vw 0 24px;
   font-weight:900;
-  font-size:clamp(64px, 12.5vw, 168px);
+  font-size:clamp(56px, 9.5vw, 132px);
   line-height:.95;letter-spacing:-.03em;
   color:var(--cream-card);
   text-shadow:0 4px 40px rgba(0,0,0,.45);
@@ -110,10 +110,14 @@ a{color:inherit}
 .hero__name em{font-family:var(--serif);font-weight:500;font-style:italic;color:var(--gold-bright);font-size:1.12em}
 .hero__story{
   position:relative;z-index:2;
-  max-width:660px;margin:6vh auto 0;
-  padding:0 24px 56px;
+  max-width:560px;margin:5vh 6vw 0 auto;
+  padding:0 24px 56px 24px;
   color:var(--cream);
-  text-align:center;
+  text-align:right;
+}
+@media (max-width:860px){
+  .hero__name{text-align:center;padding:11vh 24px 0}
+  .hero__story{text-align:center;margin:6vh auto 0;max-width:660px}
 }
 .hero__story p{
   font-size:clamp(19px,2.2vw,24px);
