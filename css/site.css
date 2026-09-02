@@ -89,8 +89,8 @@ a{color:inherit}
 }
 .hero__bg{
   position:absolute;inset:0;
-  background-image:url("../img/hero-office-wide.jpg");
-  background-size:cover;background-position:center 25%;
+  background-image:url("../img/hero-studio.jpg");
+  background-size:cover;background-position:center 30%;
   opacity:.85;
 }
 .hero__shade{
