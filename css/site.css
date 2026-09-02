@@ -121,9 +121,16 @@ a{color:inherit}
   color:var(--cream);
   text-shadow:0 2px 20px rgba(0,0,0,.6);
 }
+.hero__tagline-lead{
+  display:block;
+  font-size:1.45em;
+  color:var(--gold-bright);
+  margin-bottom:8px;
+  font-weight:500;
+}
 .hero__story{
   position:absolute;z-index:2;
-  left:50%;margin-left:calc(6vw - 245px);bottom:17vh;
+  left:50%;margin-left:calc(6vw - 245px);bottom:8vh;
   animation:heroCardUp 1s ease .7s both;
   max-width:490px;
   color:var(--cream);
