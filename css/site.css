@@ -123,7 +123,7 @@ a{color:inherit}
 }
 .hero__story{
   position:absolute;z-index:2;
-  right:13vw;bottom:10vh;
+  left:50%;margin-left:calc(6vw - 245px);bottom:9vh;
   animation:heroCardUp 1s ease .7s both;
   max-width:490px;
   color:var(--cream);
