@@ -146,6 +146,9 @@ a{color:inherit}
 @media (max-width:860px){
   .hero{display:flex;flex-direction:column}
   .hero__bg{background-position:16% 30%}
+  .hero__name{padding-top:4.5vh}
+  .hero__tagline{margin-top:8px}
+  .hero__tagline-rest{display:none}
   .hero__name,.hero__tagline{margin-left:0;padding-right:24px}
   .hero__story{position:static;left:auto;margin:auto 16px 11vh;max-width:none;padding:18px 20px 6px}
   .hero__story p{font-size:15px;line-height:1.55;margin-bottom:11px}
@@ -157,13 +160,10 @@ a{color:inherit}
 }
 .hero__story strong{color:var(--gold-bright)}
 .hero__scrollcue{
-  position:absolute;z-index:2;left:0;bottom:0;width:38%;
-  text-align:center;padding-bottom:24px;
+  position:absolute;z-index:2;left:0;right:0;bottom:0;
+  text-align:center;padding-bottom:8px;
   font-family:var(--mono);font-size:11px;letter-spacing:.3em;
   color:rgba(244,238,223,.75);
-}
-@media (max-width:860px){
-  .hero__scrollcue{width:100%}
 }
 .hero__scrollcue::after{
   content:"↓";display:block;font-size:18px;margin-top:6px;
