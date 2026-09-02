@@ -89,7 +89,7 @@ a{color:inherit}
 }
 .hero__bg{
   position:absolute;inset:0;
-  background-image:url("../img/hero-silo.jpg");
+  background-image:url("../img/hero-cafe.jpg");
   background-size:cover;background-position:center 30%;
   opacity:.85;
 }
@@ -99,8 +99,8 @@ a{color:inherit}
 }
 .hero__name{
   position:absolute;z-index:2;
-  left:5vw;top:50%;transform:translateY(-50%);
-  text-align:left;
+  right:6vw;top:7vh;
+  text-align:right;
   font-weight:900;
   font-size:clamp(52px, 7.5vw, 108px);
   line-height:.95;letter-spacing:-.03em;
@@ -110,7 +110,7 @@ a{color:inherit}
 .hero__name em{display:block;font-family:var(--serif);font-weight:500;font-style:italic;color:var(--gold-bright);font-size:1.12em}
 .hero__story{
   position:absolute;z-index:2;
-  right:6vw;top:11vh;
+  right:6vw;top:39vh;
   max-width:540px;
   color:var(--cream);
   text-align:right;
