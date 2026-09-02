@@ -1,3 +1,3 @@
-_serve.mjs
-_shot.mjs
-_preview-full.png
+_*.mjs
+_*.png
+_*.jpg
