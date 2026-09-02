@@ -157,10 +157,13 @@ a{color:inherit}
 }
 .hero__story strong{color:var(--gold-bright)}
 .hero__scrollcue{
-  position:absolute;z-index:2;left:0;right:0;bottom:0;
+  position:absolute;z-index:2;left:0;bottom:0;width:38%;
   text-align:center;padding-bottom:24px;
   font-family:var(--mono);font-size:11px;letter-spacing:.3em;
   color:rgba(244,238,223,.75);
+}
+@media (max-width:860px){
+  .hero__scrollcue{width:100%}
 }
 .hero__scrollcue::after{
   content:"↓";display:block;font-size:18px;margin-top:6px;
