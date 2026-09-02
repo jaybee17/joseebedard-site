@@ -100,9 +100,11 @@ a{color:inherit}
 .hero__name{
   position:relative;z-index:2;
   text-align:center;
-  padding:9vh 24px 0;
+  padding:9vh 24px 0 0;
+  margin-left:12vw;
   font-weight:900;
-  font-size:clamp(48px, 8vw, 116px);
+  font-size:clamp(52px, 9.5vw, 142px);
+  animation:heroFade .9s ease .15s both;
   line-height:.95;letter-spacing:-.03em;
   color:var(--cream-card);
   text-shadow:0 4px 40px rgba(0,0,0,.55);
@@ -111,15 +113,18 @@ a{color:inherit}
 .hero__tagline{
   position:relative;z-index:2;
   text-align:center;
-  margin-top:14px;
+  margin-top:16px;
+  margin-left:12vw;
   font-family:var(--serif);font-style:italic;
-  font-size:clamp(19px,2.3vw,27px);
+  font-size:clamp(22px,2.9vw,34px);
+  animation:heroFade .9s ease .4s both;
   color:var(--cream);
   text-shadow:0 2px 20px rgba(0,0,0,.6);
 }
 .hero__story{
   position:absolute;z-index:2;
-  right:5vw;bottom:10vh;
+  right:13vw;bottom:10vh;
+  animation:heroCardUp 1s ease .7s both;
   max-width:490px;
   color:var(--cream);
   text-align:left;
@@ -133,6 +138,7 @@ a{color:inherit}
 }
 @media (max-width:860px){
   .hero{display:flex;flex-direction:column}
+  .hero__name,.hero__tagline{margin-left:0;padding-right:24px}
   .hero__story{position:static;margin:5vh 20px 9vh;max-width:none}
 }
 .hero__story p{
@@ -150,6 +156,8 @@ a{color:inherit}
   content:"↓";display:block;font-size:18px;margin-top:6px;
   animation:bob 1.6s ease-in-out infinite;
 }
+@keyframes heroFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes heroCardUp{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:none}}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
 /* ---------- journey ---------- */
