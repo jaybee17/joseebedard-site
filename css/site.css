@@ -89,8 +89,8 @@ a{color:inherit}
 }
 .hero__bg{
   position:absolute;inset:0;
-  background-image:url("../img/hero-office.jpg");
-  background-size:cover;background-position:center 30%;
+  background-image:url("../img/hero-office-wide.jpg");
+  background-size:cover;background-position:center 25%;
   opacity:.85;
 }
 .hero__shade{
@@ -107,7 +107,7 @@ a{color:inherit}
   color:var(--cream-card);
   text-shadow:0 4px 40px rgba(0,0,0,.45);
 }
-.hero__name em{font-family:var(--serif);font-weight:500;font-style:italic;color:var(--gold-bright)}
+.hero__name em{font-family:var(--serif);font-weight:500;font-style:italic;color:var(--gold-bright);font-size:1.12em}
 .hero__story{
   position:relative;z-index:2;
   max-width:660px;margin:6vh auto 0;
