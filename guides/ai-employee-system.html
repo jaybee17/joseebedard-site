@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Employee System — Josée Bédard</title>
+<meta name="description" content="How I run my whole content business with a team of AI employees I built inside Claude — the system, step by step.">
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Newsreader:ital,opsz,wght@1,18,400;1,18,500;0,18,500&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+
+<div class="ribbon">The complete 38-page guide is free inside the community. <a href="https://www.skool.com/ai-digital-society" target="_blank" rel="noopener">Get it here →</a></div>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="../index.html">Josée <em>Bédard</em></a>
+    <div class="nav__links">
+      <a href="index.html">All Guides</a>
+      <a class="btn" href="https://www.skool.com/ai-digital-society" target="_blank" rel="noopener">Join AI Digital Society — Free</a>
+    </div>
+  </div>
+</nav>
+
+<article class="guide">
+  <div class="guide__inner">
+    <div class="guide__meta">A to Z · Claude · The full system</div>
+    <h1>The AI Employee System</h1>
+    <p class="guide__lede">Seven employees. Zero payroll. This is how my whole content business runs while I'm out living my life.</p>
+
+    <p>Courses give you videos. This gives you employees. An AI employee is a helper you build inside Claude that does one job for your business, the same way every time, in your voice. I don't code, I don't design, I don't edit video — my employees do. Here's the shape of the system, and where each piece comes from.</p>
+
+    <h2><span class="stepno">Step 1 —</span> Build the brain file first</h2>
+    <p>Every employee reads one file before it works: the brain file. It holds your story, your people, and your voice. If you skip this, you get robot content no matter how good your prompts are. <a href="brain-file.html">The full brain file guide is here</a> — do it first, it takes 20 minutes.</p>
+
+    <h2><span class="stepno">Step 2 —</span> Hire your first employee: the Post Writer</h2>
+    <p>One job: turn one idea into one finished post in your voice. In your brain-file project, paste:</p>
+    <div class="copyblock">You are my Post Writer. Your only job: I give you one idea,
+you give me one finished post in my voice, using my brain file.
+Short sentences. Plain words. No hype. One clear next step
+at the end. Ask me for today's idea.</div>
+    <p>That's a working employee. Feed it one idea a day and your content problem is half gone.</p>
+
+    <h2><span class="stepno">Step 3 —</span> Add employees one at a time</h2>
+    <p>Don't build seven at once. Add the next one when the current one runs smooth. Mine, in the order I hired them: the <strong>Post Writer</strong>, the <strong>Image Maker</strong>, the <strong>Reel Scripter</strong>, the <strong>Viral Spotter</strong> (finds outliers worth learning from), the <strong>Brand Reviewer</strong> (my quality gate), the <strong>Scheduler</strong>, and the <strong>Video Editor</strong>. Each one is just a job description plus my brain file.</p>
+
+    <h2><span class="stepno">Step 4 —</span> Run the 90/10 every day</h2>
+    <p>The employees do 90% of the work. I do the 10% that matters: I decide what we make, I approve what they made, and I press publish. Decide. Approve. Press publish. That's my whole workday for content — and the business posts every single day.</p>
+
+    <h2><span class="stepno">Step 5 —</span> Never hand over the one thing</h2>
+    <p>My AI writes my content. It never answers my community. When someone asks me a question, the answer comes from me — that's the part people can feel, and it's the part I'd never automate.</p>
+
+    <p><strong>Want the full build?</strong> The complete guide — all 38 pages, every employee's exact job description, the setup screens, the daily routine — is free when you join my community. That's where I answer questions about it myself.</p>
+
+    <div class="guide__cta">
+      <h3>Get the complete 38-page guide, free</h3>
+      <p>The full A-to-Z setup lives in my free community: every employee, every prompt, every step from a blank Claude screen to a working team.</p>
+      <a class="btn" href="https://www.skool.com/ai-digital-society" target="_blank" rel="noopener">Join AI Digital Society — Free</a>
+    </div>
+  </div>
+</article>
+
+<footer class="footer">
+  <div class="footer__links">© 2026 Josée Bédard · <a href="index.html">All Guides</a> · <a href="../index.html">Home</a></div>
+  <p class="footer__disclaimer">My story is my own, from years of full-time work. It is not typical and it is not a promise of your results. Everything on this site is education, not financial advice.</p>
+</footer>
+
+<script>
+document.querySelectorAll(".copyblock").forEach(function(b){
+  b.addEventListener("click", function(){
+    navigator.clipboard.writeText(b.textContent).then(function(){
+      b.classList.add("copied");
+      setTimeout(function(){ b.classList.remove("copied"); }, 1600);
+    });
+  });
+});
+</script>
+
+</body>
+</html>

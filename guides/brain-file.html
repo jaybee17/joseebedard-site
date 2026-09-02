@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Brain File — Josée Bédard</title>
+<meta name="description" content="The 20-minute interview that teaches Claude your story, your people, and how you sound — free, complete, on the page.">
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Newsreader:ital,opsz,wght@1,18,400;1,18,500;0,18,500&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+
+<div class="ribbon">This guide is free and complete, right here on the page. <a href="https://www.skool.com/ai-digital-society" target="_blank" rel="noopener">Get every guide in one hub →</a></div>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="../index.html">Josée <em>Bédard</em></a>
+    <div class="nav__links">
+      <a href="index.html">All Guides</a>
+      <a class="btn" href="https://www.skool.com/ai-digital-society" target="_blank" rel="noopener">Join AI Digital Society — Free</a>
+    </div>
+  </div>
+</nav>
+
+<article class="guide">
+  <div class="guide__inner">
+    <div class="guide__meta">Set it up · Claude · 20 minutes</div>
+    <h1>The Brain File</h1>
+    <p class="guide__lede">One 20-minute talk with Claude, and everything it writes after that sounds like you instead of a robot.</p>
+
+    <p>Most people open Claude, ask for a post, and get something that sounds like every other AI post on the internet. The problem is not the AI. The problem is that it doesn't know you. It doesn't know your story, who you help, or how you talk at your own kitchen table.</p>
+    <p>I fixed that with one sit-down. I call it the <strong>20-minute interview</strong>, and what comes out of it is my <strong>brain file</strong> — the one file every single one of my AI employees reads before it writes a word for me.</p>
+
+    <h2><span class="stepno">Step 1 —</span> Open a project and just talk</h2>
+    <p>In Claude, create a new project. Call it "My Brain File." Then start a chat and paste this:</p>
+    <div class="copyblock">Interview me for 20 minutes so you can learn to write as me.
+Ask me one question at a time about: my story, who I help,
+what I sell, how I talk, and the words I would never use.
+When we're done, write it all up as one file I can save.</div>
+    <p>Then answer honestly, like you're talking to a friend. Don't polish it. The rough version of you is the one that works.</p>
+
+    <h2><span class="stepno">Step 2 —</span> Tell it your story, not your resume</h2>
+    <p>When it asks about you, skip the job titles. Tell it the real beats: where you started, what went wrong, what you figured out. My file says I was a mail carrier. It says I burned out. That's why my content doesn't sound like a guru — because my file won't let it.</p>
+
+    <h2><span class="stepno">Step 3 —</span> Give it your banned words</h2>
+    <p>This is the part nobody does, and it's the part that kills the robot voice. Tell it the words you would never say. Mine has a list — hype words, guru words, words that sound like a seminar. Add this to the interview:</p>
+    <div class="copyblock">Here are words and phrases I never use: [your list].
+If you ever write one of them, you've broken character.
+Also: short sentences. Plain words. Kitchen-table talk.</div>
+
+    <h2><span class="stepno">Step 4 —</span> Save the file where it always gets read</h2>
+    <p>When the interview is done, Claude writes up your brain file. Save it in the project's instructions (or as a file in the project). Now every new chat in that project starts already knowing you. No more re-explaining your business every morning.</p>
+
+    <h2><span class="stepno">Step 5 —</span> Test it, then correct it once</h2>
+    <p>Ask it to write a post. Read it out loud. Anything that doesn't sound like you, say so — and then add the correction to the file:</p>
+    <div class="copyblock">That line doesn't sound like me. I would say it like this: [your version].
+Add that as a permanent rule in my brain file.</div>
+    <p>Every correction makes the file smarter. After a week of this, you'll read a draft and forget you didn't write it.</p>
+
+    <p><strong>That's the whole thing.</strong> Twenty minutes of talking, one file, and every AI employee you build afterward inherits your voice on day one. This file is the foundation everything else in my business sits on.</p>
+
+    <div class="guide__cta">
+      <h3>Want the rest of the system?</h3>
+      <p>Every guide like this lives in my free community, plus the ones that never make the site. I answer questions there myself.</p>
+      <a class="btn" href="https://www.skool.com/ai-digital-society" target="_blank" rel="noopener">Join AI Digital Society — Free</a>
+    </div>
+  </div>
+</article>
+
+<footer class="footer">
+  <div class="footer__links">© 2026 Josée Bédard · <a href="index.html">All Guides</a> · <a href="../index.html">Home</a></div>
+  <p class="footer__disclaimer">My story is my own, from years of full-time work. It is not typical and it is not a promise of your results. Everything on this site is education, not financial advice.</p>
+</footer>
+
+<script>
+document.querySelectorAll(".copyblock").forEach(function(b){
+  b.addEventListener("click", function(){
+    navigator.clipboard.writeText(b.textContent).then(function(){
+      b.classList.add("copied");
+      setTimeout(function(){ b.classList.remove("copied"); }, 1600);
+    });
+  });
+});
+</script>
+
+</body>
+</html>

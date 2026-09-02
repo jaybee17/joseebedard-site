@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Carousel System — Josée Bédard</title>
+<meta name="description" content="The exact system my AI employees use to write and design the carousels I post every day — free, complete, on the page.">
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16.png">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Newsreader:ital,opsz,wght@1,18,400;1,18,500;0,18,500&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+
+<div class="ribbon">This guide is free and complete, right here on the page. <a href="https://www.skool.com/ai-digital-society" target="_blank" rel="noopener">Get every guide in one hub →</a></div>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="../index.html">Josée <em>Bédard</em></a>
+    <div class="nav__links">
+      <a href="index.html">All Guides</a>
+      <a class="btn" href="https://www.skool.com/ai-digital-society" target="_blank" rel="noopener">Join AI Digital Society — Free</a>
+    </div>
+  </div>
+</nav>
+
+<article class="guide">
+  <div class="guide__inner">
+    <div class="guide__meta">Content · System · 5 steps</div>
+    <h1>My Carousel System</h1>
+    <p class="guide__lede">I post a carousel every day and never open a design app. Here's the system, start to finish.</p>
+
+    <p>A carousel is just slides with words on them. The reason most look messy is that every post starts from zero: new colors, new fonts, new layout. Mine never do. I made the design decisions <strong>once</strong>, wrote them down, and now my AI employees make every carousel inside those rules.</p>
+
+    <h2><span class="stepno">Step 1 —</span> Lock your three colors, forever</h2>
+    <p>Pick three: a background, a text color, one accent. Mine are cream, black, and gold — every post I make uses those three and nothing else. That's why my page looks like one brand instead of six. Write them down with their exact codes so your AI can use them too.</p>
+
+    <h2><span class="stepno">Step 2 —</span> Lock your two fonts</h2>
+    <p>One bold font for the big words. One quiet font for the small words. That's it — two jobs, two fonts. Add them to the same note as your colors. You now have a brand kit, and it took five minutes.</p>
+
+    <h2><span class="stepno">Step 3 —</span> Give the kit to your AI employee</h2>
+    <p>Open your Claude project (the one with your <a href="brain-file.html">brain file</a>) and paste your kit in:</p>
+    <div class="copyblock">These are my brand rules for every carousel:
+Colors: [background], [text], [accent] — never any others.
+Fonts: [bold font] for headlines, [quiet font] for body.
+Slide 1 is always a big hook. The last slide always tells
+people the one next step. Save this as a permanent rule.</div>
+
+    <h2><span class="stepno">Step 4 —</span> Ask for the whole carousel in one go</h2>
+    <p>Now the daily part takes minutes. One prompt:</p>
+    <div class="copyblock">Write me a 7-slide carousel about [topic] in my voice.
+Slide 1: a hook that stops the scroll — no clickbait, just true.
+Slides 2-6: one idea per slide, short lines, plain words.
+Slide 7: the next step. Then write the caption to go with it.</div>
+    <p>You get the words for every slide, in your voice, inside your brand rules. Put them on your template and it's done. (Inside my community I show how my AI employee builds the finished images too.)</p>
+
+    <h2><span class="stepno">Step 5 —</span> Run the quality gate</h2>
+    <p>Before anything gets posted, I check three things: Does slide 1 make ME want to swipe? Does every slide sound like me out loud? Are there only my three colors and two fonts on it? Three yeses, and I press publish. Any no, and it goes back for one fix.</p>
+
+    <p><strong>That's the system.</strong> Decide once, write it down, let your AI employee work inside the rules, and approve the 10% at the end. A daily carousel without a design app, without a designer, and without it ever looking like anyone else's page.</p>
+
+    <div class="guide__cta">
+      <h3>Want the rest of the system?</h3>
+      <p>Every guide like this lives in my free community, plus the ones that never make the site. I answer questions there myself.</p>
+      <a class="btn" href="https://www.skool.com/ai-digital-society" target="_blank" rel="noopener">Join AI Digital Society — Free</a>
+    </div>
+  </div>
+</article>
+
+<footer class="footer">
+  <div class="footer__links">© 2026 Josée Bédard · <a href="index.html">All Guides</a> · <a href="../index.html">Home</a></div>
+  <p class="footer__disclaimer">My story is my own, from years of full-time work. It is not typical and it is not a promise of your results. Everything on this site is education, not financial advice.</p>
+</footer>
+
+<script>
+document.querySelectorAll(".copyblock").forEach(function(b){
+  b.addEventListener("click", function(){
+    navigator.clipboard.writeText(b.textContent).then(function(){
+      b.classList.add("copied");
+      setTimeout(function(){ b.classList.remove("copied"); }, 1600);
+    });
+  });
+});
+</script>
+
+</body>
+</html>

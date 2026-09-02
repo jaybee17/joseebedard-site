@@ -215,6 +215,8 @@ a{color:inherit}
   max-width:1160px;margin:44px auto 0;padding:0 24px;
   display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
 }
+a.card{text-decoration:none;color:inherit}
+a.card .card__meta{color:var(--gold);font-weight:600}
 .card{
   background:var(--cream-card);
   border:1px solid var(--paper-line);
@@ -282,6 +284,36 @@ a{color:inherit}
 .footer__disclaimer{
   max-width:680px;margin:0 auto;font-size:13px;line-height:1.6;color:rgba(13,13,13,.55);
 }
+
+/* ---------- guide article pages ---------- */
+.guide{background:var(--cream);padding:64px 24px 90px}
+.guide__inner{max-width:720px;margin:0 auto}
+.guide__meta{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:16px}
+.guide__inner h1{font-size:clamp(34px,5vw,52px);font-weight:900;letter-spacing:-.02em;line-height:1.08;margin-bottom:18px}
+.guide__lede{font-family:var(--serif);font-style:italic;font-size:21px;color:var(--ink-soft);margin-bottom:26px}
+.guide__inner p{font-size:17.5px;line-height:1.7;margin-bottom:18px;color:var(--ink-soft)}
+.guide__inner p strong{color:var(--ink)}
+.guide__inner h2{font-size:clamp(23px,3vw,29px);font-weight:900;letter-spacing:-.01em;margin:40px 0 14px}
+.guide__inner h2 .stepno{color:var(--gold)}
+.copyblock{
+  position:relative;
+  background:var(--ink);color:var(--cream);
+  font-family:var(--mono);font-size:14.5px;line-height:1.7;
+  padding:22px 24px 20px;border-radius:12px;margin:20px 0 26px;
+  white-space:pre-wrap;cursor:pointer;
+}
+.copyblock::before{
+  content:"COPY";
+  position:absolute;top:10px;right:14px;
+  font-size:10.5px;letter-spacing:.2em;color:var(--gold-bright);
+}
+.copyblock.copied::before{content:"COPIED ✓"}
+.guide__cta{
+  margin-top:52px;padding:36px 30px;border-radius:16px;text-align:center;
+  background:var(--ink);color:var(--cream);
+}
+.guide__cta h3{font-size:24px;font-weight:900;color:var(--cream-card);margin-bottom:10px}
+.guide__cta p{color:rgba(244,238,223,.85);font-size:17px;margin-bottom:22px}
 
 /* ---------- reveal on scroll ---------- */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease}
