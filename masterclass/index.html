@@ -92,6 +92,30 @@
     .mc-founder__inner{grid-template-columns:1fr;padding:32px}
     .mc-founder__inner img{min-height:220px}
   }
+
+  .mc-stats{
+    display:flex;gap:14px;margin-top:18px;flex-wrap:wrap;
+  }
+  .mc-stat{
+    flex:1;min-width:140px;
+    background:var(--cream);border:1px solid var(--paper-line);
+    border-top:3px solid var(--gold);border-radius:12px;
+    padding:16px 14px;text-align:center;
+    opacity:0;transform:translateY(10px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .mc-stats.is-in .mc-stat{opacity:1;transform:none}
+  .mc-stats.is-in .mc-stat:nth-child(2){transition-delay:.12s}
+  .mc-stats.is-in .mc-stat:nth-child(3){transition-delay:.24s}
+  .mc-stat b{
+    display:block;font-size:26px;font-weight:900;letter-spacing:-.01em;color:var(--ink);
+    font-variant-numeric:tabular-nums;
+  }
+  .mc-stat span{
+    display:block;margin-top:4px;font-family:var(--mono);font-size:10.5px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+  }
+  @media (max-width:760px){ .mc-stat{min-width:100%} }
 </style>
 </head>
 <body>
@@ -169,7 +193,11 @@
       <h3>Hi, I'm Josée. I'm 58, and I don't code.</h3>
       <p>I spent seven years running a digital marketing agency — long weeks, big clients, no boundaries — until I burned out completely and landed in the ICU. I shut it all down and rebuilt, on my own terms, with AI.</p>
       <p>Today, AI employees I built inside Claude do 90% of the work in my content business. I approve the 10% that matters, and I press publish. That's the whole system, and it's what I teach in this masterclass.</p>
-      <p><strong>30,000+ digital products sold · Top 3% affiliate ranking · 140K Facebook followers</strong></p>
+      <div class="mc-stats reveal" data-stats>
+        <div class="mc-stat"><b data-count="30000" data-suffix="+">0</b><span>Products Sold</span></div>
+        <div class="mc-stat"><b data-count="3" data-suffix="%" data-prefix="Top ">0</b><span>Affiliate Ranking</span></div>
+        <div class="mc-stat"><b data-count="140000" data-suffix="+" data-format="k">0</b><span>Facebook Followers</span></div>
+      </div>
     </div>
   </div>
 </section>
@@ -194,10 +222,36 @@
   "use strict";
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add("is-in"); io.unobserve(e.target); }
+      if(e.isIntersecting){
+        e.target.classList.add("is-in");
+        io.unobserve(e.target);
+        if(e.target.hasAttribute("data-stats")){ animateStats(e.target); }
+      }
     });
   }, {threshold:.15});
   document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+
+  function animateStats(container){
+    container.querySelectorAll("b[data-count]").forEach(function(el){
+      var target = parseInt(el.getAttribute("data-count"), 10);
+      var prefix = el.getAttribute("data-prefix") || "";
+      var suffix = el.getAttribute("data-suffix") || "";
+      var format = el.getAttribute("data-format");
+      var duration = 1100, start = null;
+      function render(v){
+        var n = format === "k" ? Math.round(v/1000) + "K" : v.toLocaleString();
+        el.textContent = prefix + n + suffix;
+      }
+      function step(ts){
+        if(start === null) start = ts;
+        var p = Math.min((ts - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        render(Math.round(target * eased));
+        if(p < 1){ requestAnimationFrame(step); }
+      }
+      requestAnimationFrame(step);
+    });
+  }
 })();
 </script>
 
