@@ -65,6 +65,7 @@ a{color:inherit}
 .nav__logo em{font-family:var(--serif);font-weight:500;color:var(--gold)}
 .nav__links{display:flex;align-items:center;gap:26px}
 .nav__links a{font-size:15px;font-weight:600;text-decoration:none}
+.nav__textlinks{display:flex;align-items:center;gap:26px}
 .btn{
   display:inline-block;
   background:var(--gold);
@@ -395,5 +396,8 @@ a.card .card__meta{color:var(--gold);font-weight:600}
   .beat__media img,.beat__media--quiet{height:300px}
   .guides__grid{grid-template-columns:1fr}
   .proof__stats{grid-template-columns:1fr 1fr}
-  .nav__links a:not(.btn){display:none}
+  .nav__links{flex-wrap:wrap;justify-content:flex-end;row-gap:8px}
+  .nav__links .btn{order:1}
+  .nav__textlinks{order:2;flex-basis:100%;justify-content:center;gap:16px}
+  .nav__textlinks a{font-size:13px}
 }
