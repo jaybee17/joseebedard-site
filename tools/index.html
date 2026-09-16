@@ -125,31 +125,31 @@
   </div>
   <div class="tools-grid">
 
-    <div class="tool-card" onclick="buyProduct('sevenday', this)">
+    <a class="tool-card" href="7-day-program.html">
       <img class="tool-card__img" src="img-7day.png" alt="Your AI Business in 7 Days">
       <span class="tool-card__badge">$27 · INSTANT</span>
       <div class="tool-card__price">One-time payment</div>
       <h3>Your AI Business in 7 Days</h3>
       <p>One step a day. A team of AI employees doing 90% of the work. Every template included — brain file, hiring scripts, your first 30 days.</p>
-      <button class="tool-card__cta">Get the Program →</button>
-    </div>
+      <span class="tool-card__cta">See What's Inside →</span>
+    </a>
 
-    <div class="tool-card" onclick="buyProduct('aiEmployeeSystem', this)">
+    <a class="tool-card" href="ai-employee-system.html">
       <img class="tool-card__img" src="img-ai-employee-system.png" alt="The AI Employee System">
       <span class="tool-card__badge">$27 · INSTANT</span>
       <div class="tool-card__price">One-time payment</div>
       <h3>The AI Employee System</h3>
       <p>The complete A-to-Z setup guide: 38 pages that walk you from a blank Claude screen to a working team of AI employees.</p>
-      <button class="tool-card__cta">Get the Guide →</button>
-    </div>
+      <span class="tool-card__cta">See What's Inside →</span>
+    </a>
 
     <a class="tool-card" href="../blueprint/">
-      <img class="tool-card__img" src="img-blueprint.png" alt="The AI Employee Blueprint">
+      <img class="tool-card__img" src="img-blueprint.png" alt="The Free Quick-Start Guide">
       <span class="tool-card__badge">FREE</span>
-      <div class="tool-card__price">No cost</div>
-      <h3>The AI Employee Blueprint</h3>
+      <div class="tool-card__price">Start here</div>
+      <h3>The Free Quick-Start Guide</h3>
       <p>My whole system in one free 12-page PDF: the brain file, the seven AI employees, the avatar, the one front door, and your first 30 days.</p>
-      <span class="tool-card__cta">Get the Free Blueprint →</span>
+      <span class="tool-card__cta">Get the Free Guide →</span>
     </a>
 
   </div>
@@ -180,6 +180,12 @@
       alert('Something went wrong starting checkout. Please try again.');
     }
   }
+
+  // If someone hits the back button after clicking, the browser can restore
+  // the page from cache with the button still stuck in its "loading" state.
+  window.addEventListener('pageshow', () => {
+    document.querySelectorAll('.tool-card--loading').forEach(el => el.classList.remove('tool-card--loading'));
+  });
 </script>
 
 <footer class="footer">

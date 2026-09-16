@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The AI Employee System — Josée Bédard</title>
+<meta name="description" content="The complete A-to-Z setup guide: everything I use to run my own team of AI employees, one job file at a time.">
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Newsreader:ital,opsz,wght@1,18,400;1,18,500;0,18,500&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/site.css?v=24">
+<style>
+  .sp-hero{background:var(--ink);color:var(--cream);padding:80px 24px 70px;text-align:center}
+  .sp-hero .kicker{justify-content:center;display:flex}
+  .sp-hero h1{font-size:clamp(34px,5.5vw,54px);font-weight:900;letter-spacing:-.02em;margin:16px auto 18px;color:var(--cream-card);max-width:820px}
+  .sp-hero h1 em{font-family:var(--serif);font-weight:500;font-style:italic;color:var(--gold-bright)}
+  .sp-hero .lead{max-width:640px;margin:0 auto 30px;font-size:19px;color:rgba(244,238,223,.85)}
+  .sp-hero p.byline{font-size:16px;color:rgba(244,238,223,.7);max-width:600px;margin:0 auto}
+  .sp-section{max-width:820px;margin:0 auto;padding:70px 24px}
+  .sp-section h2{font-size:clamp(26px,4vw,36px);font-weight:900;letter-spacing:-.01em;margin-bottom:20px}
+  .sp-section h2 em{font-family:var(--serif);font-weight:500;font-style:italic;color:var(--gold)}
+  .sp-section p{font-size:17px;line-height:1.7;color:var(--ink-soft);margin-bottom:14px}
+  .sp-quote{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--ink);border-left:4px solid var(--gold);padding:4px 0 4px 22px;margin:26px 0}
+  .sp-toc{margin-top:10px}
+  .toc-row{display:flex;gap:16px;align-items:baseline;border-bottom:1px dotted var(--paper-line);padding:14px 0;font-size:17px}
+  .toc-row .no{font-family:var(--mono);color:var(--gold);font-size:13px;flex:0 0 24px}
+  .toc-row b{font-weight:800}
+  .toc-row span.d{color:var(--ink-soft);font-size:15.5px;display:block;margin-top:2px}
+  .sp-check{list-style:none}
+  .sp-check li{font-size:17px;margin-bottom:10px;padding-left:28px;position:relative}
+  .sp-check li::before{content:"✔";position:absolute;left:0;color:var(--gold);font-weight:700}
+  .sp-honest{background:var(--ink);color:var(--cream);border-radius:20px;padding:40px 36px}
+  .sp-honest p{color:rgba(244,238,223,.88)}
+  .sp-honest strong{color:var(--gold-bright)}
+  .sp-faq{border-top:1px solid var(--paper-line)}
+  .sp-faq-item{padding:22px 0;border-bottom:1px solid var(--paper-line)}
+  .sp-faq-item b{display:block;font-size:17px;margin-bottom:6px}
+  .sp-faq-item p{margin:0;font-size:15.5px}
+  .sp-cta-box{background:var(--cream-card);border:2px solid var(--gold);border-radius:20px;padding:44px 36px;text-align:center;max-width:560px;margin:0 auto}
+  .sp-cta-box .price{font-size:52px;font-weight:900;margin-bottom:6px}
+  .sp-cta-box .price-note{font-family:var(--mono);font-size:13px;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:24px}
+  .sp-buy-btn{width:100%;font-size:18px;padding:18px;border:none;border-radius:999px;background:var(--gold);color:var(--ink);font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s ease, transform .15s ease}
+  .sp-buy-btn:hover{background:var(--gold-bright);transform:translateY(-1px)}
+  .sp-buy-btn:disabled{opacity:.6;cursor:default}
+  .sp-final-note{font-size:13.5px;color:var(--ink-soft);margin-top:16px}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="../">Josée <em>Bédard</em></a>
+    <div class="nav__links">
+      <a class="btn" href="./">← Back to Tools</a>
+    </div>
+  </div>
+</nav>
+
+<header class="sp-hero">
+  <div class="kicker">AI Digital Society · Complete A-to-Z Guide</div>
+  <h1>The AI Employee <em>System.</em></h1>
+  <p class="lead">Everything, A to Z. Not theory — the exact system I use every single day, including the actual files my employees read.</p>
+  <p class="byline">I'm Josée. I'm 58. I'm not a tech person. And I run my whole content business with a team of AI employees I built inside Claude.</p>
+</header>
+
+<section class="sp-section">
+  <p>Seven employees. Zero payroll. They find my ideas, write my posts, make my images, script my reels, check my brand, and schedule everything. My job is three words: <strong>Decide. Approve. Press publish.</strong></p>
+  <p>You'll copy the same job files I use, fill in your own answers, and have your own team running this week.</p>
+  <div class="sp-quote">Courses give you videos. This gives you employees.</div>
+</section>
+
+<section class="sp-section" style="background:var(--cream-card);max-width:100%;padding-top:70px">
+  <div style="max-width:820px;margin:0 auto;padding:0 24px">
+    <h2>What's <em>inside</em> — 38 pages, every template ready to copy</h2>
+    <div class="sp-toc">
+      <div class="toc-row"><span class="no">01</span><span><b>The Shift</b><span class="d">Stop doing the work, start directing it</span></span></div>
+      <div class="toc-row"><span class="no">02</span><span><b>What You Need</b><span class="d">The honest shopping list — it's short</span></span></div>
+      <div class="toc-row"><span class="no">03</span><span><b>The Brain File</b><span class="d">The one document that runs everything</span></span></div>
+      <div class="toc-row"><span class="no">04</span><span><b>Hire Your AI Employees</b><span class="d">All seven, with their real job files</span></span></div>
+      <div class="toc-row"><span class="no">05</span><span><b>Your AI Avatar</b><span class="d">Your face on video, built in Higgsfield</span></span></div>
+      <div class="toc-row"><span class="no">06</span><span><b>Making Posts</b><span class="d">Hooks, captions, carousels, CTAs</span></span></div>
+      <div class="toc-row"><span class="no">07</span><span><b>The Posting System</b><span class="d">Folders, rotation, scheduling</span></span></div>
+      <div class="toc-row"><span class="no">08</span><span><b>The Quality Gate</b><span class="d">The employee that protects your name</span></span></div>
+      <div class="toc-row"><span class="no">09</span><span><b>The Front Door</b><span class="d">One door, everything points to it</span></span></div>
+      <div class="toc-row"><span class="no">10</span><span><b>Your Daily 30 Minutes</b><span class="d">The routine + your first 30 days</span></span></div>
+      <div class="toc-row" style="border-bottom:none"><span class="no">A</span><span><b>Appendix</b><span class="d">The full prompt bank + every template in one place</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sp-section">
+  <h2>How to use it</h2>
+  <ul class="sp-check">
+    <li>Read Part 1 in one sitting — it's short, and it changes how you see all of this</li>
+    <li>Do one step per day: brain file Monday, first employee Tuesday. Don't rush.</li>
+    <li>Copy the templates exactly — every gray box in the guide is a real file</li>
+    <li>Keep the 10% — AI does about 90% of the work; deciding and approving is yours</li>
+  </ul>
+
+  <h2 style="margin-top:44px">The difference between this and the <em>7-Day Program</em></h2>
+  <p>The 7-Day Program paces you through one step a day, on a schedule. The AI Employee System is the same real system, but as a complete reference you move through at your own speed — read it cover to cover, or jump straight to the piece you need.</p>
+</section>
+
+<section class="sp-section">
+  <div class="sp-honest">
+    <h2 style="color:var(--cream-card)">The honest part</h2>
+    <p>This guide teaches a content system. It does not guarantee income, followers, or sales. Anyone who promises you those things is selling hype — I'd rather tell you the truth on page two.</p>
+    <p>What I can promise: by the end of this guide you'll have a working system that creates content for you every day — and your only job will be directing it.</p>
+  </div>
+</section>
+
+<section class="sp-section">
+  <h2>Frequently Asked Questions</h2>
+  <div class="sp-faq">
+    <div class="sp-faq-item"><b>Do I need any tech skills?</b><p>No. Every step is click-by-click, in plain words — the same way I'd explain it at my kitchen table.</p></div>
+    <div class="sp-faq-item"><b>What tools do I need?</b><p>Mainly Claude (about $20/month). Everything else is optional or free, and the guide tells you exactly when you need it.</p></div>
+    <div class="sp-faq-item"><b>Is this the same as the 7-Day Program?</b><p>Same real system, different pace — this is the complete reference version instead of a day-by-day schedule. See above for the full difference.</p></div>
+    <div class="sp-faq-item"><b>How long is it?</b><p>38 pages, with every template included so you copy, not create from scratch.</p></div>
+    <div class="sp-faq-item" style="border-bottom:none"><b>Is this a subscription?</b><p>No — one payment, instant download, yours forever. No monthly fees.</p></div>
+  </div>
+</section>
+
+<section class="sp-section" style="text-align:center">
+  <div class="sp-cta-box">
+    <div class="price">$27</div>
+    <div class="price-note">ONE-TIME PAYMENT · INSTANT DOWNLOAD</div>
+    <button class="sp-buy-btn" id="buyBtn" onclick="buy()">Get the AI Employee System →</button>
+    <p class="sp-final-note">Digital product — instant download. All sales final.</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer__links">© 2026 Josée Bédard · <a href="https://www.skool.com/ai-digital-society" target="_blank" rel="noopener">AI Digital Society</a></div>
+  <p class="footer__disclaimer">My story is my own, from years of full-time work. It is not typical and it is not a promise of your results. Everything on this site is education, not financial advice.</p>
+</footer>
+
+<script>
+  async function buy() {
+    const btn = document.getElementById('buyBtn');
+    btn.disabled = true;
+    btn.textContent = 'Loading…';
+    try {
+      const res = await fetch('https://trobqziwskkxclablptx.supabase.co/functions/v1/product-checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': 'sb_publishable_ZXf00h8HfbURtCQbOhJkpA_oWIE20Cn',
+          'Authorization': 'Bearer sb_publishable_ZXf00h8HfbURtCQbOhJkpA_oWIE20Cn'
+        },
+        body: JSON.stringify({ product: 'aiEmployeeSystem' })
+      });
+      const data = await res.json();
+      if (data.url) { window.location.href = data.url; }
+      else { throw new Error('no url'); }
+    } catch (e) {
+      btn.disabled = false;
+      btn.textContent = 'Get the AI Employee System →';
+      alert('Something went wrong starting checkout. Please try again.');
+    }
+  }
+  window.addEventListener('pageshow', () => {
+    const btn = document.getElementById('buyBtn');
+    btn.disabled = false;
+    btn.textContent = 'Get the AI Employee System →';
+  });
+</script>
+
+</body>
+</html>
