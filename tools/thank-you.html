@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Josée Bédard: Thank You</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Newsreader:ital,opsz,wght@1,18,400;1,18,500;0,18,500&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/site.css?v=24">
+<style>
+  .ty-wrap{min-height:70vh;display:flex;align-items:center;justify-content:center;padding:60px 24px;background:var(--cream)}
+  .ty-card{max-width:560px;width:100%;background:var(--cream-card);border:1px solid var(--paper-line);border-radius:20px;padding:48px 40px;text-align:center;box-shadow:0 20px 50px rgba(13,13,13,.08)}
+  .ty-icon{font-size:44px;margin-bottom:18px}
+  .ty-card h1{font-size:32px;font-weight:900;letter-spacing:-.01em;margin-bottom:14px}
+  .ty-card p{font-size:16px;color:var(--ink-soft);line-height:1.6;margin-bottom:24px}
+  .ty-spin{width:28px;height:28px;border:3px solid var(--paper-line);border-top-color:var(--gold);border-radius:50%;margin:0 auto;animation:spin 0.8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .ty-error{color:#b23b3b;font-weight:600}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="../">Josée <em>Bédard</em></a>
+    <div class="nav__links">
+      <a class="btn" href="../tools/">Back to Tools</a>
+    </div>
+  </div>
+</nav>
+
+<div class="ty-wrap">
+  <div class="ty-card" id="ty-card">
+    <div class="ty-spin"></div>
+    <p style="margin-top:20px">Confirming your payment…</p>
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+  const product = params.get('product');
+  const card = document.getElementById('ty-card');
+
+  async function verify() {
+    if (!sessionId) {
+      card.innerHTML = '<p class="ty-error">Missing session. If you just paid, check your email receipt or contact me.</p>';
+      return;
+    }
+    try {
+      const res = await fetch('https://trobqziwskkxclablptx.supabase.co/functions/v1/verify-product-payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': 'sb_publishable_ZXf00h8HfbURtCQbOhJkpA_oWIE20Cn',
+          'Authorization': 'Bearer sb_publishable_ZXf00h8HfbURtCQbOhJkpA_oWIE20Cn'
+        },
+        body: JSON.stringify({ sessionId, product })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.verified) {
+        card.innerHTML = '<p class="ty-error">' + (data.error || 'Could not confirm payment') + '. If you were charged, contact me and I\'ll sort it out.</p>';
+        return;
+      }
+      card.innerHTML = `
+        <div class="ty-icon">🎉</div>
+        <h1>You're in!</h1>
+        <p>Thank you for grabbing <strong>${data.productName}</strong>. Your download is ready below.</p>
+        <a class="btn" style="width:100%;display:block" href="${data.downloadUrl}" download>Download Your Guide →</a>
+        <p style="margin-top:22px;font-size:14px">A copy of this link was also sent to ${data.email || 'your email'}.</p>
+      `;
+    } catch (e) {
+      card.innerHTML = '<p class="ty-error">Something went wrong confirming your payment. Please contact me directly.</p>';
+    }
+  }
+  verify();
+</script>
+
+</body>
+</html>
