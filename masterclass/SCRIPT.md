@@ -1,16 +1,31 @@
 # "How I Built an AI Digital Business by Replacing Myself With AI Employees" — Full Masterclass Script
 
-60 minutes. Recorded once, watched forever — this is a YouTube video, not a live webinar. Simple words, short sentences, kitchen-table talk. No hype, no fake urgency, no income promises.
+Recorded once, watched forever — this is a YouTube video, not a live webinar. Simple words, short sentences, kitchen-table talk. No hype, no fake urgency, no income promises.
 
-Landing page: [masterclass/index.html](index.html) — swap `YOUR_VIDEO_ID` in the iframe once this is recorded and uploaded to YouTube.
+**Real runtime, from the actual recorded audio (ffprobe, updated 2026-09-17): ~14 minutes 41 seconds** — not 60. The "60 minutes" / "the hour" lines have been fixed both in this script and in the actual audio (file 1's two lines were re-recorded and spliced in).
+
+**Audio file map** (`YOUTUBE/masterclass/`):
+
+| # | File | Covers | Length | Ends at |
+|---|---|---|---|---|
+| 1 | `1 - hi--i-m-jos-e--i-m-58-years-ol.wav` | Open — The Hook | 2:21 | 2:21 |
+| 2 | `2 - part-1---why-i-had-to-change--.wav` | Part 1 — Why I Had to Change | 2:29 | 4:50 |
+| 3 | `3 - part-2---the-brain-file--17-00.wav` | Part 2 (Brain File) **+** Part 3 (Meet the Employees), recorded together in one take | 5:48 | 10:38 |
+| 4 | `4 -part-4---the-90-10-routine--46.wav` | Part 4 — The 90/10 Routine | 1:46 | 12:23 |
+| 5 | `5 - part-5---where-you-start--54-0.wav` | Part 5 — Where You Start | 1:21 | 13:44 |
+| 6 | `6 - close---what-s-next--58-30-60-.wav` | Close — What's Next | 0:56 | **14:41** |
+
+File 1 was edited: the original two lines that said "in the next 60 minutes" and "here's the shape of the hour" were cut out at their silence gaps and replaced with two freshly recorded lines ("here's what I'm going to show you right now" / "here's the shape of this training"). A backup of the original unedited file is saved alongside it as `1 - hi--i-m-jos-e--i-m-58-years-ol.wav.bak`.
+
+Landing page: [masterclass/index.html](index.html) — swap `YOUR_VIDEO_ID` in the iframe once this is recorded and uploaded to YouTube. Its "60 minutes" chip and meta description have been updated to "~15 minutes" / duration-agnostic wording to match.
 
 ---
 
-## OPEN — The Hook (0:00–6:00)
+## OPEN — The Hook (0:00–2:18)
 
 Hi. I'm Josée. I'm 58 years old, and I don't code.
 
-Here's what I'm going to show you in the next 60 minutes: how to build an AI digital business by doing something most people never try — replacing yourself. Not disappearing. Replacing the *tasks*. I built a team of AI employees that took over the writing, the designing, the scheduling, the parts of my business that used to eat my whole day. And what I got back wasn't just time. It was freedom.
+Here's what I'm going to show you right now: how to build an AI digital business by doing something most people never try — replacing yourself. Not disappearing. Replacing the *tasks*. I built a team of AI employees that took over the writing, the designing, the scheduling, the parts of my business that used to eat my whole day. And what I got back wasn't just time. It was freedom.
 
 Let me be specific about what that actually means, because "freedom" gets thrown around a lot and I don't want to be one more person saying a word that doesn't mean anything.
 
@@ -20,11 +35,11 @@ And freedom means this: I decide what I want my day to look like, instead of my 
 
 Here's what this video is not. It is not a pitch for a course. It is not a promise about how much money you'll make — I'm not going to give you a number, because your results depend on you, not me. What I am going to give you is the actual system. Word for word, step by step, the same one running my business right now, today, while you watch this.
 
-Here's the shape of the hour: first, I'll tell you exactly why I had to change — because you should know the cost of doing it the old way before I show you the new one. Then I'll open the hood on the brain file, the one document that makes AI sound like you instead of a robot. Then I'll introduce you to my seven employees, one at a time, so you know exactly what each one does. Then I'll show you my actual daily routine — what a real morning looks like now. And I'll close with the exact first step, so you're not just watching this, you're building something by the end of it.
+Here's the shape of this training: first, I'll tell you exactly why I had to change — because you should know the cost of doing it the old way before I show you the new one. Then I'll open the hood on the brain file, the one document that makes AI sound like you instead of a robot. Then I'll introduce you to my seven employees, one at a time, so you know exactly what each one does. Then I'll show you my actual daily routine — what a real morning looks like now. And I'll close with the exact first step, so you're not just watching this, you're building something by the end of it.
 
 If you've ever thought "I want an online business, but I'm not techy enough" — stay with me. That was me too. Let's start.
 
-## PART 1 — Why I Had to Change (6:00–17:00)
+## PART 1 — Why I Had to Change (2:18–4:46)
 
 Before any of this, I ran a digital marketing agency for seven years.
 
@@ -48,7 +63,7 @@ That's around the time AI got good enough to actually build with — not as a to
 
 That one decision — sitting down and treating Claude like an employee I was training, not a search bar I was typing into — is the seed that grew into everything I'm about to show you.
 
-## PART 2 — The Brain File (17:00–29:00)
+## PART 2 — The Brain File (4:46–~7:40, recorded together with Part 3 in file 3)
 
 The very first thing I built wasn't an employee. It was a foundation for every employee that came after: the brain file.
 
@@ -72,9 +87,9 @@ I typed my answers straight into Claude, inside one project I built specifically
 
 Here's the payoff, and it's the moment that convinced me this was real: once that brain file existed, I gave Claude an idea, and what came back sounded like me. Not perfect — I still read everything, I still adjust things — but recognizably, unmistakably me. Because it wasn't guessing at my voice. It was pulling from my actual words.
 
-If you take away one single thing from this entire hour, take this: brain file first. Every employee, every system, everything I'm about to show you is built on top of that one document. Skip it, and you're building a house with no foundation.
+If you take away one single thing from this training, take this: brain file first. Every employee, every system, everything I'm about to show you is built on top of that one document. Skip it, and you're building a house with no foundation.
 
-## PART 3 — Meet the Employees (29:00–46:00)
+## PART 3 — Meet the Employees (~7:40–10:35, recorded together with Part 2 in file 3)
 
 Now for the part most people ask me about first: the employees themselves.
 
@@ -100,7 +115,7 @@ Now here's the part I need you to hear clearly, because it's the difference betw
 
 That boundary isn't a nice-to-have. It's the whole reason this system stays trustworthy. The moment you let a machine make the call instead of just doing the labor, you've built something very different from what I'm teaching you — and honestly, something I wouldn't want either.
 
-## PART 4 — The 90/10 Routine (46:00–54:00)
+## PART 4 — The 90/10 Routine (10:35–12:20)
 
 So what does an actual morning look like, with seven employees quietly working?
 
@@ -114,7 +129,7 @@ And here's what I never automated, on purpose, and never will: when someone in m
 
 That's the whole shape of my day now. Hold that up against the 80-hour weeks and the midnight phone calls I told you about earlier. Same person. Same drive to build something. Completely different business.
 
-## PART 5 — Where You Start (54:00–58:30)
+## PART 5 — Where You Start (12:20–13:41)
 
 I know exactly what some of you are thinking right now: "Josée, that's seven employees. I don't even know how to open Claude."
 
@@ -132,9 +147,9 @@ Give it one real idea today — something you'd actually consider posting. Read 
 
 One employee. Get it running smoothly. Then, and only then, add the next one. That's how a foundation becomes a full team — the same way mine did.
 
-## CLOSE — What's Next (58:30–60:00)
+## CLOSE — What's Next (13:41–14:38)
 
-Let's bring the whole hour together in one breath: build your brain file first, hire one employee at a time, and run the 90/10 routine — decide, approve, publish.
+Let's bring this all together in one breath: build your brain file first, hire one employee at a time, and run the 90/10 routine — decide, approve, publish.
 
 That's the entire system behind an AI digital business. Seven employees. Zero payroll. A business that gives me back 30-plus hours a week and lets me be out living my life instead of chained to a phone the way my old business had me.
 
@@ -142,7 +157,7 @@ If you want to keep going, the next step is free. I have a community where I sha
 
 Join, grab the guides, and build your first employee this week. That's the only thing I'll ask of you.
 
-Thank you for spending this hour with me. Now go build your first one.
+Thank you for spending this time with me. Now go build your first one.
 
 ---
 
