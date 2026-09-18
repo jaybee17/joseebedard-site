@@ -2,22 +2,27 @@
 
 Recorded once, watched forever — this is a YouTube video, not a live webinar. Simple words, short sentences, kitchen-table talk. No hype, no fake urgency, no income promises.
 
-**Real runtime, from the actual recorded audio (ffprobe, updated 2026-09-17): ~14 minutes 41 seconds** — not 60. The "60 minutes" / "the hour" lines have been fixed both in this script and in the actual audio (file 1's two lines were re-recorded and spliced in).
+**Real runtime, from the composite master audio (ffprobe, updated 2026-09-17): ~15 minutes 11 seconds.** The "60 minutes" / "the hour" lines have been fixed both in this script and in the actual audio.
 
 **Audio file map** (`YOUTUBE/masterclass/`):
 
 | # | File | Covers | Length | Ends at |
 |---|---|---|---|---|
 | 1 | `1 - hi--i-m-jos-e--i-m-58-years-ol.wav` | Open — The Hook | 2:21 | 2:21 |
-| 2 | `2 - part-1---why-i-had-to-change--.wav` | Part 1 — Why I Had to Change | 2:29 | 4:50 |
-| 3 | `3 - part-2---the-brain-file--17-00.wav` | Part 2 (Brain File) **+** Part 3 (Meet the Employees), recorded together in one take | 5:48 | 10:38 |
-| 4 | `4 -part-4---the-90-10-routine--46.wav` | Part 4 — The 90/10 Routine | 1:46 | 12:23 |
-| 5 | `5 - part-5---where-you-start--54-0.wav` | Part 5 — Where You Start | 1:21 | 13:44 |
-| 6 | `6 - close---what-s-next--58-30-60-.wav` | Close — What's Next | 0:56 | **14:41** |
+| — | `STANDARD_INTRO/STANDARD_INTRO_CLIP.mp4` | Reused credibility beat (58, no code, built-lost-rebuilt, 30K products/top 3%/140K) — talking-head clip, no new recording | 0:31 | 2:52 |
+| 2 | `2 - part-1---why-i-had-to-change--.wav` | Part 1 — Why I Had to Change | 2:29 | 5:20 |
+| 3 | `3 - part-2---the-brain-file--17-00.wav` | Part 2 (Brain File) **+** Part 3 (Meet the Employees), recorded together in one take | 5:48 | 11:08 |
+| 4 | `4 -part-4---the-90-10-routine--46.wav` | Part 4 — The 90/10 Routine | 1:46 | 12:54 |
+| 5 | `5 - part-5---where-you-start--54-0.wav` | Part 5 — Where You Start | 1:21 | 14:15 |
+| 6 | `6 - close---what-s-next--58-30-60-.wav` | Close — What's Next | 0:56 | **15:11** |
 
 File 1 was edited: the original two lines that said "in the next 60 minutes" and "here's the shape of the hour" were cut out at their silence gaps and replaced with two freshly recorded lines ("here's what I'm going to show you right now" / "here's the shape of this training"). A backup of the original unedited file is saved alongside it as `1 - hi--i-m-jos-e--i-m-58-years-ol.wav.bak`.
 
-Landing page: [masterclass/index.html](index.html) — swap `YOUR_VIDEO_ID` in the iframe once this is recorded and uploaded to YouTube. Its "60 minutes" chip and meta description have been updated to "~15 minutes" / duration-agnostic wording to match.
+**No new talking-head footage was generated for this video.** The one talking-head beat (the credibility intro) reuses the existing `STANDARD_INTRO_CLIP.mp4`, same as every video since V9. Everything else — Part 1's ICU story, Part 5's call to action, the Close — is deck + b-roll + screen recordings over the narration, faceless.
+
+Composite master narration track (all 7 segments joined, standard intro included): `YOUTUBE/masterclass/AUDIO/master.wav` (and `.m4a`). Silence map for deck slide-timing: `YOUTUBE/masterclass/AUDIO/silences.txt` (needs a re-run to account for the standard-intro splice before the deck is built).
+
+Landing page: [masterclass/index.html](index.html) — swap `YOUR_VIDEO_ID` in the iframe once this is recorded and uploaded to YouTube. Its "~15 minutes" chip and meta description already match the real runtime.
 
 ---
 
