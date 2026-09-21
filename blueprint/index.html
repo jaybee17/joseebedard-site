@@ -34,14 +34,13 @@
   .bp-step p{font-size:16.5px;line-height:1.65;color:var(--ink-soft);margin:0}
   .bp-honest{margin-top:40px;padding:24px 26px;border-left:4px solid var(--gold);background:#F6EDD8;border-radius:10px;font-size:15.5px;line-height:1.65;color:var(--ink-soft)}
   .bp-honest b{color:var(--ink)}
-  .bp-signup{max-width:560px;margin:46px auto 0;padding:26px 24px 20px;border:1px solid rgba(244,238,223,.18);border-radius:14px;background:rgba(244,238,223,.05);text-align:left;position:relative}
+  .bp-signup{margin:40px 0 0;padding:28px 26px 22px;border-radius:14px;background:var(--ink);text-align:left;position:relative}
   .bp-signup h3{font-size:22px;font-weight:800;color:var(--cream-card);margin-bottom:8px}
   .bp-signup p{font-size:15.5px;line-height:1.5;color:rgba(244,238,223,.8);margin-bottom:16px}
   .bp-signup__row{display:flex;gap:10px;flex-wrap:wrap}
   .bp-signup__row input{flex:1 1 220px;min-width:0;padding:14px 16px;font:inherit;font-size:16px;border-radius:8px;border:1.5px solid rgba(244,238,223,.35);background:var(--cream-card);color:var(--ink)}
   .bp-signup__row .btn{padding:14px 24px;font-size:16px;border:0;cursor:pointer}
-  .bp-signup__check{display:flex;gap:10px;align-items:flex-start;margin-top:14px;font-size:14px;line-height:1.45;color:rgba(244,238,223,.8);cursor:pointer}
-  .bp-signup__check input{margin-top:3px;width:18px;height:18px;flex:none;accent-color:var(--gold-bright)}
+  .bp-signup__fine{margin:12px 0 0!important;font-size:13.5px!important;line-height:1.5!important;margin-bottom:0!important;color:rgba(244,238,223,.65)!important}
   .bp-signup__msg{margin:12px 0 0!important;font-size:14.5px!important;min-height:1.2em;color:var(--gold-bright)!important}
   .bp-signup__msg:empty{display:none}
   .bp-signup__msg.is-error{color:#f2a99a!important}
@@ -81,17 +80,6 @@
   </div>
   <p class="bp-note">No email wall · No games · Just the system</p>
 
-  <form class="bp-signup" id="mc-form" novalidate>
-    <h3>Want a heads-up when the free masterclass runs?</h3>
-    <p>Leave your email and I'll let you know the day it opens. That's the only thing I'll email you about. It's separate from the guide, which stays free with no email needed.</p>
-    <div class="bp-signup__row">
-      <input type="email" id="mc-email" name="email" placeholder="Your email" autocomplete="email" required aria-label="Your email address">
-      <button class="btn" type="submit" id="mc-btn">Tell Me When</button>
-    </div>
-    <input type="text" name="website" id="mc-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
-    <label class="bp-signup__check"><input type="checkbox" id="mc-consent"> <span>Yes, email me about the free masterclass. I can unsubscribe at any time.</span></label>
-    <p class="bp-signup__msg" id="mc-msg" role="status" aria-live="polite"></p>
-  </form>
 </header>
 
 <!-- ============ WHAT'S INSIDE ============ -->
@@ -107,6 +95,18 @@
     <div class="bp-step"><span class="no">STEP 5</span><div><h3>The 90/10 and the quality gate</h3><p>My actual 30-minute daily routine: AI does the heavy 90%, I decide and approve the 10% — and the quality gate that protects my name. Plus your first 30 days, week by week.</p></div></div>
 
     <div class="bp-honest"><b>Honesty note:</b> this blueprint teaches a content system. It does not promise you income, followers, or sales — nobody can promise you those things. What it gives you is a clear system you can actually build, even if you've never used AI before.</div>
+
+    <form class="bp-signup" id="mc-form" novalidate>
+      <h3>Want a heads-up when the free masterclass runs?</h3>
+      <p>Leave your email and I'll let you know the day it opens. That's the only thing I'll email you about. It's separate from the guide, which stays free with no email needed.</p>
+      <div class="bp-signup__row">
+        <input type="email" id="mc-email" name="email" placeholder="Your email" autocomplete="email" required aria-label="Your email address">
+        <button class="btn" type="submit" id="mc-btn">Tell Me When</button>
+      </div>
+      <input type="text" name="website" id="mc-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
+      <p class="bp-signup__fine">By clicking the button you agree to get emails from me about the masterclass. I'll never share your address. One click to unsubscribe, any time.</p>
+      <p class="bp-signup__msg" id="mc-msg" role="status" aria-live="polite"></p>
+    </form>
 
     <div class="guide__cta">
       <h3>Read it, then come build it with me</h3>
@@ -131,7 +131,6 @@
       e.preventDefault();
       var email = document.getElementById("mc-email").value.trim();
       if (!/^[^s@]+@[^s@]+.[^s@]{2,}$/.test(email)) { say("Please enter a valid email address.", true); return; }
-      if (!document.getElementById("mc-consent").checked) { say("Please tick the box so I know you want to hear from me.", true); return; }
       btn.disabled = true; say("Sending…");
       try {
         var res = await fetch("https://trobqziwskkxclablptx.supabase.co/functions/v1/rapid-worker", {
@@ -140,7 +139,7 @@
           body: JSON.stringify({ email: email, consent: true, website: document.getElementById("mc-website").value })
         });
         var data = await res.json().catch(function () { return {}; });
-        if (res.ok && data.ok) { form.querySelector(".bp-signup__row").style.display = "none"; form.querySelector(".bp-signup__check").style.display = "none"; say("You are on the list. I will email you when the masterclass opens."); }
+        if (res.ok && data.ok) { form.querySelector(".bp-signup__row").style.display = "none"; var f = form.querySelector(".bp-signup__fine"); if (f) f.style.display = "none"; say("You are on the list. I will email you when the masterclass opens."); }
         else { btn.disabled = false; say(data.error || "Something went wrong. Please try again.", true); }
       } catch (err) { btn.disabled = false; say("Something went wrong. Please try again.", true); }
     });
