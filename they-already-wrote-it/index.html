@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="../css/site.css?v=28">
 <style>
   .tw-hero{background:var(--ink);color:var(--cream);display:grid;grid-template-columns:1.1fr .9fr;min-height:620px}
-  .tw-hero__text{padding:80px 56px 70px;display:flex;flex-direction:column;justify-content:center}
+  .tw-hero__text{padding:80px 40px 70px clamp(56px,12vw,240px);display:flex;flex-direction:column;justify-content:center}
   .tw-hero__img{background:url('hero.jpg') center 30%/cover no-repeat;position:relative}
   .tw-hero__img::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--ink) 0%,rgba(13,13,13,0) 35%)}
   .tw-hero .kicker{display:flex}
