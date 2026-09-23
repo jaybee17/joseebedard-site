@@ -69,7 +69,7 @@
         <h1>You're in!</h1>
         <p>Thank you for grabbing <strong>${data.productName}</strong>. Your download is ready below.</p>
         <a class="btn" style="width:100%;display:block" href="${data.downloadUrl}" download>Download Your Guide →</a>
-        <p style="margin-top:22px;font-size:14px">A copy of this link was also sent to ${data.email || 'your email'}.</p>
+        <p style="margin-top:22px;font-size:14px">We also emailed this download link to ${data.email || 'you'}. It can take a few minutes, and it may land in your spam folder.</p>
       `;
     } catch (e) {
       card.innerHTML = '<p class="ty-error">Something went wrong confirming your payment. Please contact me directly.</p>';
