@@ -194,9 +194,11 @@ a{color:inherit}
 .hero__buttons .btn{font-size:13.5px;padding:10px 16px;white-space:nowrap}
 .hero__buttons .btn--ghost{border-color:rgba(244,238,223,.55);color:var(--cream)}
 .hero__buttons .btn--ghost:hover{border-color:var(--gold-bright);color:var(--gold-bright)}
+@media (min-width:821px) and (min-height:860px){.hero__story{bottom:9.5vh}}
+@media (min-width:821px) and (max-height:859px){.hero__scrollcue{display:none}}
 .hero__scrollcue{
   position:absolute;z-index:2;left:0;right:0;bottom:0;
-  text-align:center;padding-bottom:8px;
+  text-align:center;padding-bottom:4px;
   font-family:var(--mono);font-size:11px;letter-spacing:.3em;
   color:rgba(244,238,223,.75);
 }
