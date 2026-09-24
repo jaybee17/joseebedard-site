@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The AI Employee Blueprint — Free PDF by Josée Bédard</title>
-<meta name="description" content="How I run 90% of my business with AI employees I built inside Claude — at 58, without writing a single line of code. Free 12-page blueprint, no email wall.">
+<meta name="description" content="How I run 90% of my business with AI employees I built inside Claude — at 58, without writing a single line of code. Free 12-page guide, sent straight to your inbox.">
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16.png">
 <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
@@ -44,6 +44,8 @@
   .bp-signup__msg{margin:12px 0 0!important;font-size:14.5px!important;min-height:1.2em;color:var(--gold-bright)!important}
   .bp-signup__msg:empty{display:none}
   .bp-signup__msg.is-error{color:#f2a99a!important}
+  .qs-consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5;color:rgba(244,238,223,.8);margin-top:12px;cursor:pointer;text-align:left}
+  .qs-consent input{margin-top:3px;width:18px;height:18px;flex:0 0 18px;accent-color:#B9903E}
 </style>
 </head>
 <body>
@@ -77,9 +79,9 @@
     <div class="stat"><b>140K</b><span>Facebook followers</span></div>
   </div>
   <div class="bp-buttons">
-    <a class="btn" href="The-AI-Employee-Blueprint.pdf?v=2" download>Download the Free Blueprint</a>
+    <a class="btn" href="#qs-form">Send Me the Free Guide ↓</a>
   </div>
-  <p class="bp-note">No email wall · No games · Just the system</p>
+  <p class="bp-note">Free · Sent straight to your inbox · No games</p>
 
 </header>
 
@@ -97,9 +99,22 @@
 
     <div class="bp-honest"><b>Honesty note:</b> this blueprint teaches a content system. It does not promise you income, followers, or sales — nobody can promise you those things. What it gives you is a clear system you can actually build, even if you've never used AI before.</div>
 
+    <form class="bp-signup qs-form" id="qs-form" novalidate style="margin-bottom:28px">
+      <h3>Where should I send your guide?</h3>
+      <p>Enter your email and I'll send you the AI Employee Quick-Start Guide right away. Free, 12 pages, five plain-language steps.</p>
+      <div class="bp-signup__row">
+        <input type="email" id="qs-email" name="email" placeholder="Your email" autocomplete="email" required aria-label="Your email address">
+        <button class="btn" type="submit" id="qs-btn">Send Me the Guide</button>
+      </div>
+      <input type="text" name="website" id="qs-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
+      <label class="qs-consent"><input type="checkbox" id="qs-consent"> Yes, send me the guide and occasional emails from Josée with new free guides and tips. I can unsubscribe any time.</label>
+      <p class="bp-signup__msg" id="qs-msg" role="status" aria-live="polite"></p>
+      <input type="hidden" id="qs-source" value="joseebedard.com/blueprint">
+    </form>
+
     <form class="bp-signup" id="mc-form" novalidate>
       <h3>Want a heads-up when the free masterclass runs?</h3>
-      <p>Leave your email and I'll let you know the day it opens. That's the only thing I'll email you about. It's separate from the guide, which stays free with no email needed.</p>
+      <p>Leave your email and I'll let you know the day it opens. That's the only thing I'll email you about. It's separate from the guide above.</p>
       <div class="bp-signup__row">
         <input type="email" id="mc-email" name="email" placeholder="Your email" autocomplete="email" required aria-label="Your email address">
         <button class="btn" type="submit" id="mc-btn">Tell Me When</button>
@@ -143,6 +158,34 @@
         if (res.ok && data.ok) { form.querySelector(".bp-signup__row").style.display = "none"; var f = form.querySelector(".bp-signup__fine"); if (f) f.style.display = "none"; say("You are on the list. I will email you when the masterclass opens."); }
         else { btn.disabled = false; say(data.error || "Something went wrong. Please try again.", true); }
       } catch (err) { btn.disabled = false; say("Something went wrong. Please try again.", true); }
+    });
+  })();
+</script>
+<script>
+  (function () {
+    var form = document.getElementById("qs-form");
+    if (!form) return;
+    var msg = document.getElementById("qs-msg"), btn = document.getElementById("qs-btn");
+    function say(t, bad) { msg.textContent = t; msg.style.color = bad ? "#e7a58f" : "#D6A843"; }
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      var email = document.getElementById("qs-email").value.trim();
+      var consent = document.getElementById("qs-consent").checked;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { say("Please enter a valid email address.", true); return; }
+      if (!consent) { say("Please tick the box so I know you want the guide and my emails.", true); return; }
+      btn.disabled = true; btn.textContent = "Sending…";
+      try {
+        var res = await fetch("https://trobqziwskkxclablptx.supabase.co/functions/v1/guide-subscribe", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email, consent: true, website: document.getElementById("qs-website").value, source: document.getElementById("qs-source").value })
+        });
+        var data = await res.json().catch(function () { return {}; });
+        if (res.ok && data.ok) {
+          form.querySelector(".bp-signup__row").style.display = "none";
+          form.querySelector(".qs-consent").style.display = "none";
+          say("Done! Check your inbox for the Quick-Start Guide. It can take a few minutes, and it may land in your spam folder.");
+        } else { say(data.error || "Something went wrong. Please try again.", true); btn.disabled = false; btn.textContent = "Send Me the Guide"; }
+      } catch (err) { say("Something went wrong. Please try again.", true); btn.disabled = false; btn.textContent = "Send Me the Guide"; }
     });
   })();
 </script>
