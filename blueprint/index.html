@@ -112,17 +112,6 @@
       <input type="hidden" id="qs-source" value="joseebedard.com/blueprint">
     </form>
 
-    <form class="bp-signup" id="mc-form" novalidate>
-      <h3>Want a heads-up when the free masterclass runs?</h3>
-      <p>Leave your email and I'll let you know the day it opens. That's the only thing I'll email you about. It's separate from the guide above.</p>
-      <div class="bp-signup__row">
-        <input type="email" id="mc-email" name="email" placeholder="Your email" autocomplete="email" required aria-label="Your email address">
-        <button class="btn" type="submit" id="mc-btn">Tell Me When</button>
-      </div>
-      <input type="text" name="website" id="mc-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
-      <p class="bp-signup__fine">By clicking the button you agree to get emails from me about the masterclass. I'll never share your address. One click to unsubscribe, any time.</p>
-      <p class="bp-signup__msg" id="mc-msg" role="status" aria-live="polite"></p>
-    </form>
 
     <div class="guide__cta">
       <h3>Read it, then come build it with me</h3>
@@ -137,30 +126,6 @@
   <p class="footer__disclaimer">My story is my own, from years of full-time work. It is not typical and it is not a promise of your results. Everything on this site is education, not financial advice.</p>
 </footer>
 
-<script>
-  (function () {
-    var form = document.getElementById("mc-form");
-    if (!form) return;
-    var msg = document.getElementById("mc-msg"), btn = document.getElementById("mc-btn");
-    function say(t, err) { msg.textContent = t; msg.className = "bp-signup__msg" + (err ? " is-error" : ""); }
-    form.addEventListener("submit", async function (e) {
-      e.preventDefault();
-      var email = document.getElementById("mc-email").value.trim();
-      if (!/^[^s@]+@[^s@]+.[^s@]{2,}$/.test(email)) { say("Please enter a valid email address.", true); return; }
-      btn.disabled = true; say("Sending…");
-      try {
-        var res = await fetch("https://trobqziwskkxclablptx.supabase.co/functions/v1/rapid-worker", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "apikey": "sb_publishable_ZXf00h8HfbURtCQbOhJkpA_oWIE20Cn", "Authorization": "Bearer sb_publishable_ZXf00h8HfbURtCQbOhJkpA_oWIE20Cn" },
-          body: JSON.stringify({ email: email, consent: true, website: document.getElementById("mc-website").value })
-        });
-        var data = await res.json().catch(function () { return {}; });
-        if (res.ok && data.ok) { form.querySelector(".bp-signup__row").style.display = "none"; var f = form.querySelector(".bp-signup__fine"); if (f) f.style.display = "none"; say("You are on the list. I will email you when the masterclass opens."); }
-        else { btn.disabled = false; say(data.error || "Something went wrong. Please try again.", true); }
-      } catch (err) { btn.disabled = false; say("Something went wrong. Please try again.", true); }
-    });
-  })();
-</script>
 <script>
   (function () {
     var form = document.getElementById("qs-form");
