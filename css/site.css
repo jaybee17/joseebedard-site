@@ -42,10 +42,13 @@ a{color:inherit}
   background:var(--ink);
   color:var(--cream);
   text-align:center;
-  font-size:14px;
-  padding:9px 16px;
+  font-size:18px;
+  font-weight:500;
+  line-height:1.4;
+  padding:14px 16px;
 }
-.ribbon a{color:var(--gold-bright);font-weight:600}
+.ribbon a{color:var(--gold-bright);font-weight:700;white-space:nowrap}
+@media (max-width:600px){.ribbon{font-size:15px;padding:11px 14px}}
 
 /* ---------- nav ---------- */
 .nav{
