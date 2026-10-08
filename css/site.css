@@ -437,3 +437,24 @@ a.card .card__meta{color:var(--gold);font-weight:600}
   .nav__textlinks{order:2;flex-basis:100%;justify-content:center;gap:16px}
   .nav__textlinks a{font-size:13px}
 }
+
+/* Phone: show the menu as a visible, swipeable tab row instead of hiding it behind the hamburger */
+@media (max-width:860px){
+  .nav__inner{flex-wrap:wrap;row-gap:10px;padding:12px 16px 0}
+  .nav__links{display:contents}
+  .nav__logo{order:1}
+  .nav__links .btn{order:2;margin-left:auto}
+  .nav .nav__burger{display:none}
+  .nav .nav__textlinks,.nav.is-open .nav__textlinks{
+    order:3;flex-basis:100%;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;
+    position:static;box-shadow:none;border:none;background:none;padding:0 0 12px;gap:8px;
+    overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    -webkit-mask-image:linear-gradient(to right,#000 88%,transparent);mask-image:linear-gradient(to right,#000 88%,transparent);
+  }
+  .nav .nav__textlinks::-webkit-scrollbar{display:none}
+  .nav .nav__textlinks a,.nav.is-open .nav__textlinks a{
+    display:inline-block;width:auto;flex:0 0 auto;
+    padding:8px 12px;border:1px solid var(--paper-line);border-radius:999px;
+    background:var(--cream-card);font-size:13px;font-weight:700;
+  }
+}
