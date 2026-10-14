@@ -98,14 +98,14 @@
     <div class="bp-honest"><b>Honesty note:</b> none of these is a get-rich-quick idea, and this guide doesn't promise what any of them will earn. Nobody honestly can. What it gives you is a clear, simple place to start, and your first step for this week.</div>
 
     <form class="bp-signup qs-form" id="qs-form" novalidate style="margin-bottom:28px">
-      <h3>Want my AI Employee Quick-Start Guide too?</h3>
-      <p>Once you know <b>what</b> to start, this shows you <b>how</b> I run 90% of my business with AI employees. 12 pages, free. Tell me where to send it.</p>
+      <h3>Want me to email you this guide, plus my Quick-Start Guide?</h3>
+      <p>Once you know <b>what</b> to start, this shows you <b>how</b> I run 90% of my business with AI employees. 12 pages, free. Tell me where to send both.</p>
       <div class="bp-signup__row">
         <input type="email" id="qs-email" name="email" placeholder="Your email" autocomplete="email" required aria-label="Your email address">
         <button class="btn" type="submit" id="qs-btn">Send Me the Guide</button>
       </div>
       <input type="text" name="website" id="qs-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
-      <label class="qs-consent"><input type="checkbox" id="qs-consent"> Yes, send me the guide and occasional emails from Josée with new free guides and tips. I can unsubscribe any time.</label>
+      <label class="qs-consent"><input type="checkbox" id="qs-consent"> Yes, send me the guides and occasional emails from Josée with new free guides and tips. I can unsubscribe any time.</label>
       <p class="bp-signup__msg" id="qs-msg" role="status" aria-live="polite"></p>
       <input type="hidden" id="qs-source" value="joseebedard.com/pivot-to-what">
     </form>
@@ -142,13 +142,13 @@
       try {
         var res = await fetch("https://trobqziwskkxclablptx.supabase.co/functions/v1/guide-subscribe", {
           method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email, consent: true, website: document.getElementById("qs-website").value, source: document.getElementById("qs-source").value })
+          body: JSON.stringify({ email: email, consent: true, website: document.getElementById("qs-website").value, source: document.getElementById("qs-source").value, guide: "pivot-to-what" })
         });
         var data = await res.json().catch(function () { return {}; });
         if (res.ok && data.ok) {
           form.querySelector(".bp-signup__row").style.display = "none";
           form.querySelector(".qs-consent").style.display = "none";
-          say("Done! Check your inbox for the Quick-Start Guide. It can take a few minutes, and it may land in your spam folder.");
+          say("Done! Check your inbox for both guides. It can take a few minutes, and it may land in your spam folder.");
         } else { say(data.error || "Something went wrong. Please try again.", true); btn.disabled = false; btn.textContent = "Send Me the Guide"; }
       } catch (err) { say("Something went wrong. Please try again.", true); btn.disabled = false; btn.textContent = "Send Me the Guide"; }
     });
