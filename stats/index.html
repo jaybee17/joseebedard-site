@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>My Stats</title>
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Newsreader:ital,opsz,wght@1,18,500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F4EEDF;--card:#FBF7EC;--ink:#1C1A17;--soft:#5E5747;--gold:#B9903E;--gold-d:#9A7424;--line:#E3D9C0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 20px 80px}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+h1{font-size:30px;font-weight:900;letter-spacing:-.02em}
+h1 em{font-family:Newsreader,serif;font-style:italic;font-weight:500;color:var(--gold-d)}
+.tabs{display:flex;gap:8px}
+.tab{border:1.5px solid var(--ink);background:transparent;border-radius:999px;padding:8px 16px;font:600 14px Inter;cursor:pointer;color:var(--ink)}
+.tab.on{background:var(--ink);color:var(--cream)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-bottom:18px}
+.card h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-d);font-weight:700;margin-bottom:12px}
+.sum p{font-size:18px;margin:4px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.stat b{display:block;font-size:34px;font-weight:900;letter-spacing:-.02em}
+.stat span{color:var(--soft);font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line)}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--soft);font-weight:600}
+td.n,th.n{text-align:right;white-space:nowrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;background:var(--gold)}
+.note{color:var(--soft);font-size:14px}
+.warn{background:#FFF4D6;border:1px solid #E9D28A;border-radius:12px;padding:14px 16px;font-size:15px;margin-bottom:18px}
+#login{max-width:380px;margin:12vh auto;text-align:center}
+#login input{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;font:16px Inter;margin:6px 0;background:#fff}
+.btn{background:var(--gold);color:var(--ink);border:none;border-radius:999px;padding:13px 26px;font:700 15px Inter;cursor:pointer;margin-top:10px}
+#msg{color:#9a2b1d;min-height:22px;font-size:14px;margin-top:8px}
+.hide{display:none}
+.out{background:none;border:none;color:var(--soft);cursor:pointer;font:500 14px Inter;text-decoration:underline}
+</style>
+</head>
+<body>
+<div id="login" class="card">
+  <h1>My <em>Stats</em></h1>
+  <p class="note" style="margin:8px 0 14px">Private. Sign in with your usual login.</p>
+  <input id="email" type="email" placeholder="Email" autocomplete="username">
+  <input id="pw" type="password" placeholder="Password" autocomplete="current-password">
+  <button class="btn" id="go">Sign in</button>
+  <p id="msg"></p>
+</div>
+
+<div id="app" class="wrap hide">
+  <header>
+    <h1>My <em>Stats</em></h1>
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+      <div class="tabs" id="tabs">
+        <button class="tab" data-d="7">7 days</button>
+        <button class="tab on" data-d="30">30 days</button>
+        <button class="tab" data-d="90">90 days</button>
+      </div>
+      <button class="out" id="out">Sign out</button>
+    </div>
+  </header>
+  <div id="cfwarn" class="warn hide">Visit numbers are not connected yet. Once the Cloudflare key is added, your visitors, top pages and where people come from will show here.</div>
+  <div class="card sum"><h2>What is going on</h2><div id="summary"><p class="note">Loading...</p></div></div>
+  <div class="card"><h2>Visitors by site</h2><div class="grid" id="sites"></div></div>
+  <div class="two">
+    <div class="card"><h2>Top pages on joseebedard.com</h2><table id="pages"></table></div>
+    <div class="card"><h2>Where visitors come from</h2><table id="refs"></table></div>
+  </div>
+  <div class="two">
+    <div class="card"><h2>What sold</h2><table id="sold"></table></div>
+    <div class="card"><h2>Email lists</h2><table id="lists"></table></div>
+  </div>
+  <div class="card"><h2>Latest orders</h2><table id="recent"></table></div>
+  <p class="note">Numbers come from Cloudflare, Stripe and Brevo. Cloudflare counts page views, not button clicks.</p>
+</div>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm";
+const URL_ = "https://trobqziwskkxclablptx.supabase.co";
+const KEY = "sb_publishable_ZXf00h8HfbURtCQbOhJkpA_oWIE20Cn";
+const sb = createClient(URL_, KEY);
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const money = (n, c) => `${c === "CAD" ? "CA$" : "$"}${Number(n).toFixed(2).replace(/\.00$/, "")}`;
+let days = 30;
+
+async function load() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) return;
+  $("summary").innerHTML = '<p class="note">Loading...</p>';
+  const r = await fetch(URL_ + "/functions/v1/stats-data", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", apikey: KEY, Authorization: "Bearer " + KEY, "x-user-token": session.access_token },
+    body: JSON.stringify({ days }),
+  });
+  if (r.status === 401) { $("app").classList.add("hide"); $("login").classList.remove("hide"); $("msg").textContent = "This login is not allowed to see stats."; await sb.auth.signOut(); return; }
+  const d = await r.json();
+  if (d.error) { $("summary").innerHTML = `<p>${esc(d.error)}</p>`; return; }
+  $("summary").innerHTML = d.summary.map((l) => `<p>${esc(l)}</p>`).join("");
+
+  const cf = d.cloudflare || {};
+  $("cfwarn").classList.toggle("hide", !!cf.connected);
+  const sites = cf.sites || {};
+  const maxV = Math.max(1, ...Object.values(sites).map((s) => s.views || 0));
+  $("sites").innerHTML = Object.entries(sites).map(([h, s]) => `<div class="stat"><b>${s.views || 0}</b><span>${esc(h)}</span><div class="bar"><i style="width:${Math.round(((s.views || 0) / maxV) * 100)}%"></i></div></div>`).join("") || '<p class="note">No visit data yet.</p>';
+  const main = sites["joseebedard.com"] || { pages: [], refs: [] };
+  $("pages").innerHTML = '<tr><th>Page</th><th class="n">Views</th></tr>' + (main.pages.map((p) => `<tr><td>${esc(p.path)}</td><td class="n">${p.views}</td></tr>`).join("") || '<tr><td colspan="2" class="note">Nothing yet.</td></tr>');
+  $("refs").innerHTML = '<tr><th>Source</th><th class="n">Views</th></tr>' + (main.refs.map((p) => `<tr><td>${esc(p.source)}</td><td class="n">${p.views}</td></tr>`).join("") || '<tr><td colspan="2" class="note">Nothing yet.</td></tr>');
+
+  const st = d.stripe || {};
+  $("sold").innerHTML = '<tr><th>Product</th><th class="n">Orders</th><th class="n">Total</th></tr>' + ((st.products || []).map((p) => `<tr><td>${esc(p.name)}</td><td class="n">${p.count}</td><td class="n">${money(p.revenue, p.currency)}</td></tr>`).join("") || '<tr><td colspan="3" class="note">No orders in this period.</td></tr>');
+  $("recent").innerHTML = '<tr><th>Date</th><th>Product</th><th class="n">Paid</th></tr>' + ((st.recent || []).map((o) => `<tr><td>${new Date(o.date).toLocaleDateString()}</td><td>${esc(o.name)}</td><td class="n">${o.free ? "Free" : money(o.amount, o.currency)}</td></tr>`).join("") || '<tr><td colspan="3" class="note">Nothing yet.</td></tr>');
+
+  const br = d.brevo || {};
+  $("lists").innerHTML = '<tr><th>List</th><th class="n">People</th></tr>' + ((br.lists || []).map((l) => `<tr><td>${esc(l.name)}</td><td class="n">${l.subscribers}</td></tr>`).join("") || '<tr><td colspan="2" class="note">Not connected.</td></tr>');
+}
+
+async function show() {
+  const { data: { session } } = await sb.auth.getSession();
+  $("login").classList.toggle("hide", !!session);
+  $("app").classList.toggle("hide", !session);
+  if (session) load();
+}
+$("go").onclick = async () => {
+  $("msg").textContent = "";
+  const { error } = await sb.auth.signInWithPassword({ email: $("email").value.trim(), password: $("pw").value });
+  if (error) { $("msg").textContent = "That email or password did not work."; return; }
+  show();
+};
+$("pw").addEventListener("keydown", (e) => { if (e.key === "Enter") $("go").click(); });
+$("out").onclick = async () => { await sb.auth.signOut(); show(); };
+$("tabs").addEventListener("click", (e) => {
+  const b = e.target.closest(".tab"); if (!b) return;
+  document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("on", t === b));
+  days = Number(b.dataset.d); load();
+});
+show();
+</script>
+</body>
+</html>
