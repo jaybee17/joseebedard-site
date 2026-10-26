@@ -115,7 +115,7 @@ async function load() {
   $("refs").innerHTML = '<tr><th>Source</th><th class="n">Views</th></tr>' + (main.refs.map((p) => `<tr><td>${esc(p.source)}</td><td class="n">${p.views}</td></tr>`).join("") || '<tr><td colspan="2" class="note">Nothing yet.</td></tr>');
 
   const st = d.stripe || {};
-  $("sold").innerHTML = '<tr><th>Product</th><th class="n">Orders</th><th class="n">Total</th></tr>' + ((st.products || []).map((p) => `<tr><td>${esc(p.name)}</td><td class="n">${p.count}</td><td class="n">${money(p.revenue, p.currency)}</td></tr>`).join("") || '<tr><td colspan="3" class="note">No orders in this period.</td></tr>');
+  $("sold").innerHTML = '<tr><th>Product</th><th class="n">Paid sales</th><th class="n">Total</th><th class="n">Free orders</th></tr>' + ((st.products || []).map((p) => `<tr><td>${esc(p.name)}</td><td class="n">${p.count}</td><td class="n">${money(p.revenue, p.currency)}</td><td class="n note">${p.free || 0}</td></tr>`).join("") || '<tr><td colspan="4" class="note">No orders in this period.</td></tr>');
   $("recent").innerHTML = '<tr><th>Date</th><th>Product</th><th class="n">Paid</th></tr>' + ((st.recent || []).map((o) => `<tr><td>${new Date(o.date).toLocaleDateString()}</td><td>${esc(o.name)}</td><td class="n">${o.free ? "Free" : money(o.amount, o.currency)}</td></tr>`).join("") || '<tr><td colspan="3" class="note">Nothing yet.</td></tr>');
 
   const br = d.brevo || {};
