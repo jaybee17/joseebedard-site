@@ -41,6 +41,13 @@ td.n,th.n{text-align:right;white-space:nowrap}
 .btn{background:var(--gold);color:var(--ink);border:none;border-radius:999px;padding:13px 26px;font:700 15px Inter;cursor:pointer;margin-top:10px}
 #msg{color:#9a2b1d;min-height:22px;font-size:14px;margin-top:8px}
 .hide{display:none}
+.chart{width:100%;height:220px}
+.legend{display:flex;gap:18px;font-size:13px;color:var(--soft);margin-top:6px;flex-wrap:wrap}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.lp{overflow-x:auto}
+.lp table{min-width:760px}
+.lp tr.flag td:first-child{border-left:4px solid #C0392B;padding-left:10px}
+.up{color:#2E7D4F;font-weight:600}.down{color:#C0392B;font-weight:600}.dim{color:var(--soft)}
 .out{background:none;border:none;color:var(--soft);cursor:pointer;font:500 14px Inter;text-decoration:underline}
 </style>
 </head>
@@ -68,6 +75,13 @@ td.n,th.n{text-align:right;white-space:nowrap}
   </header>
   <div id="cfwarn" class="warn hide">Visit numbers are not connected yet. Once the Cloudflare key is added, your visitors, top pages and where people come from will show here.</div>
   <div class="card sum"><h2>What is going on</h2><div id="summary"><p class="note">Loading...</p></div></div>
+  <div class="card"><h2>Visitors and sign-ups, day by day</h2>
+    <svg id="chart" class="chart" viewBox="0 0 900 220" preserveAspectRatio="none"></svg>
+    <div class="legend"><span><i style="background:#D8C393"></i>Visitors each day</span><span><i style="background:#9A7424"></i>% who signed up or bought</span></div>
+  </div>
+  <div class="card lp"><h2>Every landing page</h2><table id="lp"></table>
+    <p class="note" style="margin-top:10px">A red mark means the sign-up rate dropped 20% or more compared with the week before. "Converted" means joined that page's email list or paid for that page's product. It is an estimate, because someone can read one page and sign up from another.</p>
+  </div>
   <div class="card"><h2>Visitors by site</h2><div class="grid" id="sites"></div></div>
   <div class="two">
     <div class="card"><h2>Top pages on joseebedard.com</h2><table id="pages"></table></div>
@@ -106,6 +120,7 @@ async function load() {
   if (d.error) { $("summary").innerHTML = `<p>${esc(d.error)}</p>`; return; }
   $("summary").innerHTML = d.summary.map((l) => `<p>${esc(l)}</p>`).join("");
 
+  renderLanding(d.landing || {});
   const cf = d.cloudflare || {};
   $("cfwarn").classList.toggle("hide", !!cf.connected);
   const sites = cf.sites || {};
@@ -125,6 +140,37 @@ async function load() {
 
   const br = d.brevo || {};
   $("lists").innerHTML = '<tr><th>List</th><th class="n">People</th></tr>' + ((br.lists || []).map((l) => `<tr><td>${esc(l.name)}</td><td class="n">${l.subscribers}</td></tr>`).join("") || '<tr><td colspan="2" class="note">Not connected.</td></tr>');
+}
+
+function pct(n) { return n === null || n === undefined ? "<span class='dim'>-</span>" : n.toFixed(1) + "%"; }
+function renderLanding(l) {
+  const t = $("lp");
+  if (!l.connected) { t.innerHTML = "<tr><td class='note'>Connect the Cloudflare key to see visitors for each page.</td></tr>"; $("chart").innerHTML = ""; return; }
+  t.innerHTML = "<tr><th>Page</th><th class='n'>Visitors</th><th class='n'>Converted</th><th class='n'>Rate</th><th class='n'>Last 7 days</th><th class='n'>Week before</th><th class='n'>Change</th><th>What counts</th></tr>" +
+    ((l.rows || []).map((r) => {
+      const ch = r.change === null ? "<span class='dim'>-</span>" : "<span class='" + (r.change >= 0 ? "up" : "down") + "'>" + (r.change >= 0 ? "+" : "") + Math.round(r.change) + "%</span>";
+      const name = r.page.replace(/^joseebedard\.com/, "");
+      return "<tr class='" + (r.flag ? "flag" : "") + "'><td>" + esc(name || "/") + "</td><td class='n'>" + r.visitors + "</td><td class='n'>" + (r.converted === null ? "<span class='dim'>-</span>" : r.converted) + "</td><td class='n'>" + pct(r.rate) + "</td><td class='n'>" + pct(r.last7) + "</td><td class='n'>" + pct(r.prev7) + "</td><td class='n'>" + ch + "</td><td class='note'>" + esc(r.goal || "No sign-up goal") + "</td></tr>";
+    }).join("") || "<tr><td class='note' colspan='8'>No visits counted yet. Numbers start filling in from the day the tracker was installed.</td></tr>");
+  drawChart(l.daily || []);
+}
+function drawChart(daily) {
+  const svg = $("chart"); const W = 900, H = 220, pad = 8, base = H - 26;
+  if (!daily.length) { svg.innerHTML = ""; return; }
+  const maxV = Math.max(1, ...daily.map((x) => x.visitors));
+  const rates = daily.map((x) => (x.visitors > 0 ? (x.converted / x.visitors) * 100 : 0));
+  const maxR = Math.max(5, ...rates);
+  const bw = (W - pad * 2) / daily.length;
+  let out = "";
+  daily.forEach((x, i) => {
+    const bh = ((base - 14) * x.visitors) / maxV;
+    out += "<rect x='" + (pad + i * bw + 1) + "' y='" + (base - bh) + "' width='" + Math.max(2, bw - 2) + "' height='" + bh + "' fill='#D8C393'><title>" + x.date + ": " + x.visitors + " visitors, " + x.converted + " signed up or bought</title></rect>";
+  });
+  const pts = rates.map((r, i) => (pad + i * bw + bw / 2).toFixed(1) + "," + (base - ((base - 14) * r) / maxR).toFixed(1)).join(" ");
+  out += "<polyline points='" + pts + "' fill='none' stroke='#9A7424' stroke-width='2.5' stroke-linejoin='round'/>";
+  const step = Math.ceil(daily.length / 8);
+  daily.forEach((x, i) => { if (i % step === 0) out += "<text x='" + (pad + i * bw) + "' y='" + (H - 6) + "' font-size='11' fill='#5E5747'>" + x.date.slice(5) + "</text>"; });
+  svg.innerHTML = out;
 }
 
 async function show() {
