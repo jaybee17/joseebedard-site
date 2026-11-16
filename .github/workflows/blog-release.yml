@@ -1,0 +1,24 @@
+name: Release blog posts
+on:
+  schedule:
+    - cron: "0 11 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node _blog-src/build.mjs
+      - name: Commit any new posts
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A blog sitemap.xml robots.txt
+          if git diff --cached --quiet; then echo "Nothing new to release."; else git commit -m "Release blog posts due today" && git push; fi
