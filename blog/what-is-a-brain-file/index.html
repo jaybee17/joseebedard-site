@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is a Brain File, and Why Does Claude Need One? | Josée Bédard</title>
+<meta name="description" content="A brain file is one document that teaches Claude who you are, so everything it writes sounds like you. See what goes in it, a copy-and-paste interview prompt, and how to save it in a Claude project.">
+<link rel="canonical" href="https://joseebedard.com/blog/what-is-a-brain-file/">
+<meta property="og:title" content="What Is a Brain File, and Why Does Claude Need One? | Josée Bédard">
+<meta property="og:description" content="A brain file is one document that teaches Claude who you are, so everything it writes sounds like you. See what goes in it, a copy-and-paste interview prompt, and how to save it in a Claude project.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://joseebedard.com/blog/what-is-a-brain-file/">
+
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Newsreader:ital,opsz,wght@1,18,400;1,18,500;0,18,500&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css?v=30">
+<style>
+.blog{background:var(--cream);padding:70px 0 90px;min-height:60vh}
+.blog__head{max-width:820px;margin:0 auto 40px;text-align:center;padding:0 24px}
+.blog__head h1{font-size:clamp(36px,5.5vw,58px);font-weight:900;letter-spacing:-.02em;margin:14px 0 14px}
+.blog__head h1 em{font-family:var(--serif);font-weight:500;font-style:italic;color:var(--gold)}
+.blog__head p{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink-soft)}
+.blog__grid{max-width:1160px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media (max-width:860px){.blog__grid{grid-template-columns:1fr}}
+.post__inner h2{font-size:clamp(24px,3.4vw,30px);font-weight:900;letter-spacing:-.01em;margin:38px 0 12px;line-height:1.2}
+.post__inner p,.post__inner li{font-size:18px;line-height:1.7;color:var(--ink-soft)}
+.post__inner p{margin-bottom:16px}
+.post__inner ul,.post__inner ol{margin:0 0 18px 22px}
+.post__inner li{margin-bottom:8px}
+.post__inner a{color:var(--gold);font-weight:600}
+.post__by{font-size:15px;color:var(--ink-soft);margin:-6px 0 28px}
+.post__img{width:100%;height:auto;border-radius:14px;margin:0 0 30px;display:block}
+.card__img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:10px;margin-bottom:16px;display:block}
+.bp-signup{margin:40px 0 0;padding:28px 26px 22px;border-radius:14px;background:var(--ink);text-align:left;position:relative}
+.bp-signup h3{font-size:22px;font-weight:800;color:var(--cream-card);margin-bottom:8px}
+.bp-signup p{font-size:15.5px;line-height:1.5;color:rgba(244,238,223,.8);margin-bottom:16px}
+.bp-signup__row{display:flex;gap:10px;flex-wrap:wrap}
+.bp-signup__row input{flex:1 1 220px;min-width:0;padding:14px 16px;font:inherit;font-size:16px;border-radius:8px;border:1.5px solid rgba(244,238,223,.35);background:var(--cream-card);color:var(--ink)}
+.bp-signup__row .btn{padding:14px 24px;font-size:16px;border:0;cursor:pointer}
+.bp-signup__fine{margin:12px 0 0!important;font-size:13.5px!important;line-height:1.5!important;margin-bottom:0!important;color:rgba(244,238,223,.65)!important}
+.bp-signup__msg{margin:12px 0 0!important;font-size:14.5px!important;min-height:1.2em;color:var(--gold-bright)!important}
+.bp-signup__msg:empty{display:none}
+.bp-signup__msg.is-error{color:#f2a99a!important}
+.qs-consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5;color:rgba(244,238,223,.8);margin-top:12px;cursor:pointer;text-align:left}
+.qs-consent input{margin-top:3px;width:18px;height:18px;flex:0 0 18px;accent-color:#B9903E}
+.post__inner .bp-signup{margin:36px 0 10px}
+.post__inner .bp-signup h3{margin:0 0 8px}
+.post__inner .bp-signup p,.post__inner .guide__cta p{color:rgba(244,238,223,.85);font-size:16.5px;line-height:1.5}
+.post__inner .guide__cta{margin:34px 0 10px}
+.post__inner .guide__cta h3{margin-top:0}
+.post__inner a.btn{color:var(--ink);font-weight:700}
+.post__inner .bp-signup .qs-consent{color:rgba(244,238,223,.8);font-size:14px}
+.post__inner h3{font-size:20px;font-weight:800;margin:26px 0 8px;line-height:1.3}
+.prompt{background:var(--cream-card);border:1px solid var(--paper-line);border-left:4px solid var(--gold);border-radius:10px;padding:16px 20px;margin:0 0 20px;font-size:16.5px;line-height:1.65;color:var(--ink-soft)}
+.post__crumbs{font-size:14px;margin-bottom:14px}
+.post__crumbs a{text-decoration:none;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What Is a Brain File, and Why Does Claude Need One?","description":"A brain file is one document that teaches Claude who you are, so everything it writes sounds like you. See what goes in it, a copy-and-paste interview prompt, and how to save it in a Claude project.","datePublished":"2026-11-16","dateModified":"2026-11-16","author":{"@type":"Person","name":"Josée Bédard","url":"https://joseebedard.com/"},"publisher":{"@type":"Person","name":"Josée Bédard"},"mainEntityOfPage":"https://joseebedard.com/blog/what-is-a-brain-file/"}</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/index.html">Josée <em>Bédard</em></a>
+    <div class="nav__links">
+      <span class="nav__textlinks">
+        <a href="/pivot-to-what/">Start Here</a>
+        <a href="/guides/">Free Guides</a>
+        <a href="/masterclass/">Free Masterclass</a>
+        <a href="/tools/">Resources</a>
+      </span>
+      <a class="btn" href="https://www.skool.com/ai-digital-society-5263" target="_blank" rel="noopener">Show Me How · Free</a>
+    </div>
+      <button class="nav__burger" aria-label="Menu" onclick="this.closest('.nav').classList.toggle('is-open')">☰</button>
+    </div>
+  </div>
+</nav>
+
+<article class="guide post">
+  <div class="guide__inner post__inner">
+    <div class="post__crumbs"><a href="/blog/">Blog</a> / Set it up</div>
+    <div class="guide__meta">SET IT UP · 9 min read</div>
+    <h1>What Is a Brain File, and Why Does Claude Need One?</h1>
+    <p class="guide__lede">Most people ask Claude for a post and get something that sounds like every other AI post. The fix is not a better prompt. It is a brain file.</p>
+    <p class="post__by">By Josée Bédard · <time datetime="2026-11-16">November 16, 2026</time></p>
+
+<h2>Why AI writing sounds like a robot</h2>
+<p>When you open Claude and ask for a post, it knows nothing about you. It does not know your story, who you help, or how you talk. So it writes the safest, most average thing it can. That is the "AI voice" you have probably seen: smooth, friendly and the same as everyone else.</p>
+<p>The problem is not the AI. It just does not know you yet.</p>
+
+<h2>What a brain file is</h2>
+<p>A brain file is one document, written in plain words, that tells Claude who you are. I save mine inside a Claude project, so every new chat in that project already knows me. I no longer have to explain my business each morning.</p>
+<p>Every one of my AI helpers reads my brain file before it writes a word. It is the base that everything else sits on.</p>
+
+<h2>What goes in a brain file</h2>
+<h3>1. Your story</h3>
+<p>Not your resume. The real beats: where you started, what went wrong, what you figured out. Mine says I was a mail carrier. It says I burned out. That is why my content does not sound like a guru.</p>
+<h3>2. Who you help</h3>
+<p>The kind of person, and the problem they have. Be specific. "Women over 50 who feel stuck and want a small online business" works better than "everyone".</p>
+<h3>3. What you offer</h3>
+<p>A few simple lines. What it is, who it is for, what it helps with.</p>
+<h3>4. How you talk</h3>
+<p>Short sentences? Plain words? Kitchen-table talk? A little humor? Write it down the way you would explain it to a friend.</p>
+<h3>5. Words you never use</h3>
+<p>This is the part almost nobody does, and it is what removes the robot voice. List the hype words, the guru words and the words that sound like a seminar. If you would never say it out loud, ban it.</p>
+<h3>6. What you never promise</h3>
+<p>For example: no promises about money, no medical claims, no "guaranteed results". Putting this in writing protects you.</p>
+
+<h2>How to make one in about 20 minutes</h2>
+<p>You do not write it from scratch. You ask Claude to interview you, one question at a time. Then it writes it up for you.</p>
+<h3>Step 1: Open a project and start a chat</h3>
+<p>In Claude, create a new project and call it "My Brain File". Start a chat inside it.</p>
+<h3>Step 2: Paste this</h3>
+<div class="prompt">
+Interview me for 20 minutes so you can learn to write as me.<br>
+Ask me one question at a time about: my story, who I help,<br>
+what I sell, how I talk, and the words I would never use.<br>
+When we are done, write it all up as one file I can save.
+</div>
+<h3>Step 3: Answer like you are talking to a friend</h3>
+<p>Do not polish your answers. The rough version of you is the one that works. If you would say "ugh, I hate it when people say that", say it. That is gold for a brain file.</p>
+<h3>Step 4: Tell your story, not your resume</h3>
+<p>When it asks about you, skip job titles. Tell the real beats: where you started, what went wrong, what you figured out.</p>
+<h3>Step 5: Give it your banned words</h3>
+<p>Paste this near the end of the interview:</p>
+<div class="prompt">
+Here are words and phrases I never use: [your list].<br>
+If you ever write one of them, you have broken character.<br>
+Also: short sentences. Plain words. Kitchen-table talk.
+</div>
+<h3>Step 6: Save it where it always gets read</h3>
+<p>When the interview is done, Claude writes up your brain file. Save it in the project's instructions, or as a file in the project. Now every new chat in that project starts already knowing you.</p>
+
+<h2>What a finished brain file looks like</h2>
+<p>Yours will be different, but here is the shape of one:</p>
+<div class="prompt">
+<b>About me:</b> [two or three lines of your real story]<br><br>
+<b>Who I help:</b> [your people and their main problem]<br><br>
+<b>What I offer:</b> [a few simple lines]<br><br>
+<b>How I sound:</b> short sentences, plain words, warm and honest.<br><br>
+<b>Words I never use:</b> [your list]<br><br>
+<b>Things I never promise:</b> money, results, anything medical.
+</div>
+
+<h2>Test it, then correct it once</h2>
+<p>Ask Claude to write a short post about something real. Read it out loud. Anything that does not sound like you, say so, and add the correction to the file:</p>
+<div class="prompt">
+That line does not sound like me. I would say it like this: [your version].<br>
+Add that as a permanent rule in my brain file.
+</div>
+<p>Every correction makes the file smarter. After a week of this, you will read a draft and forget you did not write it.</p>
+
+<h2>Keep it fresh</h2>
+<ul>
+<li>Once a month, read it and update anything that changed.</li>
+<li>When you notice a new word you hate, add it to the banned list.</li>
+<li>When you launch something new, add it to "What I offer".</li>
+</ul>
+
+<h2>Common mistakes</h2>
+<ul>
+<li><b>Writing it like a resume.</b> Claude does not need your job titles. It needs your voice.</li>
+<li><b>Making it too long.</b> A page or two is plenty. Short and true beats long and fuzzy.</li>
+<li><b>Skipping the banned words.</b> This is the single biggest fix for robot voice.</li>
+<li><b>Putting private details in.</b> Leave out passwords, bank details and anyone else's private information.</li>
+<li><b>Never testing it.</b> Always run a real example and correct it.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<h3>How long does it take?</h3>
+<p>About 20 minutes for the interview, and a few more minutes to test and fix it.</p>
+<h3>Do I need to pay for Claude?</h3>
+<p>You can start on a free plan and see how it feels. Plans and limits change, so check <a href="https://claude.com/pricing" target="_blank" rel="noopener">claude.com/pricing</a> for the latest.</p>
+<h3>Can I use it with other AI helpers?</h3>
+<p>Yes. A brain file is just words. You can paste it into any AI helper, though I build mine inside Claude.</p>
+<h3>Will it make the AI sound exactly like me?</h3>
+<p>Close, not perfect. That is why I always read and correct. It gets closer each week.</p>
+<h3>What is the difference between a brain file and a prompt?</h3>
+<p>A prompt is one request. A brain file is who you are, saved once and used in every request.</p>
+
+<h2>Where to go next</h2>
+<p>The full step-by-step, with the exact prompts, is in my free guide <a href="/guides/brain-file.html">The Brain File</a>. If you are new to AI helpers, start with <a href="/blog/what-is-an-ai-employee/">What Is an AI Employee?</a> and then come back here. And the free <a href="/one-person-ai-business/">One-Person AI Business guide</a> shows where all of this fits in your first 30 days.</p>
+
+
+<form class="bp-signup qs-form" id="qs-form" novalidate style="margin:36px 0 10px">
+  <h3>Want the free guide?</h3>
+  <p>Enter your email and I will send you Your One-Person AI Business right away. Free, made for 40+.</p>
+  <div class="bp-signup__row">
+    <input type="email" id="qs-email" name="email" placeholder="Your email" autocomplete="email" required aria-label="Your email address">
+    <button class="btn" type="submit" id="qs-btn">Send Me the Guide</button>
+  </div>
+  <input type="text" name="website" id="qs-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
+  <label class="qs-consent"><input type="checkbox" id="qs-consent"> Yes, send me the guide and occasional emails from Josée with new free guides and tips. I can unsubscribe any time.</label>
+  <p class="bp-signup__msg" id="qs-msg" role="status" aria-live="polite"></p>
+  <input type="hidden" id="qs-source" value="joseebedard.com/blog/what-is-a-brain-file">
+</form>
+<script>
+  (function () {
+    var form = document.getElementById("qs-form");
+    if (!form) return;
+    var msg = document.getElementById("qs-msg"), btn = document.getElementById("qs-btn");
+    function say(t, bad) { msg.textContent = t; msg.style.color = bad ? "#e7a58f" : "#D6A843"; }
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      var email = document.getElementById("qs-email").value.trim();
+      var consent = document.getElementById("qs-consent").checked;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { say("Please enter a valid email address.", true); return; }
+      if (!consent) { say("Please tick the box so I know you want the guide and my emails.", true); return; }
+      btn.disabled = true; btn.textContent = "Sending...";
+      try {
+        var res = await fetch("https://trobqziwskkxclablptx.supabase.co/functions/v1/guide-subscribe", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email, consent: true, website: document.getElementById("qs-website").value, source: document.getElementById("qs-source").value, guide: "one-person" })
+        });
+        var data = await res.json().catch(function () { return {}; });
+        if (res.ok && data.ok) {
+          form.querySelector(".bp-signup__row").style.display = "none";
+          form.querySelector(".qs-consent").style.display = "none";
+          say("Done! Check your inbox for Your One-Person AI Business. It can take a few minutes, and it may land in your spam folder.");
+        } else { say(data.error || "Something went wrong. Please try again.", true); btn.disabled = false; btn.textContent = "Send Me the Guide"; }
+      } catch (err) { say("Something went wrong. Please try again.", true); btn.disabled = false; btn.textContent = "Send Me the Guide"; }
+    });
+  })();
+</script>
+
+    <h2>Keep going, free</h2>
+    <ul>
+      <li><a href="/pivot-to-what/"><b>Pivot to What?</b></a>: not sure what to start? Ten simple businesses you can start after 50, and how to pick yours.</li>
+      <li><a href="/masterclass/"><b>The Free Masterclass</b></a>: how I built my business by replacing myself with AI helpers inside Claude. No coding needed.</li>
+    </ul>
+    <div class="guide__cta">
+      <h3>Come build it with me</h3>
+      <p>Inside my free community I walk these steps with you, and when you ask a question in there, it is me who answers. Not an assistant, not a bot. Me.</p>
+      <a class="btn" href="https://www.skool.com/ai-digital-society-5263" target="_blank" rel="noopener">Join Free &amp; Start Building</a>
+    </div>
+    <h2>More from the blog</h2>
+    <ul><li><a href="/blog/start-an-online-business-at-58/">Can You Really Start an Online Business at 58?</a></li><li><a href="/blog/what-is-an-ai-employee/">What Is an AI Employee? (Plain Words, No Tech)</a></li></ul>
+  </div>
+</article>
+
+<footer class="footer">
+  <div class="footer__links">© 2026 Josée Bédard · <a href="/blog/">Blog</a> · <a href="/guides/">All Guides</a> · <a href="/index.html">Home</a> · <a href="/legal/privacy.html">Privacy</a> · <a href="/legal/terms.html">Terms</a> · <a href="/legal/refunds.html">Refund Policy</a></div>
+  <p class="footer__disclaimer">My story is my own, from years of full-time work. It is not typical and it is not a promise of your results. Everything on this site is education, not financial advice.</p>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "94809ead9f3b4ffc98620b13b2fce628"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
