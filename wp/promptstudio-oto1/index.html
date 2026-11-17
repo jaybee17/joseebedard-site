@@ -124,7 +124,6 @@
     <h1>Your digital products, <em>ready to sell,</em> with your name on them</h1>
     <div class="sub">Pick the books you want. Type in your name, your brand, and your color. The Library hands you finished, professional PDFs and a sales page for each one. In minutes, not months.</div>
     <a class="btn" href="#pricing">Get the Library</a>
-    <a class="btn ghost" href="#" id="lookinside">📖 Look inside a book</a>
     <div class="under">One-time payment · Instant access · New books added all the time</div>
     <img class="heroimg" src="images/product-library-hero.webp" alt="The Product Library app showing branded books on a laptop">
   </div>
@@ -170,7 +169,7 @@
   <div class="wrap">
     <div class="kick">The library</div>
     <h2>Real books, <em>really yours</em></h2>
-    <p class="lead">Every book is professionally written and designed, rebuilt from the ground up in a clean, modern style. All 72 books, organized by topic and shown branded for "Your Brand." <a href="#" id="lookinside2" style="color:var(--gold-bright);font-weight:700;">Look inside one →</a></p>
+    <p class="lead">Every book is professionally written and designed, rebuilt from the ground up in a clean, modern style. All 72 books, organized by topic and shown branded for "Your Brand."</p>
 
     <h3 class="cat">The 50+ Series <span style="font-size:.7em;font-weight:600;opacity:.7">· new</span></h3>
     <div class="shelf">
@@ -404,8 +403,6 @@
   }
   function open(e) { e.preventDefault(); modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; show(0); }
   function close() { modal.style.display = 'none'; document.body.style.overflow = ''; }
-  document.getElementById('lookinside').addEventListener('click', open);
-  document.getElementById('lookinside2').addEventListener('click', open);
   document.getElementById('li-close').addEventListener('click', close);
   document.getElementById('li-cta').addEventListener('click', close);
   document.getElementById('li-prev').addEventListener('click', function () { show(i - 1); });
