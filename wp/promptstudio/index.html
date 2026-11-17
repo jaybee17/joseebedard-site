@@ -155,7 +155,7 @@ section.dark{background:#141413}
 .ticks{list-style:none;padding:0;margin:0}
 .ticks li{position:relative;padding:11px 0 11px 36px;border-bottom:1px solid var(--line)}
 .ticks li:before{content:"\2713";position:absolute;left:4px;top:11px;width:22px;height:22px;border-radius:50%;background:#d97757;color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center}
-.ticks.no li:before{content:"\2715";background:#5a2b2b;color:#f3c9c9}
+.ticks.no li:before{content:"\2715";background:#46433e;color:#e6e1d6}
 
 /* offer */
 .offer{position:relative;background:#1f1e1d;border:3px solid #f0a283;border-radius:14px;padding:36px 26px;text-align:center;box-shadow:0 0 60px rgba(217,119,87,.12)}
@@ -209,6 +209,15 @@ footer a{color:var(--gold)}
   .letter{padding:24px 18px}
 }
 @media(max-width:560px){.logo{font-size:15px;white-space:nowrap}.cta.sm{padding:9px 12px;font-size:12px;white-space:nowrap}.nav{gap:8px}}
+
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+.shot{margin:0;background:#fff;border:1px solid #e6e1d6;border-radius:16px;overflow:hidden;box-shadow:0 14px 34px rgba(20,20,19,.12)}
+.shot .bar{background:#1f1e1d;padding:9px 12px;display:flex;gap:6px}
+.shot .bar i{width:10px;height:10px;border-radius:50%;background:#d97757;display:block;opacity:.85}
+.shot img{width:100%;height:auto;display:block}
+.shot figcaption{padding:14px 16px 18px;font-size:15px;line-height:1.5;color:#46433e}
+.shot figcaption b{display:block;font-size:17px;color:#b4532f;margin-bottom:3px}
+@media(max-width:860px){.shots{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -249,11 +258,7 @@ footer a{color:var(--gold)}
     <div class="pcard">
       <div class="hurry">One-time payment. Instant access.</div>
       <div class="redbar">Just $9 &mdash; no subscription</div>
-      <div class="mock" aria-label="Product image placeholder">
-        <div class="box">CLAUDE MADE SIMPLE</div>
-        <div class="screen">CLAUDE <b>&nbsp;MADE SIMPLE</b></div>
-        <div class="tab"></div>
-      </div>
+      <img src="/wp/img/mockup.webp" alt="Claude Made Simple: Prompt Studio on desktop, tablet and phone" width="1600" height="1100" style="width:100%;height:auto;display:block;margin:4px 0 8px">
       <div class="pprice">Just $9</div>
       <div style="font-size:16px">Delivered instantly. Start using it right now!</div>
       <!-- BUY BUTTON (hero): paste your Warrior+ buy button code here -->
@@ -284,6 +289,20 @@ footer a{color:var(--gold)}
         <h3 style="margin-bottom:8px">It is not...</h3>
         <ul class="ticks no"><li>Something you have to install or set up</li><li>A get-rich-quick button</li><li>A replacement for Claude. You paste the prompts into Claude itself.</li></ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEE INSIDE -->
+<section class="alt" id="see">
+  <div class="wrap">
+    <span class="eyebrow">See inside</span>
+    <h2>This Is The <span class="gold">Actual App</span></h2>
+    <p class="lead">Real screens from Prompt Studio. Nothing to install, it runs in your browser.</p>
+    <div class="shots reveal">
+      <figure class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="/wp/img/app-tasks.jpg" alt="Prompt Studio: pick a task" loading="lazy"><figcaption><b>1. Pick a task</b> Posts, emails, video scripts, lead magnets, sales copy and more.</figcaption></figure>
+      <figure class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="/wp/img/app-write.jpg" alt="Prompt Studio: answer a few questions and get your prompt" loading="lazy"><figcaption><b>2. Answer a few questions</b> Your ready-to-paste prompt builds itself as you type.</figcaption></figure>
+      <figure class="shot"><div class="bar"><i></i><i></i><i></i></div><img src="/wp/img/app-design.jpg" alt="Prompt Studio: make a picture for your post" loading="lazy"><figcaption><b>3. Make your post picture</b> Add your photo and your line, pick a style, and download it.</figcaption></figure>
     </div>
   </div>
 </section>
@@ -400,7 +419,7 @@ footer a{color:var(--gold)}
         </ul>
       </div>
       <div class="reveal">
-        <h3 style="margin-bottom:10px;color:#9b3c3c">This is NOT for you if...</h3>
+        <h3 style="margin-bottom:10px;color:#46433e">This is NOT for you if...</h3>
         <ul class="ticks no">
           <li>You're a developer looking for API or coding workflows</li>
           <li>You want a "push a button and get rich" shortcut. No product can promise that.</li>
@@ -506,7 +525,7 @@ footer a{color:var(--gold)}
       <h2>Why Is The Price <span class="gold">So Low?</span></h2>
       <p class="lead">I'd rather make it easy to get started and let the tool prove its value. It's a small, simple product, and the price shows that.</p>
       <div class="offer reveal">
-        <span class="eyebrow">Your price</span>
+        <img src="/wp/img/mockup.webp" alt="What you get: Claude Made Simple Prompt Studio" width="1600" height="1100" style="width:100%;max-width:560px;height:auto;display:block;margin:0 auto 14px" loading="lazy"><span class="eyebrow">Your price</span>
         <div class="price gold">$9</div>
         <div class="micro">One-time payment. No subscription.</div>
         <ul class="ticks tl">
