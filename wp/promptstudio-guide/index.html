@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Claude Made Simple - Quick-Start Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#222;--muted:#5d584c;--line:#e4dfd0;--bg:#f6f3ea;--dark:#141413;--pink:#d97757;--orange:#e58a68;--yellow:#f0a283}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 Montserrat,Arial,sans-serif}
+.cover{background:radial-gradient(800px 380px at 50% -10%,rgba(217,119,87,.25),transparent 60%),var(--dark);color:#fff;text-align:center;padding:70px 20px 60px}
+.cover .tag{display:inline-block;border:2px dashed #c96442;background:#eee;color:#222;border-radius:8px;padding:8px 16px;font:800 13px Montserrat,sans-serif;margin-bottom:18px}
+.cover h1{font:400 clamp(36px,7vw,64px)/1.1 "Fjalla One",Impact,sans-serif;margin:0 0 10px}
+.cover h1 span{color:var(--yellow)}
+.cover p{margin:0 auto;max-width:620px;color:#d3d8e2;font-size:19px}
+.wrap{max-width:780px;margin:0 auto;padding:30px 20px 70px}
+.toc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 24px;margin:0 0 30px}
+.toc h2{margin-top:0}
+.toc ol{margin:8px 0 0;padding-left:22px;columns:2;column-gap:30px}
+.toc a{color:#b4532f;text-decoration:none;font-weight:600}
+section{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px 28px;margin:0 0 22px;box-shadow:0 4px 16px rgba(40,30,20,.05)}
+h2{font:400 clamp(26px,4vw,34px)/1.15 "Fjalla One",Impact,sans-serif;margin:0 0 6px}
+h3{font:800 17px Montserrat,sans-serif;margin:20px 0 4px}
+.num{display:inline-flex;width:36px;height:36px;border-radius:50%;background:linear-gradient(to right,var(--pink),var(--orange));color:#fff;align-items:center;justify-content:center;font:400 20px "Fjalla One",sans-serif;margin-right:10px;vertical-align:middle}
+.time{display:inline-block;background:#fbefe7;border:1px solid #f0cdbb;border-radius:99px;padding:2px 12px;font-size:13px;font-weight:700;margin:0 0 10px}
+ul,ol{padding-left:22px}
+li{margin:5px 0}
+.try{background:#101620;color:#eef0f5;border-radius:10px;padding:14px 16px;font:14.5px/1.6 Consolas,Menlo,monospace;white-space:pre-wrap;margin:10px 0}
+.tip{background:#eaf7ee;border-left:5px solid #d97757;border-radius:6px;padding:12px 16px;margin:14px 0}
+.warn{background:#fff3f0;border-left:5px solid #c96442;border-radius:6px;padding:12px 16px;margin:14px 0}
+.edit{background:#fbe3d6;color:#8a4527;font:12px Montserrat,sans-serif;padding:2px 6px;border-radius:4px}
+table{width:100%;border-collapse:collapse;font-size:15px;margin:10px 0}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#f5f1e8}
+.check li{list-style:none;margin-left:-22px;padding-left:34px;position:relative}
+.check li:before{content:"";position:absolute;left:4px;top:6px;width:18px;height:18px;border:2px solid #d97757;border-radius:4px}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 20px 50px}
+.print{display:inline-block;margin-top:16px;background:linear-gradient(to right,var(--pink),var(--orange));color:#fff;border:0;border-radius:6px;padding:12px 22px;font:800 15px Montserrat,sans-serif;cursor:pointer}
+@media(max-width:620px){.toc ol{columns:1}section{padding:20px 18px}}
+@media print{body{background:#fff}.cover{background:#141413!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.print{display:none}section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <span class="tag">QUICK-START GUIDE</span>
+  <h1>Claude <span>Made Simple</span></h1>
+  <p>Your first win with Claude in about 15 minutes. Plain English, no tech skills needed.</p>
+  <button class="print" onclick="window.print()">Save or print this guide</button>
+</div>
+
+<div class="wrap">
+
+  <div class="toc">
+    <h2>What's inside</h2>
+    <ol>
+      <li><a href="#s1">What Claude is (and isn't)</a></li>
+      <li><a href="#s2">Set up Claude</a></li>
+      <li><a href="#s3">Your first win in 5 minutes</a></li>
+      <li><a href="#s4">Meet Prompt Studio</a></li>
+      <li><a href="#s5">Your first three tasks</a></li>
+      <li><a href="#s6">How to get better answers</a></li>
+      <li><a href="#s7">Use it safely and honestly</a></li>
+      <li><a href="#s8">If something goes wrong</a></li>
+      <li><a href="#s9">Your Quick-Start Checklist</a></li>
+    </ol>
+  </div>
+
+  <section id="s1">
+    <h2><span class="num">1</span>What Claude is (and isn't)</h2>
+    <span class="time">2 minutes to read</span>
+    <p>Claude is an AI assistant you chat with, like texting a very fast helper. You type what you want, and it writes back. It can draft posts, emails and scripts, explain things simply, brainstorm ideas and tidy up your writing.</p>
+    <h3>Think of it like this</h3>
+    <p>Claude is a helpful assistant who has never met you. The better you describe what you want, the better the result. That's all a "prompt" is: your instructions to the assistant.</p>
+    <h3>What Claude is not</h3>
+    <ul>
+      <li><strong>Not perfect.</strong> It can make mistakes, so always read and edit what it writes.</li>
+      <li><strong>Not a mind reader.</strong> It only knows what you tell it. That's why Prompt Studio asks you a few questions first.</li>
+      <li><strong>Not a money button.</strong> It helps you create faster. What you do with it, and your results, are up to you.</li>
+    </ul>
+  </section>
+
+  <section id="s2">
+    <h2><span class="num">2</span>Set up Claude</h2>
+    <span class="time">About 5 minutes</span>
+    <ol>
+      <li>Go to <strong>claude.ai</strong> in your web browser.</li>
+      <li>Create an account or sign in.</li>
+      <li>Click <strong>New chat</strong>. You'll see a message box at the bottom. That's where you type or paste.</li>
+    </ol>
+    <div class="tip"><strong>Tip:</strong> Claude also has a phone app, so you can use the same account on your phone. <span class="edit">[EDIT: confirm current plans and whether the free plan is enough for your buyers.]</span></div>
+    <p>That's the whole setup. There is nothing to install for Prompt Studio.</p>
+  </section>
+
+  <section id="s3">
+    <h2><span class="num">3</span>Your first win in 5 minutes</h2>
+    <span class="time">5 minutes</span>
+    <p>Before you open Prompt Studio, try something tiny so you can see how it works. Paste this into Claude and press send:</p>
+    <div class="try">Write a friendly 3-line post I can share on Facebook about a small win I had this week. Keep it simple and warm. Give me 3 different versions.</div>
+    <p>Claude replies in seconds. Now try a follow-up. Type:</p>
+    <div class="try">Make the second version shorter and add one question at the end.</div>
+    <p>That's the whole idea: <strong>ask, read, then refine.</strong> You're already using Claude.</p>
+  </section>
+
+  <section id="s4">
+    <h2><span class="num">4</span>Meet Prompt Studio</h2>
+    <span class="time">3 minutes</span>
+    <p>Writing good prompts takes practice. Prompt Studio does that part for you. You answer a few easy questions and it builds a complete prompt to paste into Claude.</p>
+    <p><a class="print" style="text-decoration:none;display:inline-block" href="/wp/promptstudio-app/">Open Prompt Studio</a></p>
+    <h3>Step A: Fill in your voice profile (once)</h3>
+    <p>This tells Claude who you are and how you sound. Fill it in once and every prompt will use it.</p>
+    <table>
+      <tr><th>Box</th><th>What to write</th></tr>
+      <tr><td>Your name or business</td><td>The name people know you by</td></tr>
+      <tr><td>Who you help</td><td>Your ideal reader, in plain words</td></tr>
+      <tr><td>What you offer</td><td>One short line about what you do or sell</td></tr>
+      <tr><td>Your tone</td><td>Pick the one that feels most like you</td></tr>
+      <tr><td>Words to avoid</td><td>Anything you never want to say, like hype or jargon</td></tr>
+      <tr><td>A sample of your writing</td><td>Optional. Paste 2 to 3 sentences you wrote so Claude matches your style</td></tr>
+    </table>
+    <h3>Step B: Pick a task</h3>
+    <p>Choose one of the eight task cards: social post, email, faceless video script, guide or lead magnet, sales copy, 7-day content plan, reply to a message, or hook ideas.</p>
+    <h3>Step C: Answer the questions, copy, paste</h3>
+    <p>Fill in the boxes. The prompt builds itself on the right. Press <strong>Copy prompt</strong>, then <strong>Open Claude</strong>, then paste it into the message box and send.</p>
+    <div class="tip"><strong>Privacy:</strong> your voice profile is saved only in your own web browser on your own device. Prompt Studio doesn't send it anywhere. <span class="edit">[EDIT: confirm this stays true for your hosted version.]</span></div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="num">5</span>Your first three tasks</h2>
+    <span class="time">15 minutes</span>
+    <p>Do these in order. Each one takes about five minutes.</p>
+    <h3>Task 1: A social post</h3>
+    <ol>
+      <li>Pick <strong>Social media post</strong>.</li>
+      <li>Write what the post is about, choose where you'll post it, and pick a goal.</li>
+      <li>Copy, paste into Claude, choose your favourite of the three versions, and edit it so it sounds like you.</li>
+    </ol>
+    <h3>Task 2: A short email</h3>
+    <ol>
+      <li>Pick <strong>Email</strong> and choose "Welcome email".</li>
+      <li>Say what it's about and what the reader should do next.</li>
+      <li>Copy, paste, and choose the best subject line from the five Claude gives you.</li>
+    </ol>
+    <h3>Task 3: A week of ideas</h3>
+    <ol>
+      <li>Pick <strong>7-day content plan</strong>.</li>
+      <li>Enter your topic and where you post.</li>
+      <li>Copy, paste, and you'll have a full week of ideas in a table.</li>
+    </ol>
+    <div class="tip"><strong>You did it.</strong> You now have a post, an email and a week of ideas. That's a great first session.</div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="num">6</span>How to get better answers</h2>
+    <span class="time">3 minutes to read</span>
+    <ul>
+      <li><strong>Give Claude details.</strong> "A post about dog training" is weaker than "a post for new puppy owners about the first week at home".</li>
+      <li><strong>Say who it's for.</strong> Claude writes differently for beginners than for experts.</li>
+      <li><strong>Ask for options.</strong> "Give me 3 versions" is the easiest way to find one you like.</li>
+      <li><strong>Refine, don't restart.</strong> Keep chatting in the same conversation and say what to change.</li>
+      <li><strong>Edit the result.</strong> Add your own stories and details. That's what makes it yours.</li>
+    </ul>
+    <h3>Follow-ups that always help</h3>
+    <table>
+      <tr><td>Make it shorter.</td><td>Make it sound more like me and less like AI.</td></tr>
+      <tr><td>Give me 3 different versions.</td><td>Make the opening line stronger.</td></tr>
+      <tr><td>Simplify the language for a complete beginner.</td><td>Add a clear call to action at the end.</td></tr>
+    </table>
+    <p class="edit" style="display:inline-block">Prompt Studio has these as one-click copy buttons.</p>
+  </section>
+
+  <section id="s7">
+    <h2><span class="num">7</span>Use it safely and honestly</h2>
+    <span class="time">2 minutes to read</span>
+    <div class="warn"><strong>Always check before you publish.</strong> Claude can sound confident and still be wrong. Read everything, and fix anything that isn't true.</div>
+    <ul>
+      <li><strong>Don't paste private information.</strong> No passwords, bank details or other people's personal data.</li>
+      <li><strong>Don't invent proof.</strong> Never publish made-up results, reviews or income claims. If you didn't earn it, don't say it.</li>
+      <li><strong>Be clear about what you offer.</strong> What you write should match what people really get.</li>
+      <li><strong>Make it yours.</strong> Add your real stories and experience.</li>
+    </ul>
+  </section>
+
+  <section id="s8">
+    <h2><span class="num">8</span>If something goes wrong</h2>
+    <table>
+      <tr><th>Problem</th><th>Try this</th></tr>
+      <tr><td>The answer is too generic</td><td>Add more detail and fill in your voice profile, including a writing sample.</td></tr>
+      <tr><td>It's too long</td><td>Reply: "Make it half as long."</td></tr>
+      <tr><td>It doesn't sound like me</td><td>Reply: "Rewrite this in a warmer, simpler style, like the sample I gave you."</td></tr>
+      <tr><td>I can't see my voice profile</td><td>It's saved per browser. Use the same browser and device, and make sure private browsing is off.</td></tr>
+      <tr><td>The Copy button didn't work</td><td>Select the text in the prompt box, copy it manually (Ctrl+C, or Cmd+C on a Mac), then paste into Claude.</td></tr>
+      <tr><td>Claude asked me questions</td><td>That's fine. Answer them in the chat and it will continue.</td></tr>
+    </table>
+    <p>Still stuck? Email <span class="edit">[EDIT: your support email]</span> and we'll help.</p>
+  </section>
+
+  <section id="s9">
+    <h2><span class="num">9</span>Your Quick-Start Checklist</h2>
+    <p>Tick these off as you go.</p>
+    <ul class="check">
+      <li>I created my Claude account at claude.ai</li>
+      <li>I tried the 5-minute first win</li>
+      <li>I opened Prompt Studio and filled in my voice profile</li>
+      <li>I made my first social post</li>
+      <li>I made my first email</li>
+      <li>I created a 7-day content plan</li>
+      <li>I edited each result so it sounds like me</li>
+      <li>I saved my favourites somewhere I can find them</li>
+    </ul>
+    <h3>What to do next</h3>
+    <p>Come back to Prompt Studio whenever you need a post, an email, a video script or a few ideas. Try a new task each day, and keep what works.</p>
+  </section>
+
+</div>
+
+<footer>
+  Claude is a product of Anthropic. Claude Made Simple is independent and is not made, endorsed or sponsored by Anthropic.<br>
+  This guide is educational and does not promise or guarantee any income or specific results.<br>
+  &copy; 2026 Josee Bedard. All rights reserved.
+</footer>
+
+</body>
+</html>

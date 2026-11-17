@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claude Made Simple - Prompt Studio</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141413;--muted:#6b665b;--line:#e6dfd0;--bg:#f5f1e8;--card:#fff;
+  --dark:#141413;--dark2:#1f1e1d;--gold:#d97757;--pink:#d97757;--orange:#d97757;--yellow:#f0a283;--ok:#d97757;
+  --grad:linear-gradient(110deg,#d97757,#c96442);
+  --shadow:0 10px 34px rgba(40,30,10,.08)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(900px 500px at 90% -10%,rgba(217,119,87,.10),transparent 60%),var(--bg);color:var(--ink);font:16px/1.55 Montserrat,Arial,sans-serif;min-height:100vh}
+button{font-family:inherit}
+
+/* header */
+header{position:sticky;top:0;z-index:30;background:rgba(20,20,19,.95);backdrop-filter:blur(10px);border-bottom:1px solid #2b2a28}
+.hwrap{max-width:1160px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.logo{font:400 22px "Fjalla One",Impact,sans-serif;letter-spacing:.03em;color:#fff;white-space:nowrap}
+.logo b{color:var(--yellow);font-weight:400}
+.logo small{font:600 11px Montserrat,sans-serif;color:#a39d90;letter-spacing:.14em;margin-left:8px;text-transform:uppercase}
+.tabs{display:flex;gap:6px;background:#2a2927;border-radius:99px;padding:4px}
+.tab{border:0;background:transparent;color:#b8b2a6;font:700 14px Montserrat,sans-serif;padding:9px 20px;border-radius:99px;cursor:pointer;transition:all .2s}
+.tab:hover{color:#fff}
+.tab.on{background:var(--grad);color:#fff;box-shadow:0 6px 18px rgba(217,119,87,.35)}
+.help{color:#b8b2a6;font-size:13px;text-decoration:none}
+
+.wrap{max-width:1160px;margin:0 auto;padding:26px 20px 70px}
+.panel{display:none;animation:fade .35s ease}
+.panel.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* hero banner */
+.banner{border-radius:20px;padding:26px 28px;margin-bottom:22px;color:#fff;background:radial-gradient(520px 240px at 90% 0%,rgba(217,119,87,.38),transparent 60%),radial-gradient(420px 220px at 0% 100%,rgba(217,119,87,.16),transparent 60%),var(--dark);box-shadow:var(--shadow);position:relative;overflow:hidden}
+.banner h1{font:400 clamp(28px,4.6vw,44px)/1.1 "Fjalla One",Impact,sans-serif;margin:0 0 6px}
+.banner h1 span{color:var(--yellow)}
+.banner p{margin:0;color:#d6d0c4;max-width:640px}
+.steps{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:6px 14px;font-size:13px;font-weight:600;color:#fff}
+.pill b{display:inline-flex;width:20px;height:20px;border-radius:50%;background:var(--grad);align-items:center;justify-content:center;margin-right:7px;font-size:11px}
+
+/* cards + inputs */
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:var(--shadow)}
+h2{font:400 26px/1.15 "Fjalla One",Impact,sans-serif;margin:0 0 4px}
+.hint{color:var(--muted);font-size:14px;margin:0 0 14px}
+label{display:block;font-weight:700;font-size:13.5px;margin:14px 0 5px}
+input[type=text],input:not([type]),select,textarea{width:100%;font:inherit;padding:11px 13px;border:1.5px solid #ddd5c4;border-radius:11px;background:#fff;color:var(--ink);transition:border-color .15s,box-shadow .15s}
+textarea{min-height:84px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--orange);box-shadow:0 0 0 4px rgba(217,119,87,.22)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+details.voice{margin-bottom:22px}
+details.voice summary{cursor:pointer;font-weight:800;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details.voice summary::after{content:"Edit";font-size:12px;color:var(--pink);font-weight:800}
+details.voice[open] summary::after{content:"Close"}
+.saved{display:inline-block;margin-left:8px;font-size:12px;color:var(--ok);font-weight:700;opacity:0;transition:opacity .3s}
+.saved.on{opacity:1}
+
+/* write tab */
+.tasks{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0 0 22px}
+.task{background:#fff;border:2px solid var(--line);border-radius:16px;padding:16px;text-align:left;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s;position:relative;overflow:hidden}
+.task:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--grad);opacity:0;transition:opacity .2s}
+.task:hover{transform:translateY(-3px);border-color:#e9b8a1;box-shadow:0 10px 24px rgba(217,119,87,.14)}
+.task.on{border-color:var(--pink);box-shadow:0 12px 28px rgba(217,119,87,.22)}
+.task.on:before{opacity:1}
+.task strong{display:block;font-size:15px}
+.task span{font-size:12.5px;color:var(--muted);line-height:1.35;display:block;margin-top:3px}
+.grid{display:grid;grid-template-columns:1fr 1.1fr;gap:22px;align-items:start}
+.out{background:linear-gradient(165deg,#1f1e1d,#141413);color:#f1efe6;border-radius:18px;padding:20px;position:sticky;top:82px;box-shadow:var(--shadow)}
+.out h2{color:var(--yellow)}
+.out pre{white-space:pre-wrap;word-wrap:break-word;font:13.5px/1.6 Consolas,Menlo,monospace;background:#0f0f0e;border:1px solid #35332f;border-radius:12px;padding:14px;max-height:430px;overflow:auto;margin:10px 0 14px;color:#e8e6dd}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;font:800 15px Montserrat,Arial,sans-serif;padding:13px 20px;border-radius:10px;text-decoration:none;color:#fff;background:var(--grad);box-shadow:0 8px 20px rgba(217,119,87,.3);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(217,119,87,.4)}
+.btn.alt{background:#fff;color:#141413;box-shadow:none;border:2px solid #3a3835}
+.btn.ghost{background:transparent;color:#c96442;box-shadow:none;border:2px solid #efc9b8;padding:10px 16px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ok{color:#f0a283;font-weight:700;font-size:14px;opacity:0;transition:opacity .25s}
+.ok.on{opacity:1}
+.follow{margin-top:18px}
+.follow h3{font:700 12px Montserrat,sans-serif;color:#b8b2a6;margin:0 0 8px;text-transform:uppercase;letter-spacing:.1em}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:#2d2b28;color:#fff;border:1px solid #46433e;border-radius:99px;padding:6px 12px;font:600 12.5px Montserrat,sans-serif;cursor:pointer;transition:border-color .15s}
+.chip:hover{border-color:var(--yellow)}
+.how{background:#fbefe7;border:1px solid #f0cdbb;border-radius:14px;padding:12px 16px;font-size:14px;margin-bottom:22px}
+
+/* design tab */
+.dgrid{display:grid;grid-template-columns:420px 1fr;gap:24px;align-items:start}
+.drop{border:2.5px dashed #e3b9a4;background:#fdf5ef;border-radius:16px;padding:22px;text-align:center;cursor:pointer;transition:all .2s}
+.drop:hover,.drop.over{border-color:var(--pink);background:#fcebe2}
+.drop strong{display:block;font-size:16px}
+.drop span{font-size:13px;color:var(--muted)}
+.drop img{max-width:100%;max-height:110px;border-radius:10px;display:none;margin:0 auto 8px}
+.drop.has img{display:block}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{border:2px solid var(--line);background:#fff;border-radius:10px;padding:8px 12px;font:700 13px Montserrat,sans-serif;cursor:pointer;color:var(--ink);transition:all .15s}
+.seg button:hover{border-color:#e9b8a1}
+.seg button.on{border-color:var(--pink);background:#fcebe2;color:#b4532f}
+.sw{display:flex;gap:8px;flex-wrap:wrap}
+.sw button{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px var(--line);cursor:pointer;transition:transform .15s}
+.sw button:hover{transform:scale(1.1)}
+.sw button.on{box-shadow:0 0 0 3px var(--pink)}
+input[type=range]{width:100%;accent-color:#d97757}
+.sl{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+.stage{background:linear-gradient(165deg,#1f1e1d,#141413);border-radius:20px;padding:22px;position:sticky;top:82px;text-align:center;box-shadow:var(--shadow)}
+.stage h2{color:var(--yellow);text-align:left}
+.cvwrap{display:flex;justify-content:center;margin:14px 0 16px;background:repeating-conic-gradient(#2a2927 0 25%,#201f1d 0 50%) 0 0/22px 22px;border-radius:14px;padding:16px}
+#cv{max-width:100%;max-height:68vh;height:auto;border-radius:8px;box-shadow:0 14px 40px rgba(0,0,0,.55)}
+.note{font-size:12.5px;color:#a39d90;margin:10px 0 0}
+
+footer{color:var(--muted);font-size:12.5px;text-align:center;padding:10px 20px 44px}
+@media(max-width:980px){.tasks{grid-template-columns:repeat(2,1fr)}.grid,.dgrid{grid-template-columns:1fr}.out,.stage{position:static}.row{grid-template-columns:1fr}.logo small{display:none}}
+@media(max-width:520px){.hwrap{flex-wrap:wrap;justify-content:center}.help{display:none}.tab{padding:9px 16px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hwrap">
+    <div class="logo">CLAUDE <b>MADE SIMPLE</b><small>Prompt Studio</small></div>
+    <div class="tabs" role="tablist">
+      <button class="tab on" id="tabWrite" role="tab" aria-selected="true">Write</button>
+      <button class="tab" id="tabDesign" role="tab" aria-selected="false">Design</button>
+    </div>
+    <a class="help" href="#help">Need help?</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============ WRITE ============ -->
+<div class="panel on" id="pWrite">
+  <div class="banner">
+    <h1>Your Claude <span>Prompt Studio</span></h1>
+    <p>Pick a task, answer a few easy questions, and copy a ready-made prompt into Claude. Then turn your post into a picture on the Design tab.</p>
+    <div class="steps">
+      <span class="pill"><b>1</b>Tell it about you (once)</span>
+      <span class="pill"><b>2</b>Pick a task</span>
+      <span class="pill"><b>3</b>Copy &amp; paste into Claude</span>
+      <span class="pill"><b>4</b>Make your post picture</span>
+    </div>
+  </div>
+
+  <details class="card voice" id="voiceBox" open>
+    <summary><span>Step 1: Your voice profile <span class="saved" id="saved">Saved on this device</span></span></summary>
+    <p class="hint" style="margin-top:8px">Fill this in once. Every prompt will use it so Claude writes like you. It stays in your browser and is never sent anywhere.</p>
+    <div class="row">
+      <div><label for="v_name">Your name or business</label><input id="v_name" placeholder="e.g. Sarah's Pet Boutique"></div>
+      <div><label for="v_aud">Who you help</label><input id="v_aud" placeholder="e.g. busy new dog owners"></div>
+    </div>
+    <label for="v_offer">What you offer</label><input id="v_offer" placeholder="e.g. simple dog-training guides and coaching">
+    <div class="row">
+      <div><label for="v_tone">Your tone</label>
+        <select id="v_tone"><option value="">Choose one</option><option>Warm and friendly</option><option>Simple and direct</option><option>Encouraging and upbeat</option><option>Professional but approachable</option><option>Playful and fun</option><option>Calm and reassuring</option></select></div>
+      <div><label for="v_avoid">Words or topics to avoid</label><input id="v_avoid" placeholder="e.g. hype, jargon, emojis"></div>
+    </div>
+    <label for="v_sample">A sample of how you write (optional, 2 to 3 sentences)</label>
+    <textarea id="v_sample" placeholder="Paste a short piece you wrote. Claude will match the style."></textarea>
+  </details>
+
+  <h2 style="margin-bottom:12px">Step 2: Pick a task</h2>
+  <div class="tasks" id="tasks"></div>
+
+  <div class="how"><strong>How to use it:</strong> fill in the boxes, press <b>Copy prompt</b>, then <b>Open Claude</b> and paste it in. Claude writes your first draft in seconds. Then use the quick follow-ups to polish it.</div>
+
+  <div class="grid">
+    <div class="card">
+      <h2 id="fTitle"></h2>
+      <p class="hint" id="fHint"></p>
+      <div id="fields"></div>
+    </div>
+    <div class="out">
+      <h2>Step 3: Your prompt</h2>
+      <pre id="prompt"></pre>
+      <div class="btns">
+        <button class="btn" id="copy">Copy prompt</button>
+        <a class="btn alt" id="open" href="https://claude.ai/new" target="_blank" rel="noopener">Open Claude &rarr;</a>
+        <span class="ok" id="ok">Copied!</span>
+      </div>
+      <div class="follow">
+        <h3>After Claude replies, try these</h3>
+        <div class="chips" id="chips"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DESIGN ============ -->
+<div class="panel" id="pDesign">
+  <div class="banner">
+    <h1>Make Your <span>Post Picture</span></h1>
+    <p>Add your own photo, paste your favourite line from Claude's post, pick a style, and download a finished image for Facebook, Instagram or Stories.</p>
+  </div>
+
+  <div class="dgrid">
+    <div class="card">
+      <h2>1. Your photo</h2>
+      <p class="hint">Optional. Your photo stays on your device and is never uploaded.</p>
+      <div class="drop" id="drop" tabindex="0" role="button" aria-label="Choose a photo">
+        <img id="thumb" alt="">
+        <strong id="dropT">Click to add a photo</strong>
+        <span id="dropS">or drag and drop one here</span>
+        <input type="file" id="d_file" accept="image/*" hidden>
+      </div>
+      <div class="btns" style="margin-top:10px"><button class="btn ghost" id="clearPhoto" type="button">Remove photo</button></div>
+
+      <label>2. Size</label>
+      <div class="seg" id="segSize">
+        <button type="button" data-v="sq" class="on">Square post</button>
+        <button type="button" data-v="po">Portrait post</button>
+        <button type="button" data-v="st">Story</button>
+      </div>
+
+      <label>3. Style</label>
+      <div class="seg" id="segTpl">
+        <button type="button" data-v="overlay" class="on">Photo + text</button>
+        <button type="button" data-v="caption">Caption bar</button>
+        <button type="button" data-v="quote">Quote card</button>
+        <button type="button" data-v="split">Split</button>
+      </div>
+
+      <label for="d_text">4. Your text</label>
+      <textarea id="d_text" placeholder="Paste your favourite line from Claude's post here">Small steps every day add up.</textarea>
+      <label for="d_sub">Small line (your name or handle)</label>
+      <input id="d_sub" placeholder="e.g. @yourname">
+
+      <div class="row">
+        <div><label for="d_font">Font</label>
+          <select id="d_font"><option value="m">Bold clean</option><option value="f">Tall headline</option><option value="g">Elegant serif</option></select></div>
+        <div><label for="d_pos">Text position</label>
+          <select id="d_pos"><option value="bottom">Bottom</option><option value="middle">Middle</option><option value="top">Top</option></select></div>
+      </div>
+
+      <label>Text colour</label>
+      <div class="sw" id="swText"></div>
+      <label>Accent colour</label>
+      <div class="sw" id="swAccent"></div>
+
+      <label style="margin-top:18px">Fine tune</label>
+      <div class="sl">
+        <div><span class="hint" style="margin:0">Darken photo</span><input type="range" id="d_dark" min="0" max="85" value="45"></div>
+        <div><span class="hint" style="margin:0">Zoom photo</span><input type="range" id="d_zoom" min="100" max="260" value="100"></div>
+        <div><span class="hint" style="margin:0">Move left / right</span><input type="range" id="d_x" min="-100" max="100" value="0"></div>
+        <div><span class="hint" style="margin:0">Move up / down</span><input type="range" id="d_y" min="-100" max="100" value="0"></div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <h2>5. Your picture</h2>
+      <div class="cvwrap"><canvas id="cv" width="1080" height="1080" aria-label="Post picture preview"></canvas></div>
+      <div class="btns" style="justify-content:center">
+        <button class="btn" id="dl" type="button">Download picture</button>
+        <span class="ok" id="dlok">Downloaded!</span>
+      </div>
+      <p class="note">Saved as a high-quality PNG, ready to upload. Use your own photos, or images you have the right to use.</p>
+    </div>
+  </div>
+</div>
+
+<div class="card" id="help" style="margin-top:26px">
+  <h2>Need help?</h2>
+  <p class="hint" style="margin:6px 0 0">New to Claude? Open claude.ai, sign in, and start a new chat. Then paste your prompt into the message box and press send. Need the step-by-step? <a href="/wp/promptstudio-guide/" style="color:#c96442;font-weight:700">Open the Quick-Start Guide</a>. If something isn't working, email <strong>[EDIT: your support email]</strong>.</p>
+</div>
+
+</div>
+
+<footer>Claude is a product of Anthropic. Claude Made Simple is independent and is not made, endorsed or sponsored by Anthropic. Always review and edit what Claude writes before you use it.</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function store(k,v){try{localStorage.setItem("cms_"+k,v)}catch(e){}}
+  function load(k){try{return localStorage.getItem("cms_"+k)}catch(e){return null}}
+
+  /* ---------- tabs ---------- */
+  function showTab(name){
+    var w=name==="write";
+    $("pWrite").classList.toggle("on",w);$("pDesign").classList.toggle("on",!w);
+    $("tabWrite").classList.toggle("on",w);$("tabDesign").classList.toggle("on",!w);
+    $("tabWrite").setAttribute("aria-selected",w);$("tabDesign").setAttribute("aria-selected",!w);
+    store("tab",name);
+    if(!w) draw();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+  $("tabWrite").onclick=function(){showTab("write")};
+  $("tabDesign").onclick=function(){showTab("design")};
+
+  /* ---------- WRITE: prompt builder ---------- */
+  var GUARD="Do not invent statistics, testimonials, results or income claims. Keep everything honest and believable.";
+  var FOLLOWUPS=["Make it shorter.","Make it sound more like me and less like AI.","Give me 3 different versions.","Make the opening line stronger.","Simplify the language for a complete beginner.","Add a clear call to action at the end."];
+  var TASKS=[
+    {id:"social",name:"Social media post",desc:"A post for Facebook, Instagram, Threads or LinkedIn.",title:"Write a social media post",hint:"Tell Claude what the post is about.",
+     fields:[{k:"topic",l:"What is the post about?",t:"textarea",p:"e.g. 3 mistakes new dog owners make in the first week"},{k:"platform",l:"Where will you post it?",t:"select",o:["Facebook","Instagram","Threads","LinkedIn"]},{k:"goal",l:"What do you want it to do?",t:"select",o:["Get comments and conversation","Build trust","Get people to click a link","Promote my offer"]},{k:"len",l:"How long?",t:"select",o:["Short (3 to 4 lines)","Medium (a short paragraph)","Longer (a mini story)"]}],
+     build:function(v){return "Write a "+v.platform+" post about: "+v.topic+".\n\nGoal: "+v.goal+".\nLength: "+v.len+".\n\nStart with a strong first line that makes people want to keep reading. Use short sentences and plain words. Finish with one clear call to action that fits the goal. Give me 3 different versions so I can choose."}},
+    {id:"email",name:"Email",desc:"Welcome, promo, follow-up or newsletter emails.",title:"Write an email",hint:"Pick the kind of email and what it should say.",
+     fields:[{k:"type",l:"What kind of email?",t:"select",o:["Welcome email","Promotional email","Follow-up email","Newsletter","Re-engage a quiet subscriber"]},{k:"about",l:"What is it about?",t:"textarea",p:"e.g. my new beginner guide is now available"},{k:"cta",l:"What should the reader do next?",t:"input",p:"e.g. click the link to get the guide"},{k:"len",l:"How long?",t:"select",o:["Very short","Short","Medium"]}],
+     build:function(v){return "Write a "+v.type.toLowerCase()+" about: "+v.about+".\n\nThe reader should: "+v.cta+".\nLength: "+v.len+".\n\nGive me 5 subject line options and one short preview line. Write the email in a friendly, easy-to-read style with short paragraphs. Do not use hype or pressure."}},
+    {id:"video",name:"Faceless video script",desc:"A script for an AI avatar or faceless video.",title:"Write a faceless video script",hint:"Perfect for AI avatar and voice-over videos. No camera needed.",
+     fields:[{k:"topic",l:"What is the video about?",t:"textarea",p:"e.g. why most beginners get bad results from AI, and the fix"},{k:"secs",l:"How long?",t:"select",o:["30 seconds","60 seconds","90 seconds"]},{k:"style",l:"Style",t:"select",o:["Quick tips list","Short story","Myth vs truth","Step-by-step how-to"]},{k:"cta",l:"What should viewers do at the end?",t:"input",p:"e.g. follow for more, or click the link below"}],
+     build:function(v){return "Write a "+v.secs.replace(" seconds","-second")+" faceless video script about: "+v.topic+".\n\nStyle: "+v.style+".\nEnd by telling viewers to: "+v.cta+".\n\nFormat it like this:\n1) HOOK: the first 3 seconds, one punchy line.\n2) SCENES: a numbered list. For each scene give the voice-over line and a short on-screen text.\n3) CALL TO ACTION: one line.\n4) CAPTION: a short caption with 5 hashtags.\n\nUse simple words that sound natural when read out loud."}},
+    {id:"magnet",name:"Guide or lead magnet",desc:"An outline for a free guide, checklist or mini-course.",title:"Plan a guide or lead magnet",hint:"Create something helpful people will happily sign up for.",
+     fields:[{k:"topic",l:"What is the guide about?",t:"input",p:"e.g. a first-week checklist for new dog owners"},{k:"reader",l:"Who is it for?",t:"input",p:"e.g. people who just got a puppy"},{k:"win",l:"What quick win will they get?",t:"input",p:"e.g. a calm, structured first week"},{k:"fmt",l:"Format",t:"select",o:["Checklist","Short PDF guide","Cheat sheet","5-day mini-course"]}],
+     build:function(v){return "Help me plan a "+v.fmt.toLowerCase()+" about: "+v.topic+".\n\nIt is for: "+v.reader+".\nThe quick win they get: "+v.win+".\n\nGive me: (1) 5 title ideas, (2) a simple outline with sections, (3) the key points for each section in plain words, and (4) a short closing that invites the reader to take the next step with me."}},
+    {id:"sales",name:"Offer and sales copy",desc:"Headline, bullets and a call to action for what you sell.",title:"Write sales copy",hint:"Short, honest copy for a post, page or email.",
+     fields:[{k:"prod",l:"What are you selling?",t:"textarea",p:"e.g. a beginner guide to training your puppy at home"},{k:"who",l:"Who is it for?",t:"input",p:"e.g. busy first-time dog owners"},{k:"ben",l:"List 3 benefits (one per line)",t:"textarea",p:"Saves time\nEasy to follow\nWorks with no experience"},{k:"price",l:"Price (optional)",t:"input",p:"e.g. $17"}],
+     build:function(v){return "Write short, honest sales copy for: "+v.prod+".\n\nIt is for: "+v.who+".\nKey benefits:\n"+v.ben+"\n"+(v.price?"Price: "+v.price+"\n":"")+"\nGive me: 5 headline options, a one-line subheadline, 5 benefit bullet points, a short paragraph that explains the offer, and a clear call to action. Keep it friendly and truthful. Do not promise specific results."}},
+    {id:"plan",name:"7-day content plan",desc:"A week of post ideas so you never run out.",title:"Plan 7 days of content",hint:"Get a full week of ideas in one go.",
+     fields:[{k:"topic",l:"What is your topic or niche?",t:"input",p:"e.g. dog training for beginners"},{k:"plat",l:"Which platforms?",t:"input",p:"e.g. Facebook and Instagram"},{k:"perday",l:"Posts per day",t:"select",o:["1","2","3"]}],
+     build:function(v){return "Create a 7-day content plan for: "+v.topic+" on "+v.plat+" with "+v.perday+" post(s) per day.\n\nPresent it as a table with columns: Day, Post idea, Format (text, image, video), and Call to action. Mix teaching posts, personal posts and soft offers. Keep ideas simple enough for a beginner to create in 15 minutes each."}},
+    {id:"reply",name:"Reply to a message",desc:"A kind, clear reply to a comment or DM.",title:"Reply to a comment or message",hint:"Paste what they wrote and say how you want to respond.",
+     fields:[{k:"msg",l:"Paste the message you received",t:"textarea",p:"Paste the comment or DM here"},{k:"aim",l:"What do you want to do?",t:"select",o:["Answer helpfully","Thank them","Gently invite them to my offer","Handle a complaint politely","Politely say no"]}],
+     build:function(v){return "Here is a message I received:\n\n\""+v.msg+"\"\n\nWrite a reply that will "+v.aim.toLowerCase()+". Keep it short, kind and natural. Give me 3 options of different lengths."}},
+    {id:"hooks",name:"Hook ideas",desc:"Attention-grabbing first lines for posts and videos.",title:"Get hook ideas",hint:"The first line decides if people keep reading or watching.",
+     fields:[{k:"topic",l:"What is the topic?",t:"input",p:"e.g. beginner mistakes with AI tools"},{k:"count",l:"How many ideas?",t:"select",o:["10","15","20"]},{k:"kind",l:"For",t:"select",o:["Posts","Short videos","Emails (subject lines)"]}],
+     build:function(v){return "Give me "+v.count+" hook ideas for "+v.kind.toLowerCase()+" about: "+v.topic+".\n\nMake them curious, specific and easy to understand. Use a mix of questions, bold statements and mini-stories. No clickbait that I can't deliver on."}}
+  ];
+  var VK=["name","aud","offer","tone","avoid","sample"];
+  var state={task:TASKS[0].id};
+
+  function voiceBlock(){
+    var g=function(k){return ($("v_"+k).value||"").trim()},bits=[],out="";
+    if(g("name"))bits.push("I am "+g("name")+".");
+    if(g("aud"))bits.push("I help "+g("aud")+".");
+    if(g("offer"))bits.push("I offer "+g("offer")+".");
+    if(g("tone"))bits.push("My tone is: "+g("tone").toLowerCase()+".");
+    if(g("avoid"))bits.push("Please avoid: "+g("avoid")+".");
+    if(bits.length)out+="ABOUT ME: "+bits.join(" ")+"\n";
+    if(g("sample"))out+="HOW I WRITE (match this style): \""+g("sample")+"\"\n";
+    return out;
+  }
+  function currentTask(){return TASKS.filter(function(t){return t.id===state.task})[0]}
+  function readVals(){
+    var t=currentTask(),vals={};
+    t.fields.forEach(function(f){
+      var el=$("f_"+f.k),v=el?el.value.trim():"";
+      if(!v)v=f.t==="select"?el.options[0].value:("["+f.l.replace(/\?$/,"")+"]");
+      vals[f.k]=v;
+    });
+    return vals;
+  }
+  function render(){
+    var t=currentTask();
+    $("prompt").textContent="You are my friendly writing assistant.\n\n"+(voiceBlock()?voiceBlock()+"\n":"")+"TASK:\n"+t.build(readVals())+"\n\nRULES: Use plain, simple English. "+GUARD+" If you need more information, ask me up to 3 short questions first.";
+  }
+  function drawTasks(){
+    var box=$("tasks");box.innerHTML="";
+    TASKS.forEach(function(t){
+      var b=document.createElement("button");
+      b.type="button";b.className="task"+(t.id===state.task?" on":"");
+      b.innerHTML="<strong></strong><span></span>";
+      b.firstChild.textContent=t.name;b.lastChild.textContent=t.desc;
+      b.onclick=function(){state.task=t.id;store("task",t.id);drawTasks();drawForm();render()};
+      box.appendChild(b);
+    });
+  }
+  function drawForm(){
+    var t=currentTask(),box=$("fields");
+    $("fTitle").textContent=t.title;$("fHint").textContent=t.hint;box.innerHTML="";
+    t.fields.forEach(function(f){
+      var l=document.createElement("label");l.htmlFor="f_"+f.k;l.textContent=f.l;box.appendChild(l);
+      var el;
+      if(f.t==="select"){el=document.createElement("select");f.o.forEach(function(o){var op=document.createElement("option");op.textContent=o;el.appendChild(op)})}
+      else if(f.t==="textarea"){el=document.createElement("textarea");el.placeholder=f.p||""}
+      else{el=document.createElement("input");el.placeholder=f.p||""}
+      el.id="f_"+f.k;el.addEventListener("input",render);el.addEventListener("change",render);box.appendChild(el);
+    });
+  }
+  var timer;
+  VK.forEach(function(k){
+    var el=$("v_"+k),saved=load("v_"+k);if(saved)el.value=saved;
+    el.addEventListener("input",function(){
+      store("v_"+k,el.value);render();
+      $("saved").classList.add("on");clearTimeout(timer);timer=setTimeout(function(){$("saved").classList.remove("on")},1400);
+    });
+  });
+  var lt=load("task");if(lt&&TASKS.some(function(t){return t.id===lt}))state.task=lt;
+  if(VK.some(function(k){return load("v_"+k)}))$("voiceBox").open=false;
+
+  function copyText(text,msgEl,msg){
+    function done(){msgEl.textContent=msg;msgEl.classList.add("on");setTimeout(function(){msgEl.classList.remove("on")},1600)}
+    function fallback(){var ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done()}catch(e){}document.body.removeChild(ta)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(done,fallback)}else fallback();
+  }
+  $("copy").onclick=function(){copyText($("prompt").textContent,$("ok"),"Copied!")};
+  FOLLOWUPS.forEach(function(f){
+    var c=document.createElement("button");c.type="button";c.className="chip";c.textContent=f;
+    c.onclick=function(){copyText(f,$("ok"),"Copied follow-up!")};
+    $("chips").appendChild(c);
+  });
+
+  /* ---------- DESIGN: post picture maker ---------- */
+  var SIZES={sq:{w:1080,h:1080},po:{w:1080,h:1350},st:{w:1080,h:1920}};
+  var FONTS={m:'800 {s}px Montserrat, Arial, sans-serif',f:'400 {s}px "Fjalla One", Impact, sans-serif',g:'italic 700 {s}px Georgia, "Times New Roman", serif'};
+  var TEXTC=[["#ffffff","White"],["#141413","Charcoal"],["#e9dfcb","Sand"]];
+  var ACCENTS=[["#d97757","Claude orange"],["#141413","Charcoal"],["#e9dfcb","Sand"],["#8a4b32","Clay brown"]];
+  var D={size:"sq",tpl:"overlay",text:"#ffffff",accent:"#d97757",img:null};
+  var cv=$("cv"),ctx=cv.getContext("2d");
+
+  function seg(id,key){
+    var box=$(id);
+    box.addEventListener("click",function(e){
+      var b=e.target.closest("button");if(!b)return;
+      [].forEach.call(box.children,function(x){x.classList.remove("on")});b.classList.add("on");
+      D[key]=b.getAttribute("data-v");draw();
+    });
+  }
+  seg("segSize","size");seg("segTpl","tpl");
+
+  function swatches(id,list,key){
+    var box=$(id);
+    list.forEach(function(c,i){
+      var b=document.createElement("button");b.type="button";b.title=c[1];b.setAttribute("aria-label",c[1]);
+      b.style.background=c[0];if(D[key]===c[0])b.classList.add("on");
+      b.onclick=function(){D[key]=c[0];[].forEach.call(box.children,function(x){x.classList.remove("on")});b.classList.add("on");draw()};
+      box.appendChild(b);
+    });
+  }
+  swatches("swText",TEXTC,"text");swatches("swAccent",ACCENTS,"accent");
+
+  ["d_text","d_sub","d_font","d_pos","d_dark","d_zoom","d_x","d_y"].forEach(function(id){
+    $(id).addEventListener("input",draw);$(id).addEventListener("change",draw);
+  });
+
+  /* photo input */
+  var drop=$("drop"),fileIn=$("d_file");
+  function loadFile(file){
+    if(!file||!/^image\//.test(file.type))return;
+    var url=URL.createObjectURL(file),img=new Image();
+    img.onload=function(){D.img=img;$("thumb").src=url;drop.classList.add("has");$("dropT").textContent="Photo added";$("dropS").textContent="Click to change it";draw()};
+    img.src=url;
+  }
+  drop.onclick=function(){fileIn.click()};
+  drop.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();fileIn.click()}};
+  fileIn.onchange=function(){loadFile(fileIn.files[0])};
+  ["dragenter","dragover"].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add("over")})});
+  ["dragleave","drop"].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove("over")})});
+  drop.addEventListener("drop",function(e){if(e.dataTransfer&&e.dataTransfer.files[0])loadFile(e.dataTransfer.files[0])});
+  $("clearPhoto").onclick=function(){D.img=null;fileIn.value="";drop.classList.remove("has");$("thumb").removeAttribute("src");$("dropT").textContent="Click to add a photo";$("dropS").textContent="or drag and drop one here";draw()};
+
+  function hexA(hex,a){var n=parseInt(hex.slice(1),16);return "rgba("+(n>>16&255)+","+(n>>8&255)+","+(n&255)+","+a+")"}
+  function coverImg(img,x,y,w,h){
+    var z=$("d_zoom").value/100,px=$("d_x").value/100,py=$("d_y").value/100;
+    var s=Math.max(w/img.width,h/img.height)*z,dw=img.width*s,dh=img.height*s;
+    var dx=x+(w-dw)/2+px*(dw-w)/2,dy=y+(h-dh)/2+py*(dh-h)/2;
+    ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();ctx.drawImage(img,dx,dy,dw,dh);ctx.restore();
+  }
+  function wrap(text,maxW){
+    var out=[];
+    text.split(/\n/).forEach(function(par){
+      var words=par.split(/\s+/).filter(Boolean),line="";
+      if(!words.length){out.push("");return}
+      words.forEach(function(w){var t=line?line+" "+w:w;if(ctx.measureText(t).width>maxW&&line){out.push(line);line=w}else line=t});
+      out.push(line);
+    });
+    return out;
+  }
+  function fontStr(s){return FONTS[$("d_font").value].replace("{s}",s)}
+  function drawText(text,x,y,w,h,align,color,pos){
+    text=text.trim()||"Your text here";
+    var max=Math.round(cv.width*0.1),min=Math.round(cv.width*0.034),size=max,lines,lh;
+    for(;size>=min;size-=2){ctx.font=fontStr(size);lines=wrap(text,w);lh=size*1.2;if(lines.length*lh<=h)break}
+    ctx.font=fontStr(size);lines=wrap(text,w);lh=size*1.2;
+    var total=lines.length*lh,ty=pos==="top"?y:pos==="middle"?y+(h-total)/2:y+h-total;
+    ctx.fillStyle=color;ctx.textAlign=align;ctx.textBaseline="top";
+    var tx=align==="center"?x+w/2:x;
+    ctx.shadowColor="rgba(0,0,0,.35)";ctx.shadowBlur=(color==="#141413"||color==="#e9dfcb")?0:14;
+    lines.forEach(function(l,i){ctx.fillText(l,tx,ty+i*lh)});
+    ctx.shadowBlur=0;ctx.shadowColor="transparent";
+    return {top:ty,bottom:ty+total};
+  }
+  function drawSub(color,align,x,w,y){
+    var s=$("d_sub").value.trim();if(!s)return;
+    ctx.font="700 "+Math.round(cv.width*0.034)+"px Montserrat, Arial, sans-serif";
+    ctx.fillStyle=color;ctx.globalAlpha=.9;ctx.textAlign=align;ctx.textBaseline="alphabetic";
+    ctx.fillText(s,align==="center"?x+w/2:x,y);ctx.globalAlpha=1;
+  }
+  function gradBg(x,y,w,h){
+    var g=ctx.createLinearGradient(x,y,x+w,y+h);g.addColorStop(0,D.accent);g.addColorStop(1,"#141413");
+    ctx.fillStyle=g;ctx.fillRect(x,y,w,h);
+  }
+  function draw(){
+    var S=SIZES[D.size],W=S.w,H=S.h;
+    if(cv.width!==W||cv.height!==H){cv.width=W;cv.height=H}
+    ctx.clearRect(0,0,W,H);
+    var text=$("d_text").value,pos=$("d_pos").value,col=D.text,m=Math.round(W*0.07),dark=$("d_dark").value/100;
+    var subY=H-Math.round(W*0.05);
+
+    if(D.tpl==="overlay"){
+      if(D.img)coverImg(D.img,0,0,W,H);else gradBg(0,0,W,H);
+      var g;
+      if(pos==="bottom"){g=ctx.createLinearGradient(0,H*0.3,0,H);g.addColorStop(0,"rgba(0,0,0,0)");g.addColorStop(1,"rgba(0,0,0,"+(dark+.15)+")")}
+      else if(pos==="top"){g=ctx.createLinearGradient(0,H*0.7,0,0);g.addColorStop(0,"rgba(0,0,0,0)");g.addColorStop(1,"rgba(0,0,0,"+(dark+.15)+")")}
+      else{g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,"rgba(0,0,0,"+dark*.8+")");g.addColorStop(1,"rgba(0,0,0,"+dark*.8+")")}
+      ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+      // accent bar
+      ctx.fillStyle=D.accent;ctx.fillRect(m,pos==="top"?m*0.9:H-m*1.0-4,Math.round(W*0.12),10);
+      var ty=pos==="top"?m*1.5:m,th=H-m*2-(pos==="top"?m*0.6:m*0.9);
+      drawText(text,m,ty,W-m*2,th-(subY?m*0.4:0),"left",col,pos);
+      drawSub(col,"left",m,W-m*2,subY);
+    }
+    else if(D.tpl==="caption"){
+      var ph=Math.round(H*0.66);
+      if(D.img)coverImg(D.img,0,0,W,ph);else gradBg(0,0,W,ph);
+      if(dark>0&&D.img){ctx.fillStyle="rgba(0,0,0,"+dark*.5+")";ctx.fillRect(0,0,W,ph)}
+      ctx.fillStyle=D.accent;ctx.fillRect(0,ph,W,H-ph);
+      var tc=D.accent==="#e9dfcb"&&col==="#ffffff"?"#141413":col;
+      drawText(text,m,ph+m*0.7,W-m*2,H-ph-m*1.9,"left",tc,pos==="top"?"top":pos==="middle"?"middle":"middle");
+      drawSub(tc,"left",m,W-m*2,H-m*0.55);
+    }
+    else if(D.tpl==="quote"){
+      gradBg(0,0,W,H);
+      ctx.fillStyle="rgba(255,255,255,.14)";ctx.font='400 '+Math.round(W*0.5)+'px "Fjalla One", Georgia, serif';ctx.textAlign="left";ctx.textBaseline="top";ctx.fillText("“",m*0.5,-W*0.06);
+      var r=Math.round(W*0.12),cy=m+r;
+      if(D.img){
+        ctx.save();ctx.beginPath();ctx.arc(W/2,cy,r,0,Math.PI*2);ctx.closePath();ctx.clip();coverImg(D.img,W/2-r,cy-r,r*2,r*2);ctx.restore();
+        ctx.lineWidth=8;ctx.strokeStyle="#ffffff";ctx.beginPath();ctx.arc(W/2,cy,r,0,Math.PI*2);ctx.stroke();
+      }
+      var top=D.img?cy+r+m*0.6:m*1.4;
+      drawText(text,m*1.1,top,W-m*2.2,subY-top-m*0.9,"center",col,"middle");
+      drawSub(col,"center",0,W,subY);
+    }
+    else{ // split
+      if(D.size==="sq"){
+        var pw=Math.round(W*0.46);
+        if(D.img)coverImg(D.img,0,0,pw,H);else gradBg(0,0,pw,H);
+        ctx.fillStyle=D.accent;ctx.fillRect(pw,0,W-pw,H);
+        var tc2=D.accent==="#e9dfcb"&&col==="#ffffff"?"#141413":col;
+        drawText(text,pw+m*0.8,m,W-pw-m*1.6,H-m*2.6,"left",tc2,pos==="top"?"top":pos==="bottom"?"bottom":"middle");
+        drawSub(tc2,"left",pw+m*0.8,W-pw-m*1.6,H-m*0.9);
+      }else{
+        var ph2=Math.round(H*0.5);
+        if(D.img)coverImg(D.img,0,0,W,ph2);else gradBg(0,0,W,ph2);
+        ctx.fillStyle=D.accent;ctx.fillRect(0,ph2,W,H-ph2);
+        var tc3=D.accent==="#e9dfcb"&&col==="#ffffff"?"#141413":col;
+        drawText(text,m,ph2+m*0.8,W-m*2,H-ph2-m*2.4,"left",tc3,"middle");
+        drawSub(tc3,"left",m,W-m*2,H-m*0.8);
+      }
+    }
+  }
+
+  $("dl").onclick=function(){
+    draw();
+    cv.toBlob(function(b){
+      if(!b)return;
+      var a=document.createElement("a");a.href=URL.createObjectURL(b);
+      a.download="my-post-"+D.size+"-"+D.tpl+".png";document.body.appendChild(a);a.click();document.body.removeChild(a);
+      setTimeout(function(){URL.revokeObjectURL(a.href)},2000);
+      var o=$("dlok");o.classList.add("on");setTimeout(function(){o.classList.remove("on")},1800);
+    },"image/png");
+  };
+
+  /* ---------- start ---------- */
+  drawTasks();drawForm();render();
+  if(document.fonts&&document.fonts.load){
+    Promise.all([document.fonts.load('800 40px Montserrat'),document.fonts.load('400 40px "Fjalla One"')]).then(draw,draw);
+  }else draw();
+  if(load("tab")==="design")showTab("design");
+})();
+</script>
+</body>
+</html>

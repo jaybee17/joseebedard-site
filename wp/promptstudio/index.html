@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow"><!-- LAUNCH: remove this noindex line from the public pages (sales, JV, policies) when you go live -->
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claude Made Simple - Claude for Beginners and Non-Techies</title>
+<meta name="description" content="A plain-English copy-and-paste system that shows beginners how to use Claude to create content and marketing assets, with no tech skills.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;--bg2:#f3f3f3;--card:#ffffff;--card2:#fafafa;
+  --gold:#b4532f;--gold2:#d97757;--gold3:#c96442;
+  --text:#2f2f2f;--muted:#5a5a5a;--line:#e2e2e2;--glow:rgba(217,119,87,.4)
+}
+.dark{
+  --bg:#141413;--bg2:#1b1a18;--card:#1f1e1d;--card2:#262421;
+  --gold:#f0a283;--gold2:#e58a68;--gold3:#d97757;
+  --text:#ffffff;--muted:#cfc9bd;--line:#35332f;
+  background:#141413;color:var(--text)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.65 Montserrat,Helvetica,Arial,sans-serif;overflow-x:hidden}
+main,header,footer,.strip{position:relative;z-index:1}
+.strip{background:#c96442;color:#fff;text-align:center;padding:10px 14px;font-weight:700;font-size:14px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.narrow{max-width:760px;margin:0 auto}
+h1,h2,h3{margin:0;font-family:"Fjalla One",Impact,Montserrat,sans-serif;font-weight:400;line-height:1.12;letter-spacing:.01em}
+h2{font-size:clamp(30px,5.4vw,50px);text-transform:none;text-align:center;margin-bottom:14px}
+h3{font-size:24px}
+.gold{background:#fbd9c8;color:#141413;padding:0 8px;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.dark .gold{background:none;color:#f0a283;padding:0}
+.script{display:inline-block;border:2px dashed #c96442;background:#eee;color:#222;border-radius:8px;padding:10px 18px;font:800 15px/1.3 Montserrat,Arial,sans-serif;text-align:center}
+.lead{color:var(--muted);text-align:center;max-width:720px;margin:0 auto 34px;font-size:18px}
+.eyebrow{display:block;text-align:center;color:var(--gold);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.small{font-size:13.5px;color:var(--muted)}
+.edit{background:#3b2a22;color:#f0a283;font:12px Montserrat,Arial,sans-serif;padding:2px 6px;border-radius:4px}
+
+/* strip + header */
+.strip{background:#c96442;color:#fff;text-align:center;padding:9px 14px;font-weight:700;font-size:14px}
+header{position:sticky;top:0;z-index:20;background:rgba(20,20,19,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:62px}
+.logo{font-weight:900;font-size:19px;letter-spacing:.02em}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.nav a{color:var(--muted);text-decoration:none;font-size:14px}
+.nav a:hover{color:var(--gold2)}
+.nav a.cta,.nav a.cta:hover{color:#fff}
+
+/* buttons */
+.cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(to right,#d97757,#e58a68);color:#fff;font-weight:800;font-size:clamp(18px,4vw,26px);padding:20px 40px;border-radius:6px;text-decoration:none;box-shadow:0 8px 24px var(--glow);transition:transform .2s,box-shadow .2s;animation:pulse 2.6s ease-in-out infinite;max-width:100%;text-align:center}
+.cta:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 12px 40px rgba(217,119,87,.55)}
+.cta.sm{padding:10px 20px;font-size:14px;animation:none;border-radius:6px}
+.cta-wrap{text-align:center;margin:30px 0 6px}
+.micro{text-align:center;color:var(--muted);font-size:13.5px;margin-top:10px}
+
+/* hero */
+.herowrap{background:#141413}
+.hero{padding:54px 0 40px;text-align:center}
+.hero h1{font-size:clamp(36px,7.4vw,70px);text-transform:none;margin:8px 0 18px}
+.hero .sub{font-size:clamp(17px,2.6vw,21px);color:#e6e1d6;max-width:720px;margin:0 auto 30px}
+.ghost{display:inline-block;animation:float 5s ease-in-out infinite}
+.videobox{position:relative;max-width:820px;margin:26px auto 0;aspect-ratio:16/9;background:#141413;border:2px solid #46433e;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;color:var(--muted);text-align:center;padding:20px}
+.play{width:78px;height:78px;border-radius:50%;background:linear-gradient(to right,#d97757,#e58a68);display:flex;align-items:center;justify-content:center;color:#fff;font-size:30px;margin:0 auto 12px;animation:pulse 2.4s ease-in-out infinite}
+
+/* hero: two-column layout (video left, price card right) */
+.herowrap{background:radial-gradient(circle at 18% 28%,rgba(217,119,87,.38),transparent 42%),radial-gradient(circle at 85% 62%,rgba(217,119,87,.28),transparent 46%),repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 1px,transparent 1px 40px),#141413}
+.hero{max-width:1120px}
+.pillbar{border:3px solid #f0a283;border-radius:60px;background:rgba(20,20,19,.88);padding:14px 28px;max-width:1000px;margin:26px auto 34px;font-size:clamp(15px,2.3vw,26px);font-weight:700;line-height:1.4;color:#fff}
+.pillbar u{text-decoration:underline}
+.herogrid{display:grid;grid-template-columns:1.5fr 1fr;gap:34px;align-items:start;text-align:left}
+.vidcard{background:#fff;border-radius:8px;padding:5px;box-shadow:0 18px 50px rgba(0,0,0,.55)}
+.soundbar{background:#c96442;color:#fff;text-align:center;padding:9px 10px;font-size:clamp(14px,1.9vw,19px);font-weight:600;border-radius:5px 5px 0 0}
+.vidcard .videobox{max-width:none;margin:0;border:0;border-radius:0 0 5px 5px;box-shadow:none}
+.claimh{font-family:"Fjalla One",Impact,Montserrat,sans-serif;font-weight:400;font-size:clamp(30px,4.4vw,54px);line-height:1.12;text-align:center;margin:30px 0 6px;color:#fff}
+.arrow{display:block;margin:0 0 0 auto;width:190px;max-width:45%}
+.circles{display:flex;gap:18px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.circles div{width:92px;height:92px;border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font:700 13px/1.2 Montserrat,Arial,sans-serif;color:#fff;padding:8px}
+.pcard{background:#fff;color:#222;border-radius:18px;padding:22px 20px 24px;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.55)}
+.pcard .hurry{font-weight:800;font-size:clamp(18px,2vw,23px);line-height:1.25;text-transform:uppercase}
+.redbar{background:#c96442;color:#fff;font-weight:700;font-size:15px;padding:9px 8px;margin:12px 0 16px}
+.mock{position:relative;height:190px;margin:4px 0 12px;display:flex;align-items:center;justify-content:center}
+.mock .screen{width:62%;height:128px;background:linear-gradient(145deg,#2a2622,#141413);border:6px solid #cfd3da;border-bottom-width:10px;border-radius:8px;display:flex;align-items:center;justify-content:center;font:400 24px "Fjalla One",Impact,sans-serif;color:#fff;letter-spacing:.02em;box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.mock .screen b{color:#f0a283;font-weight:400}
+.mock .box{position:absolute;left:6%;bottom:4px;width:70px;height:112px;background:linear-gradient(145deg,#2a2622,#141413);border-radius:3px;transform:skewY(-4deg);box-shadow:6px 6px 14px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font:400 13px "Fjalla One",sans-serif;color:#f0a283;writing-mode:vertical-rl}
+.mock .tab{position:absolute;right:6%;bottom:4px;width:54px;height:80px;background:#141413;border:3px solid #cfd3da;border-radius:6px}
+.pprice{font-family:"Fjalla One",Impact,sans-serif;font-size:clamp(34px,4.2vw,48px);line-height:1.1;color:#b4532f;margin:6px 0 4px;text-transform:uppercase}
+.pprice s{color:#111}
+.plus{color:#b4532f;font-weight:800;font-size:15px;margin:4px 0}
+.pcard .cta{width:100%;margin:16px 0 14px;padding:20px 12px;font-size:clamp(20px,2.6vw,28px)}
+.bump{border:3px dashed #222;border-radius:4px;padding:6px;text-align:left}
+.bump .in{background:#fbefe7;padding:12px 14px;font-size:14.5px;line-height:1.45}
+.bump .in b{font-size:17px;display:block;text-align:center;margin-bottom:6px}
+.bump input{width:20px;height:20px;vertical-align:middle;margin-right:6px}
+@media(max-width:900px){.herogrid{grid-template-columns:1fr}.arrow{display:none}}
+
+
+/* 3-step cards (grabrefuel style) */
+.stepsec{background:repeating-radial-gradient(circle at 15% -10%,rgba(255,255,255,.05) 0 2px,transparent 2px 26px),linear-gradient(165deg,#2a2623 0%,#1d1b19 42%,#141413 100%);padding:70px 0 80px}
+.stepsec .big{font:700 clamp(32px,5.6vw,60px)/1.12 Montserrat,Arial,sans-serif;text-align:center;color:#fff;margin:0}
+.stepsec .big b{color:#f0a283;font-weight:800}
+.stepsec .mid{font:400 clamp(26px,4vw,44px)/1.2 Montserrat,Arial,sans-serif;text-align:center;color:#fff;margin:8px 0}
+.stepsec .mid b{font-weight:800}
+.stepsec .it{font:italic 400 clamp(16px,2.2vw,24px) Montserrat,Arial,sans-serif;text-align:center;color:#e6e1d6;margin:6px 0 70px}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;max-width:1000px;margin:0 auto}
+.sc{position:relative;background:#fff;color:#222;border-radius:24px;padding:90px 22px 30px;text-align:center;box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.rib{position:absolute;left:-16px;top:20px;background:#c96442;color:#fff;font:500 clamp(22px,2.6vw,30px)/1 Montserrat,Arial,sans-serif;padding:13px 78px 13px 22px;border-radius:30px 0 0 30px;box-shadow:0 6px 14px rgba(232,23,79,.35)}
+.rib b{font-weight:800}
+.bd{position:absolute;right:-22px;top:-44px;width:150px;height:150px;filter:drop-shadow(0 8px 14px rgba(0,0,0,.3))}
+.sc p{margin:0;font:400 clamp(18px,2vw,22px)/1.4 Montserrat,Arial,sans-serif;color:#333}
+.sc p b{color:#c96442;font-weight:800}
+.sc p small{display:block;margin-top:14px;font-size:.9em;color:#555}
+@media(max-width:900px){.sgrid{grid-template-columns:1fr;max-width:460px;gap:70px}.stepsec .it{margin-bottom:84px}}
+
+/* sections */
+section{padding:64px 0}
+section.alt{background:var(--bg2)}
+section.dark{background:#141413}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:linear-gradient(160deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:10px;padding:22px;box-shadow:0 4px 18px rgba(0,0,0,.07);transition:transform .25s,border-color .25s,box-shadow .25s}
+.card:hover{transform:translateY(-4px);border-color:var(--gold3);box-shadow:0 12px 34px rgba(217,119,87,.12)}
+.card .ic{position:relative;width:38px;height:38px;margin-bottom:12px;border-radius:50%;border:2px solid #d97757;background:rgba(217,119,87,.1)}
+.card .ic:after{content:"";position:absolute;left:50%;top:50%;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;background:linear-gradient(135deg,#d97757,#e58a68);transform:rotate(45deg);border-radius:2px}
+.card p{margin:6px 0 0;color:var(--muted);font-size:16px}
+.card .val{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--gold);border:1px solid var(--gold3);border-radius:99px;padding:3px 10px}
+.module .tag{font-size:12px;font-weight:700;letter-spacing:.14em;color:var(--gold)}
+
+/* proof */
+.proof{border:1px dashed var(--gold3);border-radius:16px;padding:26px;text-align:center;color:var(--muted)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:30px 0 6px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;text-align:center}
+.stat b{display:block;font-size:clamp(30px,5vw,44px);font-weight:900}
+.stat span{color:var(--muted);font-size:13.5px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative;margin-top:30px}
+.steps:before{content:"";position:absolute;left:8%;right:8%;top:34px;height:2px;background:linear-gradient(90deg,transparent,#d97757,transparent);animation:draw 3s ease-out both}
+.step{position:relative;text-align:center;padding:0 8px}
+.num{width:68px;height:68px;margin:0 auto 14px;border-radius:50%;background:linear-gradient(to right,#d97757,#e58a68);color:#fff;font-family:"Fjalla One",Impact,sans-serif;font-size:30px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 6px var(--bg2),0 0 26px var(--glow)}
+.step p{color:var(--muted);margin:8px 0 0;font-size:16px}
+
+/* problem/solution table */
+.ps{width:100%;border-collapse:separate;border-spacing:0 12px}
+.ps td{background:var(--card);padding:16px 18px;vertical-align:top;font-size:16px}
+.ps td:first-child{border-radius:14px 0 0 14px;border:1px solid var(--line);border-right:0;color:#8a3b3b;width:42%}
+.ps td:last-child{border-radius:0 14px 14px 0;border:1px solid var(--gold3);border-left:0}
+.ps b{display:block;color:var(--gold2);margin-bottom:2px}
+
+/* checklist */
+.ticks{list-style:none;padding:0;margin:0}
+.ticks li{position:relative;padding:11px 0 11px 36px;border-bottom:1px solid var(--line)}
+.ticks li:before{content:"\2713";position:absolute;left:4px;top:11px;width:22px;height:22px;border-radius:50%;background:#d97757;color:#fff;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center}
+.ticks.no li:before{content:"\2715";background:#5a2b2b;color:#f3c9c9}
+
+/* offer */
+.offer{position:relative;background:#1f1e1d;border:3px solid #f0a283;border-radius:14px;padding:36px 26px;text-align:center;box-shadow:0 0 60px rgba(217,119,87,.12)}
+.offer .price{font-size:clamp(64px,13vw,104px);font-weight:900;line-height:1}
+.offer .was{color:var(--muted);text-decoration:line-through;font-size:26px;font-weight:700}
+.stack{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:18px 0}
+.stack div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 18px;min-width:130px}
+.stack b{display:block;font-size:22px}
+.stack span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.tl{max-width:540px;margin:16px auto;text-align:left}
+
+/* guarantee */
+.guar{display:flex;gap:24px;align-items:center;background:var(--card);border:2px dashed #c96442;border-radius:14px;padding:28px}
+.seal{flex:none;width:128px;height:128px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#f0a283,#d97757);color:#111;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:"Fjalla One",Impact,sans-serif;font-size:48px;line-height:1;box-shadow:0 0 34px rgba(217,119,87,.4);animation:float 5s ease-in-out infinite}
+.seal small{font-size:11px;letter-spacing:.1em}
+
+/* letter */
+.letter{background:#fff;color:#222;border:1px solid #ddd;border-radius:10px;padding:36px 32px;font:18px/1.75 Georgia,serif;box-shadow:0 6px 24px rgba(0,0,0,.08)}
+.letter h3{font-family:Montserrat,Arial,sans-serif;font-size:26px;margin:20px 0 8px;text-transform:uppercase}
+.letter .edit{background:#fbe3d6;color:#8a4527}
+
+/* faq */
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;padding:0 20px;transition:border-color .2s}
+details[open]{border-color:#d97757}
+summary{cursor:pointer;font-weight:700;padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:#d97757;font-size:22px;line-height:1}
+details[open] summary::after{content:"\2212"}
+details p{margin:0 0 16px;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding:40px 0 70px;color:var(--muted);font-size:13px;line-height:1.7}
+footer h4{color:var(--gold);margin:22px 0 6px;font-size:14px;text-transform:uppercase;letter-spacing:.08em}
+footer a{color:var(--gold)}
+
+/* motion */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse{0%,100%{box-shadow:0 8px 24px rgba(217,119,87,.35)}50%{box-shadow:0 8px 40px rgba(217,119,87,.6)}}
+@keyframes draw{from{transform:scaleX(0);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+@media(max-width:820px){
+  .nav ul{display:none}
+  .g2,.g3,.steps,.stats{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .steps:before{display:none}
+  .guar{flex-direction:column;text-align:center}
+  .ps td:first-child,.ps td:last-child{display:block;width:100%;border-radius:0;border:1px solid var(--line)}
+  .ps td:first-child{border-radius:14px 14px 0 0;border-bottom:0}
+  .ps td:last-child{border-radius:0 0 14px 14px;border-color:var(--gold3)}
+  .letter{padding:24px 18px}
+}
+@media(max-width:560px){.logo{font-size:15px;white-space:nowrap}.cta.sm{padding:9px 12px;font-size:12px;white-space:nowrap}.nav{gap:8px}}
+</style>
+</head>
+<body>
+<!-- WARRIOR+ REQUIRED: paste your Sales Page Code here, inside <body> (Vendor > Offers > Get Code). Do not remove it after approval. -->
+
+<div class="strip">Launch price: <b>$17</b> and it rises as sales come in. <span class="edit">[EDIT: match this to your Warrior+ dimesale or timesale]</span></div>
+
+<header class="dark">
+  <div class="wrap nav">
+    <div class="logo"><span class="gold">CLAUDE</span> MADE SIMPLE</div>
+    <ul><li><a href="#how">How it works</a></li><li><a href="#for">Who it's for</a></li><li><a href="#inside">What's inside</a></li><li><a href="#faq">FAQ</a></li></ul>
+    <a class="cta sm" href="#BUY-BUTTON-CODE-GOES-HERE">Get Instant Access &rarr;</a>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<div class="herowrap dark">
+<div class="wrap hero">
+  <span class="script">Most people give up on Claude in the first five minutes...</span>
+  <h1>Finally Use <span class="gold">Claude</span> To Create Content &amp; Marketing Assets<br>Without Any Tech Skills</h1>
+  <div class="pillbar"><u>Prompt Studio</u> Builds Your Claude Prompts For You, Step By Step!<br><i>100% Beginner Friendly <b>WITHOUT</b> Tech Skills... <b>WITHOUT</b> Coding... <b>WITHOUT</b> Experience...</i></div>
+
+  <div class="herogrid">
+    <div>
+      <div class="vidcard">
+        <div class="soundbar">&#9654; &nbsp;Watch this short video to see how it works</div>
+        <div class="videobox">
+          <div><div class="play">&#9654;</div><strong>Demo video</strong><br><span class="small"><span class="edit">[ADD: your demo video or screen recording]</span></span></div>
+        </div>
+      </div>
+      <div class="claimh">Claim Your Copy &amp; Fast Action Bonuses Before The Price Goes Up</div>
+      <svg class="arrow" viewBox="0 0 220 90" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 14 C 70 80, 150 80, 206 30"/><path d="M178 24 L208 28 L196 56"/></svg>
+      <div class="circles">
+        <div>Grab your copy</div><div>Pick a task &amp; copy the prompt</div><div>Edit &amp; use it</div>
+      </div>
+    </div>
+
+    <div class="pcard">
+      <div class="hurry">Launch price: grab it before it rises</div>
+      <div class="redbar">The price rises as sales come in <span class="edit">[EDIT: match your Warrior+ dimesale/timesale]</span></div>
+      <div class="mock" aria-label="Product image placeholder">
+        <div class="box">CLAUDE MADE SIMPLE</div>
+        <div class="screen">CLAUDE <b>&nbsp;MADE SIMPLE</b></div>
+        <div class="tab"></div>
+      </div>
+      <p class="small" style="margin:0 0 6px;color:#777"><span class="edit">[ADD: your real product mockup image in place of this graphic]</span></p>
+      <div class="pprice">Launch price <s>$27</s> $17</div>
+      <div class="plus">PLUS, GET FAST-ACTION BONUSES <span class="edit">[EDIT]</span></div>
+      <div style="font-size:16px">Delivered instantly. Start using it right now!</div>
+      <!-- BUY BUTTON (hero): paste your Warrior+ buy button code here -->
+      <a class="cta" href="#BUY-BUTTON-CODE-GOES-HERE">Get Instant Access Now &rarr;</a>
+      <div class="bump">
+        <div class="in">
+          <b><input type="checkbox" aria-label="Add the Library"> Yes, add the Claude Made Simple Library</b>
+          Ready-made prompts, templates and examples so you never start from a blank page. <span class="edit">[EDIT: only keep this box if you set up an inline upsell in Warrior+; otherwise delete it. State the price and what is included.]</span>
+        </div>
+      </div>
+      <p class="small" style="margin:12px 0 0;color:#666">One-time payment &bull; 30-day money-back guarantee</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- WHAT IS IT -->
+<section id="what">
+  <div class="wrap">
+    <span class="eyebrow">In plain English</span>
+    <h2>What Is <span class="gold">Claude Made Simple?</span></h2>
+    <p class="lead" style="font-size:20px;max-width:760px"><strong>It's a simple web app called Prompt Studio, plus a quick-start guide.</strong> You pick a task, answer a few easy questions, and the app builds a ready-to-paste prompt for Claude (the AI assistant), so you can write your posts, emails, scripts and simple marketing without any tech skills.</p>
+    <div class="grid g3 reveal">
+      <div class="card"><div class="ic"></div><h3>What you get</h3><p>Prompt Studio (8 easy prompt builders), a quick-start guide and a Quick-Start Checklist. Instant access, so you can start the same day.</p></div>
+      <div class="card"><div class="ic"></div><h3>What you do</h3><p>Pick a task, answer a few easy questions, copy the prompt Prompt Studio builds, and paste it into Claude. Claude writes a first draft in seconds. You edit it and use it.</p></div>
+      <div class="card"><div class="ic"></div><h3>What you end up with</h3><p>Posts, emails, scripts and simple marketing assets, in your own voice, created faster and without the blank-screen stress.</p></div>
+    </div>
+    <div class="grid g2 reveal" style="margin-top:22px">
+      <div>
+        <h3 style="margin-bottom:8px">It is...</h3>
+        <ul class="ticks"><li>A simple web app that builds your prompts for you</li><li>Beginner friendly and written in plain English</li><li>Instant access, nothing to install</li></ul>
+      </div>
+      <div>
+        <h3 style="margin-bottom:8px">It is not...</h3>
+        <ul class="ticks no"><li>Something you have to install or set up</li><li>A get-rich-quick button</li><li>A replacement for Claude. You paste the prompts into Claude itself.</li></ul>
+      </div>
+    </div>
+    <p class="small" style="text-align:center;margin-top:16px"><span class="edit">[EDIT: confirm the contents and how buyers get access to Prompt Studio.]</span></p>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">See it in action</span>
+    <h2>Real Examples. <span class="gold">Made With The System.</span></h2>
+    <p class="lead">Here's what a beginner gets when they follow the steps.</p>
+    <div class="grid g2 reveal">
+      <div class="proof"><strong>Before</strong><br>[ADD: screenshot of a generic Claude answer from a vague prompt]</div>
+      <div class="proof"><strong>After</strong><br>[ADD: screenshot of the same task done with a Claude Made Simple prompt]</div>
+    </div>
+    <p class="small" style="text-align:center;margin-top:14px"><span class="edit">[EDIT: use only real screenshots from your own use. Do not add income or result claims you cannot prove. Warrior+ may ask for proof of any claim.]</span></p>
+  </div>
+</section>
+
+<!-- SOLVES: benefits -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Claude made easy</span>
+    <h2>Turn Claude Into Your <span class="gold">Everyday Assistant</span></h2>
+    <p class="lead">For any task you do online, any business, any level of experience.</p>
+    <div class="grid g3">
+      <div class="card reveal"><div class="ic"></div><h3>Get Started In Minutes</h3><p>Set up Claude the easy way and get your first useful result today.</p></div>
+      <div class="card reveal"><div class="ic"></div><h3>Prompts Built For You</h3><p>Pick a task, answer a few questions, and Prompt Studio builds the prompt.</p></div>
+      <div class="card reveal"><div class="ic"></div><h3>Content In Your Voice</h3><p>Posts, emails, scripts and captions that sound like you, not a robot.</p></div>
+      <div class="card reveal"><div class="ic"></div><h3>No Tech Skills Needed</h3><p>No coding, no complicated settings, no confusing jargon.</p></div>
+      <div class="card reveal"><div class="ic"></div><h3>No Camera Required</h3><p>Create faceless content using AI voice and avatar tools.</p></div>
+      <div class="card reveal"><div class="ic"></div><h3>Always Know The Next Step</h3><p>A Quick-Start Checklist tells you what to do first, second and third.</p></div>
+    </div>
+    <div class="stats reveal">
+      <div class="stat"><b class="gold" data-count="6">0</b><span>Modules <span class="edit">[EDIT]</span></span></div>
+      <div class="stat"><b class="gold" data-count="100">0</b><span>Prompts <span class="edit">[EDIT: real number]</span></span></div>
+      <div class="stat"><b class="gold" data-count="15">0</b><span>Minute setup <span class="edit">[EDIT]</span></span></div>
+      <div class="stat"><b class="gold" data-count="30">0</b><span>Day guarantee</span></div>
+    </div>
+    <p class="small" style="text-align:center">Numbers describe what's inside the product. They are not results or earnings.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="dark stepsec" id="how">
+  <div class="wrap">
+    <h2 class="big">You're Now Just <b>3 Steps</b> Away</h2>
+    <div class="mid">From <b>Using Claude With Confidence!</b></div>
+    <div class="it">(Do it from your phone, your laptop... from anywhere)</div>
+    <div class="sgrid">
+      <div class="sc reveal">
+        <div class="rib">STEP <b>#1</b></div>
+        <svg class="bd" viewBox="0 0 100 100" aria-hidden="true">
+        <defs><linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e58a68"/><stop offset="1" stop-color="#d97757"/></linearGradient></defs>
+        <path d="M100.2 50.0 L99.7 51.7 L98.2 53.4 L96.2 54.9 L94.0 56.2 L92.1 57.4 L91.0 58.7 L90.7 60.2 L91.3 61.8 L92.5 63.8 L93.9 66.0 L95.0 68.2 L95.5 70.3 L95.1 72.0 L93.8 73.3 L91.7 74.0 L89.1 74.5 L86.6 74.7 L84.5 75.0 L83.0 75.8 L82.2 77.0 L82.1 78.9 L82.4 81.2 L82.7 83.8 L82.7 86.3 L82.1 88.3 L80.9 89.5 L79.0 90.0 L76.8 89.7 L74.3 88.9 L72.0 88.0 L69.9 87.5 L68.3 87.6 L67.1 88.5 L66.3 90.3 L65.5 92.5 L64.6 95.0 L63.5 97.1 L62.1 98.6 L60.4 99.0 L58.5 98.5 L56.6 97.1 L54.8 95.3 L53.0 93.5 L51.5 92.3 L50.0 91.8 L48.5 92.3 L47.0 93.5 L45.2 95.3 L43.4 97.1 L41.5 98.5 L39.6 99.0 L37.9 98.6 L36.5 97.1 L35.4 95.0 L34.5 92.5 L33.7 90.3 L32.9 88.5 L31.7 87.6 L30.1 87.5 L28.1 88.0 L25.7 88.9 L23.2 89.7 L21.0 90.0 L19.1 89.5 L17.9 88.3 L17.3 86.3 L17.3 83.8 L17.6 81.2 L17.9 78.9 L17.8 77.0 L17.0 75.8 L15.5 75.0 L13.4 74.7 L10.9 74.5 L8.3 74.0 L6.2 73.3 L4.9 72.0 L4.5 70.3 L5.0 68.2 L6.1 66.0 L7.5 63.8 L8.7 61.8 L9.3 60.2 L9.0 58.7 L7.9 57.4 L6.0 56.2 L3.8 54.9 L1.8 53.4 L0.3 51.7 L-0.2 50.0 L0.3 48.3 L1.8 46.6 L3.8 45.1 L6.0 43.8 L7.9 42.6 L9.0 41.3 L9.3 39.8 L8.7 38.2 L7.5 36.2 L6.1 34.0 L5.0 31.8 L4.5 29.7 L4.9 28.0 L6.2 26.7 L8.3 25.9 L10.9 25.5 L13.4 25.3 L15.5 25.0 L17.0 24.2 L17.8 23.0 L17.9 21.1 L17.6 18.8 L17.3 16.2 L17.3 13.7 L17.9 11.7 L19.1 10.5 L21.0 10.0 L23.2 10.3 L25.7 11.1 L28.0 12.0 L30.1 12.5 L31.7 12.4 L32.9 11.5 L33.7 9.7 L34.5 7.5 L35.4 5.0 L36.5 2.9 L37.9 1.4 L39.6 1.0 L41.5 1.5 L43.4 2.9 L45.2 4.7 L47.0 6.5 L48.5 7.7 L50.0 8.2 L51.5 7.7 L53.0 6.5 L54.8 4.7 L56.6 2.9 L58.5 1.5 L60.4 1.0 L62.1 1.4 L63.5 2.9 L64.6 5.0 L65.5 7.5 L66.3 9.7 L67.1 11.5 L68.3 12.4 L69.9 12.5 L72.0 12.0 L74.3 11.1 L76.8 10.3 L79.0 10.0 L80.9 10.5 L82.1 11.7 L82.7 13.7 L82.7 16.2 L82.4 18.8 L82.1 21.1 L82.2 23.0 L83.0 24.2 L84.5 25.0 L86.6 25.3 L89.1 25.5 L91.7 25.9 L93.8 26.7 L95.1 28.0 L95.5 29.7 L95.0 31.8 L93.9 34.0 L92.5 36.2 L91.3 38.2 L90.7 39.8 L91.0 41.3 L92.1 42.6 L94.0 43.8 L96.2 45.1 L98.2 46.6 L99.7 48.3 L100.2 50.0 Z" fill="url(#bg1)"/>
+        <g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M42 40 L72 54 L58 58 L66 74 L58 78 L50 62 L40 72 Z" fill="#fff" stroke="none"/><path d="M36 30 L33 22 M30 38 L22 36 M44 26 L47 18 M30 48 L23 52" stroke-width="4"/></g>
+      </svg>
+        <p><b>GRAB</b> A Copy Of <b>Claude Made Simple</b> By Clicking Any Buy Button On This Page<small>(Instant access after checkout)</small></p>
+      </div>
+      <div class="sc reveal">
+        <div class="rib">STEP <b>#2</b></div>
+        <svg class="bd" viewBox="0 0 100 100" aria-hidden="true">
+        <defs><linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e58a68"/><stop offset="1" stop-color="#d97757"/></linearGradient></defs>
+        <path d="M100.2 50.0 L99.7 51.7 L98.2 53.4 L96.2 54.9 L94.0 56.2 L92.1 57.4 L91.0 58.7 L90.7 60.2 L91.3 61.8 L92.5 63.8 L93.9 66.0 L95.0 68.2 L95.5 70.3 L95.1 72.0 L93.8 73.3 L91.7 74.0 L89.1 74.5 L86.6 74.7 L84.5 75.0 L83.0 75.8 L82.2 77.0 L82.1 78.9 L82.4 81.2 L82.7 83.8 L82.7 86.3 L82.1 88.3 L80.9 89.5 L79.0 90.0 L76.8 89.7 L74.3 88.9 L72.0 88.0 L69.9 87.5 L68.3 87.6 L67.1 88.5 L66.3 90.3 L65.5 92.5 L64.6 95.0 L63.5 97.1 L62.1 98.6 L60.4 99.0 L58.5 98.5 L56.6 97.1 L54.8 95.3 L53.0 93.5 L51.5 92.3 L50.0 91.8 L48.5 92.3 L47.0 93.5 L45.2 95.3 L43.4 97.1 L41.5 98.5 L39.6 99.0 L37.9 98.6 L36.5 97.1 L35.4 95.0 L34.5 92.5 L33.7 90.3 L32.9 88.5 L31.7 87.6 L30.1 87.5 L28.1 88.0 L25.7 88.9 L23.2 89.7 L21.0 90.0 L19.1 89.5 L17.9 88.3 L17.3 86.3 L17.3 83.8 L17.6 81.2 L17.9 78.9 L17.8 77.0 L17.0 75.8 L15.5 75.0 L13.4 74.7 L10.9 74.5 L8.3 74.0 L6.2 73.3 L4.9 72.0 L4.5 70.3 L5.0 68.2 L6.1 66.0 L7.5 63.8 L8.7 61.8 L9.3 60.2 L9.0 58.7 L7.9 57.4 L6.0 56.2 L3.8 54.9 L1.8 53.4 L0.3 51.7 L-0.2 50.0 L0.3 48.3 L1.8 46.6 L3.8 45.1 L6.0 43.8 L7.9 42.6 L9.0 41.3 L9.3 39.8 L8.7 38.2 L7.5 36.2 L6.1 34.0 L5.0 31.8 L4.5 29.7 L4.9 28.0 L6.2 26.7 L8.3 25.9 L10.9 25.5 L13.4 25.3 L15.5 25.0 L17.0 24.2 L17.8 23.0 L17.9 21.1 L17.6 18.8 L17.3 16.2 L17.3 13.7 L17.9 11.7 L19.1 10.5 L21.0 10.0 L23.2 10.3 L25.7 11.1 L28.0 12.0 L30.1 12.5 L31.7 12.4 L32.9 11.5 L33.7 9.7 L34.5 7.5 L35.4 5.0 L36.5 2.9 L37.9 1.4 L39.6 1.0 L41.5 1.5 L43.4 2.9 L45.2 4.7 L47.0 6.5 L48.5 7.7 L50.0 8.2 L51.5 7.7 L53.0 6.5 L54.8 4.7 L56.6 2.9 L58.5 1.5 L60.4 1.0 L62.1 1.4 L63.5 2.9 L64.6 5.0 L65.5 7.5 L66.3 9.7 L67.1 11.5 L68.3 12.4 L69.9 12.5 L72.0 12.0 L74.3 11.1 L76.8 10.3 L79.0 10.0 L80.9 10.5 L82.1 11.7 L82.7 13.7 L82.7 16.2 L82.4 18.8 L82.1 21.1 L82.2 23.0 L83.0 24.2 L84.5 25.0 L86.6 25.3 L89.1 25.5 L91.7 25.9 L93.8 26.7 L95.1 28.0 L95.5 29.7 L95.0 31.8 L93.9 34.0 L92.5 36.2 L91.3 38.2 L90.7 39.8 L91.0 41.3 L92.1 42.6 L94.0 43.8 L96.2 45.1 L98.2 46.6 L99.7 48.3 L100.2 50.0 Z" fill="url(#bg2)"/>
+        <g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><rect x="31" y="30" width="38" height="46" rx="6"/><rect x="41" y="24" width="18" height="12" rx="4" fill="#fff"/><path d="M40 50 H60 M40 60 H60 M40 69 H52" stroke-width="4"/></g>
+      </svg>
+        <p><b>Pick A Task</b> In Prompt Studio, Answer A Few Questions, Then <b>Copy &amp; Paste</b> The Prompt Into Claude</p>
+      </div>
+      <div class="sc reveal">
+        <div class="rib">STEP <b>#3</b></div>
+        <svg class="bd" viewBox="0 0 100 100" aria-hidden="true">
+        <defs><linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e58a68"/><stop offset="1" stop-color="#d97757"/></linearGradient></defs>
+        <path d="M100.2 50.0 L99.7 51.7 L98.2 53.4 L96.2 54.9 L94.0 56.2 L92.1 57.4 L91.0 58.7 L90.7 60.2 L91.3 61.8 L92.5 63.8 L93.9 66.0 L95.0 68.2 L95.5 70.3 L95.1 72.0 L93.8 73.3 L91.7 74.0 L89.1 74.5 L86.6 74.7 L84.5 75.0 L83.0 75.8 L82.2 77.0 L82.1 78.9 L82.4 81.2 L82.7 83.8 L82.7 86.3 L82.1 88.3 L80.9 89.5 L79.0 90.0 L76.8 89.7 L74.3 88.9 L72.0 88.0 L69.9 87.5 L68.3 87.6 L67.1 88.5 L66.3 90.3 L65.5 92.5 L64.6 95.0 L63.5 97.1 L62.1 98.6 L60.4 99.0 L58.5 98.5 L56.6 97.1 L54.8 95.3 L53.0 93.5 L51.5 92.3 L50.0 91.8 L48.5 92.3 L47.0 93.5 L45.2 95.3 L43.4 97.1 L41.5 98.5 L39.6 99.0 L37.9 98.6 L36.5 97.1 L35.4 95.0 L34.5 92.5 L33.7 90.3 L32.9 88.5 L31.7 87.6 L30.1 87.5 L28.1 88.0 L25.7 88.9 L23.2 89.7 L21.0 90.0 L19.1 89.5 L17.9 88.3 L17.3 86.3 L17.3 83.8 L17.6 81.2 L17.9 78.9 L17.8 77.0 L17.0 75.8 L15.5 75.0 L13.4 74.7 L10.9 74.5 L8.3 74.0 L6.2 73.3 L4.9 72.0 L4.5 70.3 L5.0 68.2 L6.1 66.0 L7.5 63.8 L8.7 61.8 L9.3 60.2 L9.0 58.7 L7.9 57.4 L6.0 56.2 L3.8 54.9 L1.8 53.4 L0.3 51.7 L-0.2 50.0 L0.3 48.3 L1.8 46.6 L3.8 45.1 L6.0 43.8 L7.9 42.6 L9.0 41.3 L9.3 39.8 L8.7 38.2 L7.5 36.2 L6.1 34.0 L5.0 31.8 L4.5 29.7 L4.9 28.0 L6.2 26.7 L8.3 25.9 L10.9 25.5 L13.4 25.3 L15.5 25.0 L17.0 24.2 L17.8 23.0 L17.9 21.1 L17.6 18.8 L17.3 16.2 L17.3 13.7 L17.9 11.7 L19.1 10.5 L21.0 10.0 L23.2 10.3 L25.7 11.1 L28.0 12.0 L30.1 12.5 L31.7 12.4 L32.9 11.5 L33.7 9.7 L34.5 7.5 L35.4 5.0 L36.5 2.9 L37.9 1.4 L39.6 1.0 L41.5 1.5 L43.4 2.9 L45.2 4.7 L47.0 6.5 L48.5 7.7 L50.0 8.2 L51.5 7.7 L53.0 6.5 L54.8 4.7 L56.6 2.9 L58.5 1.5 L60.4 1.0 L62.1 1.4 L63.5 2.9 L64.6 5.0 L65.5 7.5 L66.3 9.7 L67.1 11.5 L68.3 12.4 L69.9 12.5 L72.0 12.0 L74.3 11.1 L76.8 10.3 L79.0 10.0 L80.9 10.5 L82.1 11.7 L82.7 13.7 L82.7 16.2 L82.4 18.8 L82.1 21.1 L82.2 23.0 L83.0 24.2 L84.5 25.0 L86.6 25.3 L89.1 25.5 L91.7 25.9 L93.8 26.7 L95.1 28.0 L95.5 29.7 L95.0 31.8 L93.9 34.0 L92.5 36.2 L91.3 38.2 L90.7 39.8 L91.0 41.3 L92.1 42.6 L94.0 43.8 L96.2 45.1 L98.2 46.6 L99.7 48.3 L100.2 50.0 Z" fill="url(#bg3)"/>
+        <g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><rect x="30" y="26" width="40" height="50" rx="6"/><path d="M40 52 L48 60 L62 42" stroke-width="6"/></g>
+      </svg>
+        <p><b>Edit &amp; Use It!</b> Polish the draft, make it yours, and use it for your content and marketing</p>
+      </div>
+    </div>
+    <div class="cta-wrap" style="margin-top:50px"><a class="cta" href="#BUY-BUTTON-CODE-GOES-HERE">Yes, I Want Instant Access &rarr;</a></div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Sound familiar?</span>
+    <h2>AI Was Supposed To Make Things <span class="gold">Easier</span></h2>
+    <p class="lead">So why does it feel like you need a technical assistant just to get one thing written?</p>
+    <div class="grid g3">
+      <div class="card reveal"><h3>The jargon wall.</h3><p>Prompts, projects, skills, models. Nobody explains any of it in plain English.</p></div>
+      <div class="card reveal"><h3>The blank-screen problem.</h3><p>You open Claude, stare at the box, and don't know what to type.</p></div>
+      <div class="card reveal"><h3>The generic-answer trap.</h3><p>You get bland results, give up, and assume AI "isn't for you".</p></div>
+    </div>
+    <p class="lead" style="margin-top:30px"><strong style="color:var(--text)">You don't need more AI tools.<br>You need to know how to use the one you already have.</strong></p>
+  </div>
+</section>
+
+<!-- HOW IT SOLVES -->
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">Problem &rarr; solution</span>
+    <h2>How Claude Made Simple <span class="gold">Solves It</span></h2>
+    <table class="ps reveal">
+      <tr><td><b>"I don't know where to start."</b>The Quick-Start Checklist and setup guide.</td><td><b>You start the same day.</b>Step-by-step instructions with no guessing.</td></tr>
+      <tr><td><b>"I don't know what to type."</b>Blank-screen paralysis.</td><td><b>Prompt Studio builds it for you.</b>Answer a few questions, copy, paste. Done.</td></tr>
+      <tr><td><b>"The answers sound generic."</b>Robotic, forgettable content.</td><td><b>Prompts that capture your voice,</b> so the draft sounds like you.</td></tr>
+      <tr><td><b>"I'm not technical."</b>Everything feels like a tech course.</td><td><b>Plain English only.</b> If you can copy and paste, you can do it.</td></tr>
+      <tr><td><b>"I don't want to be on camera."</b></td><td><b>A faceless content workflow</b> using AI voice and avatar tools.</td></tr>
+      <tr><td><b>"I'll waste money on something that doesn't work."</b></td><td><b>One small payment and a 30-day guarantee.</b></td></tr>
+    </table>
+    <p class="small" style="text-align:center"><span class="edit">[EDIT: change the rows so each solution matches what is really in your product.]</span></p>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section id="for">
+  <div class="wrap">
+    <span class="eyebrow">Is this for you?</span>
+    <h2>Who This Is <span class="gold">Perfect For</span></h2>
+    <div class="grid g2" style="margin-top:26px">
+      <div class="reveal">
+        <h3 style="margin-bottom:10px;color:var(--gold2)">This is for you if...</h3>
+        <ul class="ticks">
+          <li>You're a complete beginner who has never used Claude, or tried and got stuck</li>
+          <li>You're not technical and want everything explained simply</li>
+          <li>You're an affiliate or online marketer who needs content faster</li>
+          <li>You run a side business and wear every hat yourself</li>
+          <li>You're a coach, creator or small-business owner short on time</li>
+          <li>You want to create content without being on camera</li>
+          <li>You'd rather copy and paste than learn complicated tools</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <h3 style="margin-bottom:10px;color:#9b3c3c">This is NOT for you if...</h3>
+        <ul class="ticks no">
+          <li>You're a developer looking for API or coding workflows</li>
+          <li>You want a "push a button and get rich" shortcut. No product can promise that.</li>
+          <li>You're not willing to copy, paste and edit</li>
+        </ul>
+      </div>
+    </div>
+    <p class="small" style="text-align:center;margin-top:16px"><span class="edit">[EDIT: adjust these to your real buyer.]</span></p>
+  </div>
+</section>
+
+<!-- ADVANTAGE: try/learn/improve -->
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">The advantage</span>
+    <h2>Practice First. <span class="gold">Perfect It As You Go.</span></h2>
+    <p class="lead">Because Claude drafts in seconds, you can try another angle, another hook or another version, without starting from a blank screen.</p>
+    <div class="grid g3">
+      <div class="card module reveal"><span class="tag">01 / TRY</span><h3>Start with a ready-made prompt.</h3><p>Pick a task and paste. Get a first draft right away.</p></div>
+      <div class="card module reveal"><span class="tag">02 / LEARN</span><h3>See what works for you.</h3><p>Compare versions and notice the style that fits your voice.</p></div>
+      <div class="card module reveal"><span class="tag">03 / IMPROVE</span><h3>Refine and reuse.</h3><p>Save your best prompts and reuse them again and again.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEM -->
+<section id="inside">
+  <div class="wrap">
+    <span class="eyebrow">The complete system</span>
+    <h2>Everything You Need, <span class="gold">In One Place</span></h2>
+    <p class="lead">Everything to get real work done with Claude, even if you're a complete beginner.</p>
+    <p class="small" style="text-align:center"><span class="edit">[EDIT: replace with the real contents of the AI Content System: names, one line each, and an assigned value if you use values.]</span></p>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card module reveal"><span class="tag">MODULE 1</span><h3>Easy Claude Setup</h3><p>Account, settings and your first win, with screenshots.</p><span class="val">VALUE $<span class="edit">[X]</span></span></div>
+      <div class="card module reveal"><span class="tag">MODULE 2</span><h3>Prompt Studio App</h3><p>8 easy prompt builders. Pick a task, answer a few questions, copy and paste into Claude.</p><span class="val">VALUE $<span class="edit">[X]</span></span></div>
+      <div class="card module reveal"><span class="tag">MODULE 3</span><h3>Your Voice Profile</h3><p>Set it once and every prompt makes Claude write like you, not like a robot.</p><span class="val">VALUE $<span class="edit">[X]</span></span></div>
+      <div class="card module reveal"><span class="tag">MODULE 4</span><h3>Simple Offers &amp; Pages</h3><p>Turn what you know into guides, lead magnets and marketing assets.</p><span class="val">VALUE $<span class="edit">[X]</span></span></div>
+      <div class="card module reveal"><span class="tag">MODULE 5</span><h3>Faceless Video Scripts</h3><p>Scripts for AI avatar and faceless videos, so you never need a camera.</p><span class="val">VALUE $<span class="edit">[X]</span></span></div>
+      <div class="card module reveal"><span class="tag">MODULE 6</span><h3>Quick-Start Checklist</h3><p>One page that tells you exactly what to do first, second and third.</p><span class="val">VALUE $<span class="edit">[X]</span></span></div>
+    </div>
+
+    <div style="margin-top:44px">
+      <span class="eyebrow">Fast-action bonuses</span>
+      <h2 style="font-size:clamp(24px,4vw,34px)">You Don't Arrive <span class="gold">Empty-Handed</span></h2>
+      <div class="grid g2" style="margin-top:18px">
+        <div class="card module reveal"><span class="tag">BONUS 1</span><h3><span class="edit">[EDIT: bonus name]</span></h3><p><span class="edit">[EDIT: one line]</span></p><span class="val">WORTH $<span class="edit">[X]</span> &middot; INCLUDED</span></div>
+        <div class="card module reveal"><span class="tag">BONUS 2</span><h3><span class="edit">[EDIT: bonus name]</span></h3><p><span class="edit">[EDIT: one line]</span></p><span class="val">WORTH $<span class="edit">[X]</span> &middot; INCLUDED</span></div>
+      </div>
+      <p class="small" style="text-align:center;margin-top:14px">Values shown are assigned package values, not previous selling prices. <span class="edit">[EDIT: keep only if you use values. List only bonuses you will really deliver.]</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">Works for your situation</span>
+    <h2>One System. <span class="gold">Many Uses.</span></h2>
+    <div class="grid g3" style="margin-top:24px">
+      <div class="card reveal"><div class="ic"></div><h3>Affiliate Marketers</h3><p>Write posts, emails and review content for the offers you promote.</p></div>
+      <div class="card reveal"><div class="ic"></div><h3>Your Own Products</h3><p>Outline guides, lead magnets and sales copy for what you sell.</p></div>
+      <div class="card reveal"><div class="ic"></div><h3>Coaches &amp; Creators</h3><p>Plan content, scripts and emails without the overwhelm.</p></div>
+      <div class="card reveal"><div class="ic"></div><h3>Local Businesses</h3><p>Create posts, replies and simple marketing pieces faster.</p></div>
+      <div class="card reveal"><div class="ic"></div><h3>Side-Hustlers</h3><p>Get more done in the time you have after your day job.</p></div>
+      <div class="card reveal"><div class="ic"></div><h3>Absolute Beginners</h3><p>Learn Claude from zero, one small step at a time.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section>
+  <div class="wrap">
+    <div class="narrow">
+      <span class="eyebrow">From Josée</span>
+      <h2 style="margin-bottom:24px">Why I Made <span class="gold">Claude Made Simple</span></h2>
+      <div class="letter reveal">
+        <p><strong>From the desk of Josée Bédard</strong></p>
+        <p><span class="edit">[EDIT: write your own true story here, in your own words. Warrior+ requires that copy matches reality and any results you mention are really yours. Suggested outline:]</span></p>
+        <p>1) <strong>Where you were:</strong> you tried AI and found it confusing or generic.<br>
+           2) <strong>The turning point:</strong> what you figured out that made Claude finally useful.<br>
+           3) <strong>What you built:</strong> the copy-and-paste system you now use yourself.<br>
+           4) <strong>Why you're sharing it:</strong> you wanted a version for people who aren't technical.</p>
+        <h3>So I put it all in one simple system</h3>
+        <p>No jargon. No coding. Just clear steps and ready-made prompts a complete beginner can follow the same day.</p>
+        <p>To your success,<br><strong>Josée Bédard</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="alt dark" id="offer">
+  <div class="wrap">
+    <div class="narrow">
+      <span class="eyebrow">Your launch offer</span>
+      <h2>Why Is The Price <span class="gold">So Low?</span></h2>
+      <p class="lead">We'd rather make it easy to get started and let the training prove its value. The core system stands on its own.</p>
+      <div class="offer reveal">
+        <span class="eyebrow">Launch price &middot; starting at</span>
+        <div class="was">$27</div>
+        <div class="price gold">$17</div>
+        <div class="micro">One-time payment. No subscription. The price rises as sales come in. <span class="edit">[EDIT: must match your Warrior+ dimesale or timesale]</span></div>
+        <ul class="ticks tl">
+          <li>Claude Made Simple: the complete beginner system</li>
+          <li>Plain-English prompts you copy and paste</li>
+          <li>Quick-Start Checklist</li>
+          <li>Fast-action bonuses <span class="edit">[EDIT]</span></li>
+          <li>Instant access, delivered right after checkout</li>
+          <li>30-day money-back guarantee</li>
+        </ul>
+        <div class="cta-wrap"><a class="cta" href="#BUY-BUTTON-CODE-GOES-HERE">Yes, Give Me Instant Access &rarr;</a></div>
+        <div class="micro">One-time payment &nbsp;&middot;&nbsp; Instant access &nbsp;&middot;&nbsp; 30-day guarantee</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section>
+  <div class="wrap">
+    <div class="guar reveal">
+      <div class="seal">30<small>DAY<br>GUARANTEE</small></div>
+      <div>
+        <h2 style="text-align:left;font-size:clamp(24px,4vw,34px)">Try It. Decide For Yourself.</h2>
+        <p style="margin:0 0 10px">Go through the system. Open the prompts. Try your first task with Claude. If it isn't right for you, email <span class="edit">[EDIT: support email]</span> within 30 days of purchase for a full refund.</p>
+        <p class="small" style="margin:0">Refunds are for the full amount paid. Each product in this offer, including any upgrade you add, has its own 30-day guarantee and is refunded separately. <span class="edit">[EDIT: must match your Warrior+ Refund Policy exactly.]</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="alt">
+  <div class="wrap">
+    <span class="eyebrow">What people say</span>
+    <h2>Real <span class="gold">Feedback</span></h2>
+    <p class="lead"><span class="edit">[EDIT: add real testimonials about this product only, from real buyers or testers, with permission. No AI-written or purchased reviews, and disclose free copies. Delete this section until you have them.]</span></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="narrow">
+      <span class="eyebrow">Before you start</span>
+      <h2>A Few Things <span class="gold">Worth Knowing</span></h2>
+      <details><summary>Is it software I have to install?</summary><p>No. Prompt Studio runs in your web browser on a computer or phone. There is nothing to download or install and no account to create. <span class="edit">[EDIT: confirm how buyers get access, for example a link on the delivery page.]</span></p></details>
+      <details><summary>Does Prompt Studio write the content for me?</summary><p>Prompt Studio builds the prompt for you. You paste it into Claude, and Claude writes the draft. You will need your own access to Claude. <span class="edit">[EDIT: say whether the free Claude plan is enough.]</span></p></details>
+      <details><summary>Is this beginner friendly?</summary><p>Yes. It starts from zero and explains each step in plain English. If you can copy and paste, you can follow it.</p></details>
+      <details><summary>Do I need to be technical?</summary><p>No. There's no coding and no complicated tools.</p></details>
+      <details><summary>Do I need a paid Claude account?</summary><p><span class="edit">[EDIT: say exactly what is needed, and whether the free plan is enough.]</span></p></details>
+      <details><summary>Do I need paid ads or an audience?</summary><p>No. This is about creating content and marketing assets. You don't need an existing audience to start practicing. <span class="edit">[EDIT: confirm]</span></p></details>
+      <details><summary>Do I need to appear on camera?</summary><p>No. The faceless workflow shows you how to create without showing your face.</p></details>
+      <details><summary>Can I use this for affiliate offers or my own products?</summary><p>Yes. The prompts work for both. <span class="edit">[EDIT: confirm]</span></p></details>
+      <details><summary>Will this make me money?</summary><p>No product can promise that. This system shows you how to create content and marketing assets faster. What you do with them, and your results, depend on you.</p></details>
+      <details><summary>How much time will I need?</summary><p>Setup takes about 15 minutes. After that, use it as little or as often as you like. <span class="edit">[EDIT: confirm]</span></p></details>
+      <details><summary>Is it a subscription?</summary><p>No. One payment, and the access is yours.</p></details>
+      <details><summary>How does the launch price work?</summary><p>The price starts at $17 and rises as sales come in. The current price is shown at checkout. <span class="edit">[EDIT: match your Warrior+ setting]</span></p></details>
+      <details><summary>How do I get access?</summary><p>Instantly after checkout. You'll be taken straight to your download page.</p></details>
+      <details><summary>Does this work outside the US?</summary><p><span class="edit">[EDIT: confirm and state clearly.]</span></p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="alt dark">
+  <div class="wrap center" style="text-align:center">
+    <span class="eyebrow">See you on the inside</span>
+    <h2>Your Content. Your Voice. <span class="gold">Your Claude.</span></h2>
+    <div class="cta-wrap"><a class="cta" href="#BUY-BUTTON-CODE-GOES-HERE">Get Claude Made Simple Now &rarr;</a></div>
+    <div class="micro">One-time payment &nbsp;&middot;&nbsp; Instant access &nbsp;&middot;&nbsp; 30-day guarantee</div>
+    <div class="narrow" style="margin-top:34px;text-align:left">
+      <p><strong class="gold">P.S.</strong> Start with one prompt and one task. See how fast a first draft appears. Then decide how far to take it.</p>
+      <p><strong class="gold">P.P.S.</strong> You're covered by a 30-day money-back guarantee. <span class="edit">[EDIT: keep this true.]</span></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="dark">
+  <div class="wrap">
+    <!-- WARRIOR+ REQUIRED: paste your Disclaimer Code here (Vendor > Offers > Get Code). Do not remove it after approval. -->
+    <p><a href="/wp/promptstudio-privacy/">Privacy Policy</a> &bull; <a href="/wp/promptstudio-terms/">Terms of Use</a> &bull; <a href="/wp/promptstudio-refund/">Refund Policy</a> &bull; Support: <span class="edit">[EDIT: working support email or URL]</span></p>
+
+    <h4>Income Disclaimer</h4>
+    <p>This product provides educational information and tools. It does not promise or guarantee any income or specific results. Your results depend on your effort, experience, market conditions and other factors outside our control.</p>
+    <h4>Liability Disclaimer</h4>
+    <p>The information is provided "as is" for educational purposes. We are not liable for any loss or damage arising from its use. <span class="edit">[EDIT: have your own legal text reviewed.]</span></p>
+    <h4>Guarantee Terms</h4>
+    <p>You may request a full refund within 30 days of purchase by emailing support. Each product in this offer has its own 30-day guarantee and is refunded separately.</p>
+    <h4>Not Affiliated</h4>
+    <p>Claude is a product of Anthropic. This product is independent and is not made, endorsed or sponsored by Anthropic.</p>
+    <h4>Please Note</h4>
+    <p>WarriorPlus is used to help manage the sale of products on this site. While WarriorPlus helps facilitate the sale, all payments are made directly to the product vendor and not WarriorPlus. All product questions, support inquiries and refund requests must be sent to the vendor.</p>
+    <p>&copy; 2026 Josee Bedard. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* scroll reveal */
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  els.forEach(function(e){io.observe(e)});
+})();
+/* count-up (describes product contents only) */
+(function(){
+  var nums=document.querySelectorAll('[data-count]');
+  function run(el){var to=+el.getAttribute('data-count'),t0=null;function f(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/1200,1);el.textContent=Math.round(to*p);if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+  if(!('IntersectionObserver' in window)){nums.forEach(function(n){n.textContent=n.getAttribute('data-count')});return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){run(e.target);io.unobserve(e.target)}})},{threshold:.5});
+  nums.forEach(function(n){io.observe(n)});
+})();
+</script>
+</body>
+</html>
