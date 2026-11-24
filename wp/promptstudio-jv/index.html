@@ -38,18 +38,55 @@ footer a{color:var(--gold)}
 h1,h2{font-family:"DM Sans",Arial,sans-serif!important;font-weight:900!important}
 h1{letter-spacing:.01em}
 .btnslot,.btn{box-shadow:0 6px 18px rgba(217,119,87,.3)}
+a{color:var(--gold2)}.btn{color:#fff!important}
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:center;padding:34px 0 10px}
+.hero h1{text-align:left;margin:10px 0 12px}
+.hero .sub{text-align:left;margin:0 0 18px;font-size:19px}
+.hero img.mock{width:100%;height:auto;display:block;filter:drop-shadow(0 18px 40px rgba(0,0,0,.55))}
+.who{display:flex;align-items:center;gap:12px;color:var(--muted);font:600 15px DM Sans,Arial,sans-serif}
+.who img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:2px solid var(--gold)}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:8px 0 6px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 10px;text-align:center}
+.tile b{display:block;font:900 30px DM Sans,Arial,sans-serif;color:var(--gold)}
+.tile span{color:var(--muted);font:14px DM Sans,Arial,sans-serif}
+.steps{display:grid;gap:16px;margin-top:6px}
+.step{display:grid;grid-template-columns:220px 1fr;gap:18px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;overflow:hidden}
+.step img{width:100%;height:170px;object-fit:cover;border-radius:10px;display:block}
+.step .tag{display:inline-block;background:#3b2a22;color:var(--gold2);font:800 12px DM Sans,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:99px}
+.step h3{font-size:21px;color:var(--text);margin:8px 0 4px}
+.step p{margin:0;color:var(--muted);font-size:16px}
+.step .pay{margin-top:8px;font:700 15px DM Sans,Arial,sans-serif;color:var(--gold2)}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.shots figure{margin:0}
+.shots img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block}
+.shots figcaption{color:var(--muted);font:14px DM Sans,Arial,sans-serif;margin-top:6px;text-align:center}
+.books{display:flex;gap:8px;margin-top:10px}.books img{flex:1;min-width:0;border-radius:6px;border:1px solid var(--line)}
+.about{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:center}
+.about img{width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:50% 20%;border:3px solid var(--gold)}
+.band{background:linear-gradient(110deg,#2a1d17,#1f1e1d);border:1px solid #4a3328;border-radius:16px;padding:26px 20px;text-align:center;margin:10px 0}
+@media(max-width:700px){.hero{grid-template-columns:1fr}.hero h1,.hero .sub{text-align:center}.who{justify-content:center}.tiles{grid-template-columns:repeat(2,1fr)}.step{grid-template-columns:1fr}.step img{height:190px}.shots{grid-template-columns:1fr}.about{grid-template-columns:1fr;text-align:center}.about img{margin:0 auto}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <h1>Promote <em>Claude Made Simple</em></h1>
-  <p class="sub">A simple web app, Prompt Studio, that builds Claude prompts for beginners and non-techies, with a 3-step funnel and a 30-day money-back guarantee.</p>
+  <div class="hero">
+    <div>
+      <div class="who"><img src="/wp/img/josee.webp" alt="Josée Bédard"><span>JV invite from Josée Bédard</span></div>
+      <h1>Promote <em>Claude Made Simple</em></h1>
+      <p class="sub">A beginner-friendly Claude app that builds the prompt for you. Easy $9 front end, two upgrades, 50% commissions and a 30-day guarantee.</p>
+      <!-- Use the Warrior+ link for affiliates to apply to promote this offer (Vendor > Offers) -->
+      <a class="btn" href="#WARRIOR-PLUS-AFFILIATE-APPLY-LINK">Request Affiliate Approval</a>
+      <p class="small" style="margin-top:10px">Warrior+ account required. Approval is through Warrior+.</p>
+    </div>
+    <img class="mock" src="/wp/img/mockup.webp" alt="Claude Made Simple Prompt Studio on desktop, tablet and phone, with the Quick-Start Guide">
+  </div>
 
-  <div class="center">
-    <!-- Use the Warrior+ link for affiliates to apply to promote this offer (Vendor > Offers) -->
-    <a class="btn" href="#WARRIOR-PLUS-AFFILIATE-APPLY-LINK">Request Affiliate Approval</a>
-    <p class="small">Warrior+ account required. Approval is through Warrior+.</p>
+  <div class="tiles">
+    <div class="tile"><b>$9</b><span>Front end</span></div>
+    <div class="tile"><b>50%</b><span>On every step</span></div>
+    <div class="tile"><b>3</b><span>Offers in the funnel</span></div>
+    <div class="tile"><b>30-day</b><span>Money-back guarantee</span></div>
   </div>
 
   <section>
@@ -67,13 +104,34 @@ h1{letter-spacing:.01em}
 
   <section>
     <h2>The Funnel and Commissions</h2>
-    <table>
-      <tr><th>Step</th><th>Product</th><th>Price</th><th>Commission</th></tr>
-      <tr><td>Front end</td><td>Claude Made Simple (Prompt Studio + quick-start guide)</td><td>$9</td><td>50%</td></tr>
-      <tr><td>OTO 1</td><td>The Product Library</td><td>$27</td><td>50%</td></tr>
-      <tr><td>OTO 2</td><td>The Content System (done-for-you content for Facebook, Instagram and Threads, lifetime access)</td><td>$47</td><td>50%</td></tr>
-    </table>
+    <div class="steps">
+      <div class="step">
+        <img src="/wp/img/app-write.jpg" alt="Prompt Studio app">
+        <div><span class="tag">Front end</span><h3>Claude Made Simple: Prompt Studio + Quick-Start Guide</h3><p>Pick a task, answer a few questions, paste into Claude. A first win in about 15 minutes. No jargon, no coding.</p><div class="pay">$9 &middot; you earn 50%</div></div>
+      </div>
+      <div class="step">
+        <img src="/wp/img/library-cover.jpg" alt="The Product Library">
+        <div><span class="tag">OTO 1</span><h3>The Product Library</h3><p>70+ ready-made books, each one branded with the buyer's own name. Every book added later is included.</p><div class="pay">$27 &middot; you earn 50%</div></div>
+      </div>
+      <div class="step">
+        <img src="/wp/img/app-post.jpg" alt="The Content System post maker">
+        <div><span class="tag">OTO 2</span><h3>The Content System</h3><p>Done-for-you content for Facebook, Instagram and Threads, with lifetime access.</p><div class="pay">$47 &middot; you earn 50%</div></div>
+      </div>
+    </div>
     <p class="small">Refunded sales have their commissions returned automatically by Warrior+.</p>
+  </section>
+
+  <section>
+    <h2>See Inside</h2>
+    <div class="shots">
+      <figure><img src="/wp/img/app-write.jpg" alt="Pick a task"><figcaption>Pick a task</figcaption></figure>
+      <figure><img src="/wp/img/app-design.jpg" alt="Design"><figcaption>Make a post picture</figcaption></figure>
+      <figure><img src="/wp/img/app-tasks.jpg" alt="Tasks"><figcaption>8 ready-made tasks</figcaption></figure>
+    </div>
+    <div class="books">
+      <img src="/wp/img/lib/50-claude-prompts.webp" alt=""><img src="/wp/img/lib/faceless-guide.webp" alt=""><img src="/wp/img/lib/reels-that-reach.webp" alt=""><img src="/wp/img/lib/canva-guide.webp" alt=""><img src="/wp/img/lib/email-marketing-playbook.webp" alt="">
+    </div>
+    <p class="small" style="text-align:center">A peek at the Product Library books (OTO 1)</p>
   </section>
 
   <section>
@@ -94,7 +152,7 @@ h1{letter-spacing:.01em}
       <li>Bonuses are welcome and encouraged. Bonuses must be delivered by you and should not duplicate the product.</li>
       <li>Do not make income claims or promise results. The product does not guarantee any income.</li>
       <li>Do not claim any affiliation with Anthropic.</li>
-      <li>Do not bid on brand terms, spam, or use misleading ads or fake scarcity. Do not say the price is going up, because it is not. Do not say the price is going up, because it is not.</li>
+      <li>Do not bid on brand terms, spam, or use misleading ads or fake scarcity. Do not say the price is going up, because it is not.</li>
     </ul>
   </section>
 
@@ -152,6 +210,13 @@ Grab it here: [YOUR LINK]
 [Your name]</div>
     </div>
       </section>
+
+  <section>
+    <div class="about">
+      <img src="/wp/img/josee.webp" alt="Josée Bédard">
+      <div><h2 style="margin-bottom:8px">Your Partner: Josée Bédard</h2><p style="margin:0">I make AI tools for beginners and non-techies. I'll answer every email and send review copies on request. Let's build a launch your list will love.</p></div>
+    </div>
+  </section>
 
   <section>
     <h2>Contest and Review Copies</h2>
