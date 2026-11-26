@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Create a Digital Product With AI, Step by Step | Josée Bédard</title>
+<meta name="description" content="A step-by-step guide to creating your first digital product with AI: choose the problem, outline it, write it section by section, make it sound like you, check it, and get it in front of real people.">
+<link rel="canonical" href="https://joseebedard.com/blog/how-to-create-a-digital-product-with-ai/">
+<meta property="og:title" content="How to Create a Digital Product With AI, Step by Step | Josée Bédard">
+<meta property="og:description" content="A step-by-step guide to creating your first digital product with AI: choose the problem, outline it, write it section by section, make it sound like you, check it, and get it in front of real people.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://joseebedard.com/blog/how-to-create-a-digital-product-with-ai/">
+
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Newsreader:ital,opsz,wght@1,18,400;1,18,500;0,18,500&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/site.css?v=30">
+<style>
+.blog{background:var(--cream);padding:70px 0 90px;min-height:60vh}
+.blog__head{max-width:820px;margin:0 auto 40px;text-align:center;padding:0 24px}
+.blog__head h1{font-size:clamp(36px,5.5vw,58px);font-weight:900;letter-spacing:-.02em;margin:14px 0 14px}
+.blog__head h1 em{font-family:var(--serif);font-weight:500;font-style:italic;color:var(--gold)}
+.blog__head p{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--ink-soft)}
+.blog__grid{max-width:1160px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media (max-width:860px){.blog__grid{grid-template-columns:1fr}}
+.post__inner h2{font-size:clamp(24px,3.4vw,30px);font-weight:900;letter-spacing:-.01em;margin:38px 0 12px;line-height:1.2}
+.post__inner p,.post__inner li{font-size:18px;line-height:1.7;color:var(--ink-soft)}
+.post__inner p{margin-bottom:16px}
+.post__inner ul,.post__inner ol{margin:0 0 18px 22px}
+.post__inner li{margin-bottom:8px}
+.post__inner a{color:var(--gold);font-weight:600}
+.post__by{font-size:15px;color:var(--ink-soft);margin:-6px 0 28px}
+.post__img{width:100%;height:auto;border-radius:14px;margin:0 0 30px;display:block}
+.card__img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:10px;margin-bottom:16px;display:block}
+.bp-signup{margin:40px 0 0;padding:28px 26px 22px;border-radius:14px;background:var(--ink);text-align:left;position:relative}
+.bp-signup h3{font-size:22px;font-weight:800;color:var(--cream-card);margin-bottom:8px}
+.bp-signup p{font-size:15.5px;line-height:1.5;color:rgba(244,238,223,.8);margin-bottom:16px}
+.bp-signup__row{display:flex;gap:10px;flex-wrap:wrap}
+.bp-signup__row input{flex:1 1 220px;min-width:0;padding:14px 16px;font:inherit;font-size:16px;border-radius:8px;border:1.5px solid rgba(244,238,223,.35);background:var(--cream-card);color:var(--ink)}
+.bp-signup__row .btn{padding:14px 24px;font-size:16px;border:0;cursor:pointer}
+.bp-signup__fine{margin:12px 0 0!important;font-size:13.5px!important;line-height:1.5!important;margin-bottom:0!important;color:rgba(244,238,223,.65)!important}
+.bp-signup__msg{margin:12px 0 0!important;font-size:14.5px!important;min-height:1.2em;color:var(--gold-bright)!important}
+.bp-signup__msg:empty{display:none}
+.bp-signup__msg.is-error{color:#f2a99a!important}
+.qs-consent{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.5;color:rgba(244,238,223,.8);margin-top:12px;cursor:pointer;text-align:left}
+.qs-consent input{margin-top:3px;width:18px;height:18px;flex:0 0 18px;accent-color:#B9903E}
+.post__inner .bp-signup{margin:36px 0 10px}
+.post__inner .bp-signup h3{margin:0 0 8px}
+.post__inner .bp-signup p,.post__inner .guide__cta p{color:rgba(244,238,223,.85);font-size:16.5px;line-height:1.5}
+.post__inner .guide__cta{margin:34px 0 10px}
+.post__inner .guide__cta h3{margin-top:0}
+.post__inner a.btn{color:var(--ink);font-weight:700}
+.post__inner .bp-signup .qs-consent{color:rgba(244,238,223,.8);font-size:14px}
+.post__inner h3{font-size:20px;font-weight:800;margin:26px 0 8px;line-height:1.3}
+.prompt{background:var(--cream-card);border:1px solid var(--paper-line);border-left:4px solid var(--gold);border-radius:10px;padding:16px 20px;margin:0 0 20px;font-size:16.5px;line-height:1.65;color:var(--ink-soft)}
+.post__crumbs{font-size:14px;margin-bottom:14px}
+.post__crumbs a{text-decoration:none;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Create a Digital Product With AI, Step by Step","description":"A step-by-step guide to creating your first digital product with AI: choose the problem, outline it, write it section by section, make it sound like you, check it, and get it in front of real people.","datePublished":"2026-11-26","dateModified":"2026-11-26","author":{"@type":"Person","name":"Josée Bédard","url":"https://joseebedard.com/"},"publisher":{"@type":"Person","name":"Josée Bédard"},"mainEntityOfPage":"https://joseebedard.com/blog/how-to-create-a-digital-product-with-ai/"}</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__logo" href="/index.html">Josée <em>Bédard</em></a>
+    <div class="nav__links">
+      <span class="nav__textlinks">
+        <a href="/pivot-to-what/">Start Here</a>
+        <a href="/guides/">Free Guides</a>
+        <a href="/masterclass/">Free Masterclass</a>
+        <a href="/tools/">Resources</a>
+      </span>
+      <a class="btn" href="https://www.skool.com/ai-digital-society-5263" target="_blank" rel="noopener">Show Me How · Free</a>
+    </div>
+      <button class="nav__burger" aria-label="Menu" onclick="this.closest('.nav').classList.toggle('is-open')">☰</button>
+    </div>
+  </div>
+</nav>
+
+<article class="guide post">
+  <div class="guide__inner post__inner">
+    <div class="post__crumbs"><a href="/blog/">Blog</a> / Products</div>
+    <div class="guide__meta">PRODUCTS · 11 min read</div>
+    <h1>How to Create a Digital Product With AI, Step by Step</h1>
+    <p class="guide__lede">I have sold over 30,000 digital products. Here is the simple process I would follow today, with an AI helper doing the heavy lifting.</p>
+    <p class="post__by">By Josée Bédard · <time datetime="2026-11-26">November 26, 2026</time></p>
+
+<h2>What a digital product is</h2>
+<p>A digital product is something people get as a file or online, with nothing to ship. A guide, a checklist, a set of templates, a planner. You make it once, and many people can use it.</p>
+<p>I have sold over 30,000 of them over the years. I will not promise you that kind of result, because every person and every product is different. But I can show you the simple steps I follow.</p>
+
+<h2>Step 1: Pick one person and one problem</h2>
+<p>Do not make something for "everyone". Write one sentence:</p>
+<div class="prompt">
+This helps [one kind of person] with [one problem].
+</div>
+<p>For example: "This helps women over 50 plan a calm first week of a small online business." That is clear. "Business tips for everyone" is not.</p>
+
+<h2>Step 2: Pick a simple format</h2>
+<p>Start with the easiest one:</p>
+<ul>
+<li><b>A short guide</b> (10 to 20 pages) that walks someone through steps</li>
+<li><b>A checklist or planner</b> they can print</li>
+<li><b>A set of templates</b> they can fill in</li>
+</ul>
+<p>A short guide is the easiest place to start. You can make the others later.</p>
+
+<h2>Step 3: Teach your AI helper who you are</h2>
+<p>If you skip this, your product will sound like every other AI product. Do the short interview that creates your brain file first. I explain exactly how in <a href="/blog/what-is-a-brain-file/">What Is a Brain File?</a>. It takes about 20 minutes and it is the biggest quality upgrade you can make.</p>
+
+<h2>Step 4: Make an outline</h2>
+<p>Ask Claude for a simple outline of five or six parts. Paste this and fill in the brackets:</p>
+<div class="prompt">
+Using what you know about me, write an outline for a short guide that helps [who] with [problem]. Give me five or six parts, each with a one-line description. Keep the words simple.
+</div>
+<p>Read the outline. Cut anything that is not needed. Move things around. A short guide people finish is better than a long one they do not.</p>
+
+<h2>Step 5: Write one part at a time</h2>
+<p>Do not ask for the whole guide at once. Go one part at a time:</p>
+<div class="prompt">
+Now write part 1: [name of the part]. Use short sentences and plain words. Include one real example. Keep it to about 300 words. Do not promise any results.
+</div>
+<p>Read each part out loud. Anything that does not sound like you, change it.</p>
+
+<h2>Step 6: Add your real experience</h2>
+<p>This is the part only you can do, and it is what makes your product worth buying. In every part, add:</p>
+<ul>
+<li>One true story, or what happened to you</li>
+<li>One mistake you made, so the reader can skip it</li>
+<li>One small thing you wish someone had told you</li>
+</ul>
+<p>AI writes the first draft. You make it real.</p>
+
+<h2>Step 7: Check it carefully</h2>
+<p>AI makes mistakes, so this step is not optional:</p>
+<ul>
+<li>Check every fact, date, name and number.</li>
+<li>Remove any claim you cannot back up, especially about money, health or results.</li>
+<li>Make sure it does not copy someone else's work. Everything should be in your own words.</li>
+<li>Read the whole thing once, start to finish.</li>
+</ul>
+
+<h2>Step 8: Put it into one simple file</h2>
+<p>Put it in a clean, simple document and save it as a PDF. Add a title, a short welcome, the parts and a thank-you at the end. Keep it simple and easy to read. Big, clear text matters more than fancy design.</p>
+
+<h2>Step 9: Test it with a few real people</h2>
+<p>Before you share it widely, give it to three to five people who match your "who". Ask:</p>
+<ul>
+<li>What helped you most?</li>
+<li>What was confusing?</li>
+<li>What is missing?</li>
+</ul>
+<p>Fix what they tell you. This step is the difference between a product that works and one that does not.</p>
+
+<h2>Step 10: Share it honestly</h2>
+<p>Decide where people will get it, like a simple page or an online shop. Write a short, honest description of what it is, who it is for and what it does not do. Do not promise income or results. Honest descriptions build trust.</p>
+
+<h2>Common mistakes</h2>
+<ol>
+<li><b>Making it too big.</b> Start small and finish it.</li>
+<li><b>Skipping your voice.</b> If it sounds like AI, people feel it.</li>
+<li><b>Not checking facts.</b> One wrong fact can lose a reader's trust.</li>
+<li><b>Waiting to be perfect.</b> Finish a good first version, then improve it.</li>
+<li><b>Promising results.</b> Be honest about what the product can and cannot do.</li>
+</ol>
+
+<h2>Frequently asked questions</h2>
+<h3>How long does it take?</h3>
+<p>A short guide can take a few days of small sessions, with AI doing the first drafts. Do not rush the checking.</p>
+<h3>Do I need a website?</h3>
+<p>Not to make the product. You can start by sharing it with a few people and learn from them.</p>
+<h3>Can I sell something made with AI?</h3>
+<p>Many people do. What matters is that it is accurate, helpful, in your own voice and not copied from anyone.</p>
+<h3>What should I charge?</h3>
+<p>Start with a fair, small price you are comfortable with, and learn from how people respond. I will not give you a number, because it depends on your product and your people.</p>
+<h3>Do I need to be on camera?</h3>
+<p>No. A written guide needs only your words.</p>
+
+<h2>Where to go next</h2>
+<p>My free <a href="/one-person-ai-business/">One-Person AI Business guide</a> walks through this whole path in your first 30 days, with the exact prompts I use. And if you are still choosing what to make, read <a href="/blog/online-business-ideas-for-people-over-50/">10 Online Business Ideas for People Over 50</a>.</p>
+
+
+<form class="bp-signup qs-form" id="qs-form" novalidate style="margin:36px 0 10px">
+  <h3>Want the free guide?</h3>
+  <p>Enter your email and I will send you Your One-Person AI Business right away. Free, made for 40+.</p>
+  <div class="bp-signup__row">
+    <input type="email" id="qs-email" name="email" placeholder="Your email" autocomplete="email" required aria-label="Your email address">
+    <button class="btn" type="submit" id="qs-btn">Send Me the Guide</button>
+  </div>
+  <input type="text" name="website" id="qs-website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;width:0;opacity:0;">
+  <label class="qs-consent"><input type="checkbox" id="qs-consent"> Yes, send me the guide and occasional emails from Josée with new free guides and tips. I can unsubscribe any time.</label>
+  <p class="bp-signup__msg" id="qs-msg" role="status" aria-live="polite"></p>
+  <input type="hidden" id="qs-source" value="joseebedard.com/blog/how-to-create-a-digital-product-with-ai">
+</form>
+<script>
+  (function () {
+    var form = document.getElementById("qs-form");
+    if (!form) return;
+    var msg = document.getElementById("qs-msg"), btn = document.getElementById("qs-btn");
+    function say(t, bad) { msg.textContent = t; msg.style.color = bad ? "#e7a58f" : "#D6A843"; }
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      var email = document.getElementById("qs-email").value.trim();
+      var consent = document.getElementById("qs-consent").checked;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { say("Please enter a valid email address.", true); return; }
+      if (!consent) { say("Please tick the box so I know you want the guide and my emails.", true); return; }
+      btn.disabled = true; btn.textContent = "Sending...";
+      try {
+        var res = await fetch("https://trobqziwskkxclablptx.supabase.co/functions/v1/guide-subscribe", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email, consent: true, website: document.getElementById("qs-website").value, source: document.getElementById("qs-source").value, guide: "one-person" })
+        });
+        var data = await res.json().catch(function () { return {}; });
+        if (res.ok && data.ok) {
+          form.querySelector(".bp-signup__row").style.display = "none";
+          form.querySelector(".qs-consent").style.display = "none";
+          say("Done! Check your inbox for Your One-Person AI Business. It can take a few minutes, and it may land in your spam folder.");
+        } else { say(data.error || "Something went wrong. Please try again.", true); btn.disabled = false; btn.textContent = "Send Me the Guide"; }
+      } catch (err) { say("Something went wrong. Please try again.", true); btn.disabled = false; btn.textContent = "Send Me the Guide"; }
+    });
+  })();
+</script>
+
+    <h2>Keep going, free</h2>
+    <ul>
+      <li><a href="/pivot-to-what/"><b>Pivot to What?</b></a>: not sure what to start? Ten simple businesses you can start after 50, and how to pick yours.</li>
+      <li><a href="/masterclass/"><b>The Free Masterclass</b></a>: how I built my business by replacing myself with AI helpers inside Claude. No coding needed.</li>
+    </ul>
+    <div class="guide__cta">
+      <h3>Come build it with me</h3>
+      <p>Inside my free community I walk these steps with you, and when you ask a question in there, it is me who answers. Not an assistant, not a bot. Me.</p>
+      <a class="btn" href="https://www.skool.com/ai-digital-society-5263" target="_blank" rel="noopener">Join Free &amp; Start Building</a>
+    </div>
+    <h2>More from the blog</h2>
+    <ul><li><a href="/blog/start-an-online-business-at-58/">Can You Really Start an Online Business at 58?</a></li><li><a href="/blog/what-is-an-ai-employee/">What Is an AI Employee? (Plain Words, No Tech)</a></li><li><a href="/blog/what-is-a-brain-file/">What Is a Brain File, and Why Does Claude Need One?</a></li><li><a href="/blog/is-50-too-old-to-start-a-business/">Is 50 Too Old to Start a Business? An Honest Answer</a></li><li><a href="/blog/online-business-ideas-for-people-over-50/">10 Online Business Ideas for People Over 50 (and How to Pick Yours)</a></li><li><a href="/blog/ai-for-beginners-over-50/">AI for Beginners Over 50: Where to Start (No Tech Skills Needed)</a></li></ul>
+  </div>
+</article>
+
+<footer class="footer">
+  <div class="footer__links">© 2026 Josée Bédard · <a href="/blog/">Blog</a> · <a href="/guides/">All Guides</a> · <a href="/index.html">Home</a> · <a href="/legal/privacy.html">Privacy</a> · <a href="/legal/terms.html">Terms</a> · <a href="/legal/refunds.html">Refund Policy</a></div>
+  <p class="footer__disclaimer">My story is my own, from years of full-time work. It is not typical and it is not a promise of your results. Everything on this site is education, not financial advice.</p>
+</footer>
+
+<!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "94809ead9f3b4ffc98620b13b2fce628"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
